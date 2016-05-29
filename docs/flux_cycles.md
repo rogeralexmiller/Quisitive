@@ -7,10 +7,7 @@ store listeners are listed at the end.
 
 You should be able to use this document trace an **action** starting
 with where it was invoked, through the **API**/**store** involved, and
-finally to the **components** that update as a result. This is important
-because once you start implementing your flux loops, that's precisely
-what you'll need to do.
-
+finally to the **components** that update as a result.
 
 ## Question Cycles
 

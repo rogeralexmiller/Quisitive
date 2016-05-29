@@ -6,13 +6,13 @@
 ## New Session
 ![new-session]
 
-## Questions Index / QuestionsIndexItem / QuestionForm
+## Questions Index / QuestionsIndexItem / QuestionForm / TopicIndex
 ![questions]
 
 ## QuestionShow / AnswerIndex / AnswerForm
 ![answers]
 
-## QuestionShow / AnswerIndex / AnswerForm
+## TopicShow / QuestionIndex / TopicIndex
 ![topicShow]
 
 [new-user]: ./wireframes/Signup.png

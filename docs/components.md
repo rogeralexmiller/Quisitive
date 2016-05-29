@@ -3,16 +3,14 @@
 * `App`
   * `QuestionsIndex`
     * `QuestionsIndexItem`
-  * `FeedsIndex`
-    * `FeedsIndexItem`
+  * `TopicsIndex`
+    * `TopicsIndexItem`
   * `QuestionForm/Search`
   * `QuestionDetail`
     * `AnswerIndex`
       * `AnswerForm`
       * `AnswerIndexItem`
-      * `CommentsIndex`
-      * `CommentForm`
-  * `FeedDetail`
-    * `QuestionIndex`
+        * `CommentsIndex`
+        * `CommentForm`
   * `TopicDetail`
     * `QuestionIndex`

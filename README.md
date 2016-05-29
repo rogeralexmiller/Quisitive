@@ -23,7 +23,8 @@ Quisitive will allow users to do the following:
 
 - [ ] Create an account (MVP)
 - [ ] Log in / Log out, including as a Guest/Demo User (MVP)
-- [ ] Ask, read, answer, edit and delete answers(MVP)
+- [ ] Ask, read, answer, edit and delete questions(MVP)
+- [ ] Comment on answers(MVP)
 - [ ] Follow topic feeds of questions (MVP)
 - [ ] Tag their own questions with topics (MVP)
 - [ ] Search with dropdown of previously asked questions
@@ -151,3 +152,4 @@ user interface.
 - [ ] Search through notes for blocks of text
 - [ ] Pagination / infinite scroll for Questions Index
 - [ ] Multiple sessions
+- [ ] Upvote/downvote buttons
