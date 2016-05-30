@@ -12,6 +12,9 @@
 ## QuestionShow / AnswerIndex / AnswerForm
 ![answers]
 
+## Edit Topics
+![edit-topics]
+
 ## TopicShow / QuestionIndex / TopicIndex
 ![topicShow]
 
@@ -20,3 +23,4 @@
 [questions]: ./wireframes/QuestionFeed.png
 [answers]: ./wireframes/QuestionShow.png
 [topicShow]: ./wireframes/Topic-Show.png
+[edit-topics]: ./wireframes/EditTopicsForm.png

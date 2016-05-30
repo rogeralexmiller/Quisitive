@@ -11,8 +11,8 @@ end of week 9, this app will, at a minimum, satisfy the following criteria:
 
 - [ ] New account creation, login, and guest/demo login
 - [ ] Adequate seed data to demonstrate the site's features
-- [ ] The minimally necessary features for a Quora-inspired site: question asking, editing, answering, searching,
-topic feeds, an infinite scrolling feed of questions/answers.
+- [ ] The minimally necessary features for a Quora-inspired site: question asking, editing, answering, commenting and searching,
+and topic question feeds
 - [ ] Hosting on Heroku
 - [ ] CSS styling that is elegant and similar to the real Quora.
 - [ ] A production README, replacing this README
