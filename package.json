@@ -31,8 +31,8 @@
     "react-router": "2.0.1"
   },
   "engines": {
-   "node": "4.1.1",
-   "npm": "2.1.x"
+   "node": "5.5.0",
+   "npm": "3.3.12"
   },
   "scripts": {
     "postinstall": "./node_modules/.bin/webpack"
