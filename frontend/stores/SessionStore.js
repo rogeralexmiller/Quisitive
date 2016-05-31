@@ -20,10 +20,12 @@ SessionStore.__onDispatch = function(payload){
   switch(payload.actionType){
     case SessionConstants.LOGIN:
       _currentUser = payload.user;
+      _currentUserHasBeenFetched = true;
       SessionStore.__emitChange();
       break;
     case SessionConstants.LOGOUT:
       _currentUser = {};
+      _currentUserHasBeenFetched = false;
       SessionStore.__emitChange();
       break;
   }

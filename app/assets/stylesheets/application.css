@@ -13,3 +13,13 @@
  *= require_tree .
  *= require_self
  */
+
+ html, body, div, form, p, input {
+   margin: 0;
+   padding: 0;
+   font: inherit;
+ }
+
+ input {
+   display: block;
+ }

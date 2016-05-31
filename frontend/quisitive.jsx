@@ -11,11 +11,15 @@ var SessionActions = require("./actions/SessionActions");
 var UserApiUtil  = require("./util/userApiUtil");
 var SessionApiUtil = require('./util/sessionApiUtil');
 
-var Test = React.createClass({
+var LoginForm = require("./components/LoginForm");
+var SignupForm = require("./components/SignupForm");
+var Home = require("./components/Home");
+
+var App = React.createClass({
   render: function(){
-    return(
+    return (
       <div>
-        Hello World
+        {this.props.children}
       </div>
     );
   }
@@ -23,7 +27,11 @@ var Test = React.createClass({
 
 var Router = (
   <Router history={hashHistory}>
-    <Route path="/" component={Test}/>
+    <Route path="/" component={App}>
+      <IndexRoute component={Home}/>
+      <Route path="/login" component={LoginForm}/>
+      <Route path="/signup" component={SignupForm}/>
+    </Route>
   </Router>
 );
 

@@ -1,4 +1,4 @@
-var ServerActions = require("../actions/SessionActions");
+var SessionActions = require("../actions/SessionActions");
 
 var SessionApiUtil = {
 
