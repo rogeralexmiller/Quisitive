@@ -1,7 +1,7 @@
 {
   "name": "quisitive",
   "version": "1.0.0",
-  "description": "For the curious",
+  "description": "== README",
   "main": "index.js",
   "directories": {
     "test": "test"
@@ -11,7 +11,7 @@
     "url": "git+https://github.com/rogeralexmiller/Quisitve.git"
   },
   "keywords": [],
-  "author": "Roger Miller",
+  "author": "",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/rogeralexmiller/Quisitive/issues"
@@ -28,7 +28,11 @@
     "react": "^0.14.2",
     "react-addons-linked-state-mixin": "^0.14.8",
     "react-dom": "^0.14.2",
-    "react-router": "2.0.1"
+    "react-router": "2.0.1",
+    "babel-core": "^6.2.0",
+    "babel-loader": "^6.2.0",
+    "babel-preset-react": "^6.1.18",
+    "webpack": "^1.12.2"
   },
   "engines": {
    "node": "5.5.0",
