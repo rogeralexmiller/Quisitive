@@ -12,4 +12,4 @@
 !/log/.keep
 /tmp
 /node_modules/*
-app/assets/javascripts/bundle*
+/app/assets/javascripts/bundle*
