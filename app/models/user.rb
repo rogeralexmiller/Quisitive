@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
-  validates :session_token, :full_name, :password_digest, :email, presence: true
 
+  validates :session_token, :full_name, :password_digest, :email, presence: true
+  validates :email, uniqueness: true
   validates :password, length: {minimum: 6}, allow_nil: true
 
   attr_reader :password
@@ -18,7 +19,7 @@ class User < ActiveRecord::Base
   end
 
   def ensure_session_token
-    self.session_token = SecureRandom.urlsafe_base64(16)
+    self.session_token ||= new_session_token
   end
 
   def password=(password)
@@ -31,7 +32,20 @@ class User < ActiveRecord::Base
   end
 
   def reset_session_token!
-    self.session_token = SecureRandom.urlsafe_base64(16)
+    self.session_token = new_session_token
+    ensure_session_token_uniqueness
+    self.save
+    self.session_token
+  end
+
+  def new_session_token
+    SecureRandom.base64
+  end
+
+  def ensure_session_token_uniqueness
+    while User.find_by(session_token: self.session_token)
+      self.session_token = new_session_token
+    end
   end
 
 end
