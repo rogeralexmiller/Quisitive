@@ -7,6 +7,9 @@ var Route = ReactRouter.Route;
 var IndexRoute = ReactRouter.IndexRoute;
 var hashHistory = ReactRouter.hashHistory;
 
+var SessionStore = require("./stores/SessionStore");
+var SessionActions = require("./actions/SessionActions");
+
 var SessionApiUtil = require('./util/sessionApiUtil');
 
 var Test = React.createClass({
@@ -26,6 +29,8 @@ var Router = (
 );
 
 window.SessionApiUtil = SessionApiUtil;
+window.SessionStore = SessionStore;
+window.SessionActions = SessionActions;
 
 document.addEventListener('DOMContentLoaded', function(){
   var root = document.getElementById('content');

@@ -1,3 +1,4 @@
+var ServerActions = require("../actions/SessionActions");
 
 var SessionApiUtil = {
 
@@ -5,7 +6,8 @@ var SessionApiUtil = {
     $.ajax({
       url: "api/session",
       type: "GET",
-      success: function(data){
+      success: function(user){
+        SessionActions.receiveCurrentUser(user);
       }
     });
   },
@@ -14,7 +16,8 @@ var SessionApiUtil = {
       url: "api/session",
       type: "POST",
       data: credentials,
-      success: function(data){
+      success: function(user){
+        SessionActions.receiveCurrentUser(user);
       }
     });
   },
@@ -23,8 +26,8 @@ var SessionApiUtil = {
     $.ajax({
       url: "api/session",
       type: "DELETE",
-      success: function(data){
-
+      success: function(user){
+        SessionActions.removeCurrentUser(user);
       }
     });
   }
