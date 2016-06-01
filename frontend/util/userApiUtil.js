@@ -1,4 +1,5 @@
 var SessionActions = require("../actions/SessionActions");
+var ErrorActions = require("../actions/errorActions");
 
 var UserApiUtil = {
   signup: function(user){
@@ -8,6 +9,11 @@ var UserApiUtil = {
       data: {user: user},
       success: function(user){
         SessionActions.receiveCurrentUser(user);
+      },
+      error: function(errors){
+        debugger;
+        ErrorActions.clearErrors();
+        ErrorActions.setErrors(errors, "signup");
       }
     });
   }

@@ -1,7 +1,7 @@
 var React = require("react");
 var SessionApiUtil = require("../util/sessionApiUtil");
 var UserApiUtil = require("../util/userApiUtil");
-var SessionStore = require("../stores/SessionStore");
+var SessionStore = require("../stores/sessionStore");
 
 var LoginForm = React.createClass({
 
@@ -54,13 +54,13 @@ var LoginForm = React.createClass({
   render: function(){
     return(
       <form onSubmit={this.handleSubmit}>
-        <label for="email">Email</label>
+        <label htmlFor="email">Email</label>
         <input id="email" type="text" onChange={this.handleEmailChange} value={this.state.email}/>
 
         <label for="name">Full Name</label>
         <input id="name" type="text" onChange={this.handleNameChange} value={this.state.full_name}/>
 
-        <label for="password">Password</label>
+        <label htmlFor="password">Password</label>
         <input id="password" type="password" onChange={this.handlePasswordChange} value={this.state.password}/>
 
         <input type="submit" value="Signup" />

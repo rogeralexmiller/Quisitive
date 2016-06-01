@@ -1,4 +1,5 @@
 var SessionActions = require("../actions/SessionActions");
+var ErrorActions = require("../actions/errorActions");
 
 var SessionApiUtil = {
 
@@ -11,13 +12,19 @@ var SessionApiUtil = {
       }
     });
   },
+
   login: function(credentials){
     $.ajax({
       url: "api/session",
       type: "POST",
-      data: credentials,
+      data: {user:credentials},
       success: function(user){
         SessionActions.receiveCurrentUser(user);
+      },
+      error: function(xhr){
+        var errors = xhr.responseJSON;
+        ErrorActions.clearErrors();
+        ErrorActions.setErrors("login", errors);
       }
     });
   },

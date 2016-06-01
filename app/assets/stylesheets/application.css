@@ -14,12 +14,104 @@
  *= require_self
  */
 
- html, body, div, form, p, input {
+
+ html, body, header, nav, h1, a,
+ ul, li, strong, main, button, i,
+ section, img, div, h2, p, form,
+ fieldset, label, input, textarea,
+ span, article, footer, time, small, h3 {
    margin: 0;
    padding: 0;
+   border: 0;
+   outline: 0;
    font: inherit;
+   color: inherit;
+   text-align: inherit;
+   text-decoration: inherit;
+   vertical-align: inherit;
+   box-sizing: inherit;
+   background: transparent;
+ }
+
+body{
+  font-family: sans-serif;
+}
+
+ ul {
+   list-style: none;
+ }
+
+ img {
+   display: block;
+   width: 100%;
+   height: auto;
+ }
+
+ .group:after {
+   content: "";
+   display: block;
+   clear: both;
  }
 
  input {
    display: block;
  }
+
+button.loggedIn {
+  display: block;
+}
+
+button.loggedOut {
+  display: none;
+}
+
+.user-nav-item{
+  float: right;
+}
+
+.login-form {
+  position: relative;
+  background: #fff;
+  box-sizing: border-box;
+  border: 1px solid #dcdcdc;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px 0 #dcdcdc;
+  padding: 22px;
+  width: 270px;
+  margin: auto;
+  top: 200px;
+}
+
+.login-form-input{
+  border: 1px solid #e2e2e2;
+  padding: 3px;
+  border-radius: 3px;
+  box-shadow: inset 0 1px 1px rgba(200,200,200,0.3);
+  width: 100%;
+  min-height: 32px;
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+
+.good-button{
+  border-radius: 3px;
+  font-weight: 500;
+  font-size: 15px;
+  padding: 3px 7px 4px 7px;
+  color: white;
+  background: #3E78AD;
+  width: 54.63;
+  height: 30;
+  margin-top: 8px;
+  float: right;
+  margin-bottom: 8px;
+}
+
+.good-button:disabled{
+  background: #9FBCD6;
+}
+
+.logout-btn{
+  background: red;
+  color: white;
+}
