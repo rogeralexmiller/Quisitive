@@ -8,15 +8,15 @@
 
 ### Users
 
-- `GET /users/new`
-- `POST /users`
-- `PATCH /users`
+- `GET api/users/new`
+- `POST api/users`
+- `PATCH api/users`
 
 ### Session
 
-- `GET /session/new`
-- `POST /session`
-- `DELETE /session`
+- `GET api/session/new`
+- `POST api/session`
+- `DELETE api/session`
 
 ## JSON API
 
@@ -48,8 +48,12 @@
 
 - `GET /api/answers/:answerId/comments`
   - index of all comments for an answer
+- `GET /api/questions/:questionId/comments`
+  - index of all comments for an question
 - `POST /api/answers/:answerId/comments`
   - Create comment for an answer
+- `POST /api/questions/:questionId/comments`
+  - Create comment for an question
 - `GET /api/comments/:id`
   - Get a single comment
 - `PATCH /api/comments/:id`
@@ -57,12 +61,11 @@
 - `DELETE /api/comments/:id`
   - Delete a single comment
 
-### Tags
+### Topics
 
-- A question's tags will be included in the note show template
-- `GET /api/tags`
-  - Get all tags
-- `POST /api/questions/:question_id/tags`
-  - Add tag to question
-- `DELETE /api/questions/:question_id/tags/:tag_name`: remove tag from note by
-  name
+- A question's topics will be included in the question show template
+- `GET /api/topics`
+  - Get all topics
+- `POST /api/questions/:question_id/topics`
+  - Add topic to question. Can also substitute
+- `DELETE /api/questions/:question_id/topics/:topic_name`: remove topic from question by name

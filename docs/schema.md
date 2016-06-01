@@ -18,24 +18,23 @@ body        | text      | not null
 question_id | integer   | not null, foreign key (references questions), indexed
 
 ## comments
-column name | data type | details
-------------|-----------|-----------------------
-id          | integer   | not null, primary key
-user_id     | integer   | not null, foreign key (references users), indexed
-answer_id   | integer   | not null, foreign key (references answers), indexed
-body        | text      | not null
+column name      | data type | details
+-----------------|-----------|-----------------------
+id               | integer   | not null, primary key
+user_id          | integer   | not null, foreign key (references users), indexed
+commentable_id   | integer   | not null, foreign key, polymorphic (references answers/questions), indexed
+body             | text      | not null
 
-## tags
+## topics
 column name | data type | details
 ------------|-----------|-----------------------
 id          | integer   | not null, primary key
 name        | string    | not null
 
-## taggings
+## topic_taggings
 column name | data type | details
 ------------|-----------|-----------------------
 id          | integer   | not null, primary key
-name        | string    | not null
 question_id | integer   | not null, foreign key (references questions), indexed, unique [tag_id]
 tag_id      | integer   | not null, foreign key (references tags), indexed
 

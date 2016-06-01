@@ -25,7 +25,7 @@ Quisitive will allow users to do the following:
 - [ ] Log in / Log out, including as a Guest/Demo User (MVP)
 - [ ] Ask, read, answer, edit and delete questions(MVP)
 - [ ] Comment on answers(MVP)
-- [ ] Follow topic feeds of questions (MVP)
+- [ ] See feeds of questions filtered by topic (MVP)
 - [ ] Tag their own questions with topics (MVP)
 - [ ] Search with dropdown of previously asked questions
 
@@ -48,11 +48,11 @@ Quisitive will allow users to do the following:
 
 **Objective:** Functioning rails project with Authentication
 
-- [ ] create new project
-- [ ] create `User` model
-- [ ] authentication
+- [x] create new project
+- [x] create `User` model
+- [x] authentication
 - [ ] user signup/signin pages
-- [ ] blank landing page after signin
+- [x] blank landing page after signin
 
 ### Phase 2: Question Model, API, and basic APIUtil (1.5 days)
 
@@ -82,15 +82,7 @@ user interface.
 - [ ] save Questions to the DB when the form loses focus or is left idle
   after editing.
 
-### Phase 4: Start Styling (0.5 days)
-
-**Objective:** Questions index, QuestionShow pages (including singup/signin) will look good.
-
-- [ ] create a basic style guide
-- [ ] position elements on the page
-- [ ] add basic colors & styles
-
-### Phase 5: Answers (1 day)
+### Phase 4: Answers (1 day)
 
 **Objective:** Answers belong to Questions, and can be viewed by QuestionDetail. The top rated answer for each question will be shown in the questionIndex
 
@@ -100,7 +92,7 @@ user interface.
   - [ ] adding answers requires a question
 - Use CSS to style updated QuestionDetail page
 
-### Phase 6: Comments (1 day)
+### Phase 5: Comments (1 day)
 
 **Objective:** Comments belong to Answers, and can be viewed in AnswerIndex on a dropdown
 
@@ -111,7 +103,7 @@ user interface.
 - Use CSS to style updated QuestionDetail page
 
 
-### Phase 7: TopicTags (1.5 days)
+### Phase 6: TopicTags (1.5 days)
 
 **Objective:** Questions can be tagged with multiple topic tags
 
@@ -123,7 +115,7 @@ user interface.
   - [ ] Viewing all questions tagged as a topic.
 - [ ] Style new elements for TopicDetail page (filtered question index)
 
-### Phase 8: Give question form ability to run searches on previously asked questions (1.5 days)
+### Phase 7: Give question form ability to run searches on previously asked questions (1.5 days)
 
 **objective:** Enable question searches
 
@@ -131,22 +123,6 @@ user interface.
 - [ ] Dropdown is limited to top 5 results
 - [ ] User can click a search button to see all results for given search
 - [ ] Style new elements for Search result page (filtered question index)
-
-### Phase 9: Allow Complex Styling in Answers (0.5 days)
-
-**objective:** Enable complex styling of answers.
-
-- [ ] Integrate `react-quill` (based on Quill.js).
-- [ ] Use Rails helpers to sanitize HTML before rendering.
-- [ ] Style the new Quill elements.
-
-### Phase 10: Styling Cleanup and Seeding (1 day)
-
-**objective:** Make the site feel more cohesive and quora-like.
-
-- [ ] Get feedback on my UI from others
-- [ ] Refactor HTML classes & CSS rules
-- [ ] Add modals, transitions, and other styling flourishes.
 
 ### Bonus Features (TBD)
 - [ ] Search through notes for blocks of text
