@@ -11,6 +11,12 @@ var SessionActions = require("./actions/SessionActions");
 var UserApiUtil  = require("./util/userApiUtil");
 var SessionApiUtil = require('./util/sessionApiUtil');
 
+var QuestionApiUtil = require("./util/questionApiUtil");
+var QuestionStore = require("./stores/questionStore");
+
+window.QuestionStore = QuestionStore;
+window.QuestionApiUtil = QuestionApiUtil;
+
 var LoginSignup = require("./components/LoginSignup");
 var Home = require("./components/Home");
 
