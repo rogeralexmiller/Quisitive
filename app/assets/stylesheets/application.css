@@ -108,12 +108,14 @@ button.loggedOut {
   width: 100%;
   margin-top: 16px;
   margin-bottom: 16px;
+  background: #EEEEEE;
 }
 
-.signup{
+.signup-input{
   width: 150px;
-  float: right;
   height: 15px;
+  display: inline-block;
+  background: white;
 }
 
 .formRow{
@@ -121,9 +123,10 @@ button.loggedOut {
 }
 
 .formRow label {
-  float: left;
-  padding: 4px;
-  min-height: 32px;
+  width: 100px;
+  display: inline-block;
+  text-align: left;
+  margin-right: 20px;
 }
 
 .form-title{

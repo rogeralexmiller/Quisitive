@@ -30,6 +30,7 @@ var Router = (
     <Route path="/" component={App}>
       <IndexRoute component={Home}/>
       <Route path="/login" component={LoginSignup}/>
+      <Route path="/signup" component={LoginSignup}/>
     </Route>
   </Router>
 );

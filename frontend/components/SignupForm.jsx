@@ -68,17 +68,17 @@ var LoginForm = React.createClass({
         <h3 className="form-title">SIGN UP</h3>
         <div className="formRow group">
           <label htmlFor="email">Email</label>
-          <input id="email" type="text" onChange={this.handleEmailChange} className="form-input signup" value={this.state.email}/>
+          <input id="email" type="text" onChange={this.handleEmailChange} className="form-input signup-input" value={this.state.email}/>
         </div>
 
         <div className="formRow group">
-          <label for="name">Full Name</label>
-          <input id="name" type="text" onChange={this.handleNameChange} className="form-input signup" value={this.state.full_name}/>
+          <label htmlFor="name">Full Name</label>
+          <input id="name" type="text" onChange={this.handleNameChange} className="form-input signup-input" value={this.state.full_name}/>
         </div>
 
         <div className="formRow group">
           <label htmlFor="password">Password</label>
-          <input id="password" type="password" className="form-input signup" onChange={this.handlePasswordChange} value={this.state.password}/>
+          <input id="password" type="password" className="form-input signup-input" onChange={this.handlePasswordChange} value={this.state.password}/>
         </div>
         <input className="good-button" type="submit" value="Sign Up" disabled={this.state.disabled}/>
       </form>

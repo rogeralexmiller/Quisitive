@@ -65,7 +65,7 @@ var LoginForm = React.createClass({
   render: function(){
     return(
         <form onSubmit={this.handleSubmit} className="login-form group">
-          <h3 className="form-title">Login</h3>
+          <h3 className="form-title">LOGIN</h3>
           <input id="email" type="text" className="form-input" onChange={this.handleEmailChange} value={this.state.email} placeholder="Email"/>
           <input id="password" type="password" className="form-input" onChange={this.handlePasswordChange} value={this.state.password} placeholder="Password"/>
 
