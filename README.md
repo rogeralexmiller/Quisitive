@@ -21,7 +21,7 @@ and topic question feeds
 
 Quisitive will allow users to do the following:
 
-- [ ] Create an account (MVP)
+- [x] Create an account (MVP)
 - [ ] Log in / Log out, including as a Guest/Demo User (MVP)
 - [ ] Ask, read, answer, edit and delete questions(MVP)
 - [ ] Comment on answers(MVP)
