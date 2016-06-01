@@ -10,19 +10,30 @@ var LoginForm = React.createClass({
   },
 
   getInitialState: function(){
-    return {email: "", password: "", full_name: ""};
+    return {email: "", password: "", full_name: "", disabled: true, errors: {}};
+  },
+
+  checkReadyState: function(){
+    if (this.state.email && this.state.password && this.state.full_name) {
+      this.setState({disabled: false});
+    } else{
+      this.setState({disabled: true});
+    }
   },
 
   handleEmailChange: function(e){
     this.setState({email: e.target.value});
+    this.checkReadyState();
   },
 
   handleNameChange: function(e){
     this.setState({full_name: e.target.value});
+    this.checkReadyState();
   },
 
   handlePasswordChange: function(e){
     this.setState({password: e.target.value});
+    this.checkReadyState();
   },
 
   _onChange: function(){
@@ -53,17 +64,23 @@ var LoginForm = React.createClass({
 
   render: function(){
     return(
-      <form onSubmit={this.handleSubmit}>
-        <label htmlFor="email">Email</label>
-        <input id="email" type="text" onChange={this.handleEmailChange} value={this.state.email}/>
+      <form onSubmit={this.handleSubmit} className="signup-form">
+        <h3 className="form-title">SIGN UP</h3>
+        <div className="formRow group">
+          <label htmlFor="email">Email</label>
+          <input id="email" type="text" onChange={this.handleEmailChange} className="form-input signup" value={this.state.email}/>
+        </div>
 
-        <label for="name">Full Name</label>
-        <input id="name" type="text" onChange={this.handleNameChange} value={this.state.full_name}/>
+        <div className="formRow group">
+          <label for="name">Full Name</label>
+          <input id="name" type="text" onChange={this.handleNameChange} className="form-input signup" value={this.state.full_name}/>
+        </div>
 
-        <label htmlFor="password">Password</label>
-        <input id="password" type="password" onChange={this.handlePasswordChange} value={this.state.password}/>
-
-        <input type="submit" value="Signup" />
+        <div className="formRow group">
+          <label htmlFor="password">Password</label>
+          <input id="password" type="password" className="form-input signup" onChange={this.handlePasswordChange} value={this.state.password}/>
+        </div>
+        <input className="good-button" type="submit" value="Sign Up" disabled={this.state.disabled}/>
       </form>
     )
   }

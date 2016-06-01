@@ -33,6 +33,10 @@
    background: transparent;
  }
 
+ html{
+   font-family: Helvetica,Arial,sans-serif;
+ }
+
 body{
   font-family: sans-serif;
 }
@@ -69,29 +73,65 @@ button.loggedOut {
   float: right;
 }
 
-.login-form {
-  position: relative;
-  background: #fff;
-  box-sizing: border-box;
+.signup-login{
+  padding: 22px;
   border: 1px solid #dcdcdc;
   border-radius: 4px;
   box-shadow: 0 2px 4px 0 #dcdcdc;
-  padding: 22px;
-  width: 270px;
+  position: relative;
+  background: #fff;
   margin: auto;
   top: 200px;
+  width: 650px;
 }
 
-.login-form-input{
+.login-form {
+  float: right;
+  box-sizing: border-box;
+  padding-left: 32px;
+  width: 302px;
+}
+
+.signup-form{
+  width: 302px;
+  padding-right: 32px;
+  float: left;
+  font-size: 13px;
+  border-right: 1px solid #e2e2e2;
+}
+
+.form-input{
   border: 1px solid #e2e2e2;
   padding: 3px;
   border-radius: 3px;
   box-shadow: inset 0 1px 1px rgba(200,200,200,0.3);
   width: 100%;
-  min-height: 32px;
   margin-top: 16px;
   margin-bottom: 16px;
 }
+
+.signup{
+  width: 150px;
+  float: right;
+  height: 15px;
+}
+
+.formRow{
+  font-size: 13px;
+}
+
+.formRow label {
+  float: left;
+  padding: 4px;
+  min-height: 32px;
+}
+
+.form-title{
+  font-size: 11px;
+  font-weight: bold;
+  color: #666;
+}
+
 
 .good-button{
   border-radius: 3px;

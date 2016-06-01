@@ -64,17 +64,14 @@ var LoginForm = React.createClass({
 
   render: function(){
     return(
-      <div>
         <form onSubmit={this.handleSubmit} className="login-form group">
-          <h3>Login</h3>
-
-          <input id="email" type="text" className="login-form-input" onChange={this.handleEmailChange} value={this.state.email} placeholder="Email"/>
-          <input id="password" type="password" className="login-form-input" onChange={this.handlePasswordChange} value={this.state.password} placeholder="Password"/>
+          <h3 className="form-title">Login</h3>
+          <input id="email" type="text" className="form-input" onChange={this.handleEmailChange} value={this.state.email} placeholder="Email"/>
+          <input id="password" type="password" className="form-input" onChange={this.handlePasswordChange} value={this.state.password} placeholder="Password"/>
 
           <input className="good-button" disabled={this.state.disabled} type="submit" value="Login" />
+          <span className="errors">{this.state.errors.base}</span>
         </form>
-        <span className="errors">{this.state.errors.base}</span>
-      </div>
     )
   }
 });

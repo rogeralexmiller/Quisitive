@@ -11,14 +11,14 @@ var SessionActions = require("./actions/SessionActions");
 var UserApiUtil  = require("./util/userApiUtil");
 var SessionApiUtil = require('./util/sessionApiUtil');
 
-var LoginForm = require("./components/LoginForm");
-var SignupForm = require("./components/SignupForm");
+var LoginSignup = require("./components/LoginSignup");
 var Home = require("./components/Home");
 
 var App = React.createClass({
   render: function(){
     return (
       <div>
+        <h1> Quisitive </h1>
         {this.props.children}
       </div>
     );
@@ -29,8 +29,7 @@ var Router = (
   <Router history={hashHistory}>
     <Route path="/" component={App}>
       <IndexRoute component={Home}/>
-      <Route path="/login" component={LoginForm}/>
-      <Route path="/signup" component={SignupForm}/>
+      <Route path="/login" component={LoginSignup}/>
     </Route>
   </Router>
 );
