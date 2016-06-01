@@ -35,10 +35,6 @@ var Router = (
   </Router>
 );
 
-window.SessionStore = SessionStore;
-window.SessionApiUtil = SessionApiUtil;
-window.UserApiUtil = UserApiUtil;
-
 document.addEventListener('DOMContentLoaded', function(){
   var root = document.getElementById('content');
   ReactDOM.render(Router, root);
