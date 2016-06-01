@@ -27,7 +27,7 @@ var App = React.createClass({
 var Router = (
   <Router history={hashHistory}>
     <Route path="/" component={App}>
-      <IndexRoute component={Home}/>
+      <IndexRoute component={LoginSignup}/>
       <Route path="/login" component={LoginSignup}/>
       <Route path="/signup" component={LoginSignup}/>
     </Route>
