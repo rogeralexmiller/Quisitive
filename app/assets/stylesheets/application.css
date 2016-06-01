@@ -81,7 +81,7 @@ button.loggedOut {
   position: relative;
   background: #fff;
   margin: auto;
-  top: 200px;
+  margin-top: 20px;
   width: 650px;
 }
 
@@ -93,7 +93,6 @@ button.loggedOut {
 }
 
 .signup-form{
-  width: 302px;
   padding-right: 32px;
   float: left;
   font-size: 13px;
@@ -157,4 +156,24 @@ button.loggedOut {
 .logout-btn{
   background: red;
   color: white;
+}
+
+.head-title{
+  font-size: 60px;
+  color: red;
+  font-weight: bold;
+  font-family: times;
+  text-align: center;
+  margin-top: 10%;
+  margin-bottom: 15px;
+}
+
+.tagline{
+  text-align: center;
+  margin-bottom: 40px;
+  margin-top: 10px;
+  font-size: 19px;
+  color: #666;
+  font-weight: 400;
+  font-family: Georgia, Times, "Times New Roman", serif;
 }
