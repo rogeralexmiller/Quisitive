@@ -11,7 +11,6 @@ var UserApiUtil = {
         SessionActions.receiveCurrentUser(user);
       },
       error: function(errors){
-        debugger;
         ErrorActions.clearErrors();
         ErrorActions.setErrors(errors, "signup");
       }

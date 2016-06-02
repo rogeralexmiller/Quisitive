@@ -33,7 +33,7 @@ var LoginForm = React.createClass({
 
   _onChange: function(){
     if (SessionStore.isUserLoggedIn()){
-      this.context.router.push("/")
+      this.context.router.push("/questions")
     }
     if (ErrorStore.form() === "login"){
       this.setState({errors: ErrorStore.formErrors("login")});
