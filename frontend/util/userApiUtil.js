@@ -10,9 +10,10 @@ var UserApiUtil = {
       success: function(user){
         SessionActions.receiveCurrentUser(user);
       },
-      error: function(errors){
+      error: function(xhr){
+        var errors = xhr.responseJSON;
         ErrorActions.clearErrors();
-        ErrorActions.setErrors(errors, "signup");
+        ErrorActions.setErrors("signup", errors);
       }
     });
   }

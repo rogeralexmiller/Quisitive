@@ -2,8 +2,9 @@ var React = require("react");
 var SessionApiUtil = require("../util/sessionApiUtil");
 var UserApiUtil = require("../util/userApiUtil");
 var SessionStore = require("../stores/sessionStore");
+var ErrorStore = require("../stores/errorStore");
 
-var LoginForm = React.createClass({
+var SignupForm = React.createClass({
 
   contextTypes: {
     router: React.PropTypes.object.isRequired
@@ -23,32 +24,34 @@ var LoginForm = React.createClass({
 
   handleEmailChange: function(e){
     this.setState({email: e.target.value});
-    this.checkReadyState();
   },
 
   handleNameChange: function(e){
     this.setState({full_name: e.target.value});
-    this.checkReadyState();
   },
 
   handlePasswordChange: function(e){
     this.setState({password: e.target.value});
-    this.checkReadyState();
   },
 
   _onChange: function(){
     if (SessionStore.isUserLoggedIn()){
       this.context.router.push("#/questions")
     }
+    if (ErrorStore.form() === "signup"){
+      this.setState({errors: ErrorStore.formErrors("signup")});
+    }
   },
 
   componentDidMount: function(){
     this.changeListener = SessionStore.addListener(this._onChange);
+    this.errorListener = ErrorStore.addListener(this._onChange);
     SessionApiUtil.fetchCurrentUser();
   },
 
   componentWillUnmount: function(){
     this.changeListener.remove();
+    this.errorListener.remove();
   },
 
   handleSubmit: function(e){
@@ -68,22 +71,26 @@ var LoginForm = React.createClass({
         <h3 className="form-title">SIGN UP</h3>
         <div className="formRow group">
           <label htmlFor="email">Email</label>
-          <input id="email" type="text" onChange={this.handleEmailChange} className="form-input signup-input" value={this.state.email}/>
+          <input id="email" type="text" onChange={this.handleEmailChange} onKeyUp={this.checkReadyState} className="form-input signup-input" value={this.state.email}/>
         </div>
+        <span className="errors">{this.state.errors.email}</span>
 
         <div className="formRow group">
           <label htmlFor="name">Full Name</label>
-          <input id="name" type="text" onChange={this.handleNameChange} className="form-input signup-input" value={this.state.full_name}/>
+          <input id="name" type="text" onChange={this.handleNameChange} onKeyUp={this.checkReadyState} className="form-input signup-input" value={this.state.full_name}/>
         </div>
+        <span className="errors">{this.state.errors.full_name}</span>
 
         <div className="formRow group">
           <label htmlFor="password">Password</label>
-          <input id="password" type="password" className="form-input signup-input" onChange={this.handlePasswordChange} value={this.state.password}/>
+          <input id="password" type="password" className="form-input signup-input" onKeyUp={this.checkReadyState} onChange={this.handlePasswordChange} value={this.state.password}/>
         </div>
+        <span className="errors">{this.state.errors.password}</span>
+
         <input className="good-button" type="submit" value="Sign Up" disabled={this.state.disabled}/>
       </form>
     )
   }
 });
 
-module.exports = LoginForm;
+module.exports = SignupForm;

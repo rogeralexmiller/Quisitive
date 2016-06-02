@@ -30,3 +30,4 @@ Question.create!({author_id: users[4].id, body: "Who would win in a fight betwee
 Question.create!({author_id: users[4].id, body: "Who would win in a fight between Chuck Norris and Bruce Lee?"})
 Question.create!({author_id: users[5].id, body: "Who would win in a fight between Cerberus and Chuck Norris?"})
 Question.create!({author_id: users[5].id, body: "Who would win in a fight between a sphinx and a griffin?"})
+Question.create!({author_id: users[5].id, body: "What is the airspeed velocity of an unladen swallow?"})

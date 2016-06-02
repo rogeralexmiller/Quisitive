@@ -7,7 +7,7 @@ var _errors = {};
 var _form = "";
 
 ErrorStore.form = function () {
-  return _form.slice();
+  return _form;
 };
 
 ErrorStore.formErrors = function (form) {

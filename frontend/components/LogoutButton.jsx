@@ -6,7 +6,7 @@ var SessionActions = require("../actions/SessionActions");
 
 var LogoutButton = React.createClass({
   getInitialState: function(){
-    return {loggedIn: false};
+    return {loggedIn: SessionStore.isUserLoggedIn()};
   },
 
   _onChange: function(){

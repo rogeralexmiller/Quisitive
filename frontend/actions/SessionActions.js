@@ -9,10 +9,9 @@ var SessionActions = {
     });
   },
 
-  removeCurrentUser: function(user){
+  removeCurrentUser: function(){
     AppDispatcher.dispatch({
-      actionType: SessionConstants.LOGOUT,
-      user: user
+      actionType: SessionConstants.LOGOUT
     });
   }
 };

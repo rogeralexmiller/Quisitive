@@ -33,8 +33,8 @@ var SessionApiUtil = {
     $.ajax({
       url: "api/session",
       type: "DELETE",
-      success: function(user){
-        SessionActions.removeCurrentUser(user);
+      success: function(){
+        SessionActions.removeCurrentUser();
       }
     });
   }

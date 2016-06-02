@@ -23,12 +23,10 @@ var LoginForm = React.createClass({
 
   handleEmailChange: function(e){
     this.setState({email: e.target.value});
-    this.checkReadyState();
   },
 
   handlePasswordChange: function(e){
     this.setState({password: e.target.value});
-    this.checkReadyState();
   },
 
   _onChange: function(){
@@ -66,8 +64,8 @@ var LoginForm = React.createClass({
     return(
         <form onSubmit={this.handleSubmit} className="login-form group">
           <h3 className="form-title">LOGIN</h3>
-          <input id="email" type="text" className="form-input" onChange={this.handleEmailChange} value={this.state.email} placeholder="Email"/>
-          <input id="password" type="password" className="form-input" onChange={this.handlePasswordChange} value={this.state.password} placeholder="Password"/>
+          <input id="email" type="text" className="form-input" onKeyUp={this.checkReadyState} onChange={this.handleEmailChange} value={this.state.email} placeholder="Email"/>
+          <input id="password" type="password" className="form-input" onKeyUp={this.checkReadyState} onChange={this.handlePasswordChange} value={this.state.password} placeholder="Password"/>
 
           <input className="good-button" disabled={this.state.disabled} type="submit" value="Login" />
           <span className="errors">{this.state.errors.base}</span>

@@ -7,25 +7,37 @@ var _currentUserHasBeenFetched = false;
 
 var SessionStore = new Store(AppDispatcher);
 
+
+var _login = function(currentUser) {
+  _currentUser = currentUser;
+  _currentUserHasBeenFetched = true;
+};
+
+var _logout = function() {
+  _currentUser = {};
+  _currentUserHasBeenFetched = true;
+};
+
 SessionStore.isUserLoggedIn = function(){
-  var logged_in = _currentUser.id ? true : false;
-  return logged_in;
+  return !!_currentUser.id;
+};
+
+SessionStore.currentUserHasBeenFetched = function () {
+  return _currentUserHasBeenFetched;
 };
 
 SessionStore.currentUser = function(){
-  return _currentUser;
+  return $.extend({},_currentUser);
 };
 
 SessionStore.__onDispatch = function(payload){
   switch(payload.actionType){
     case SessionConstants.LOGIN:
-      _currentUser = payload.user;
-      _currentUserHasBeenFetched = true;
+      _login(payload.user);
       SessionStore.__emitChange();
       break;
     case SessionConstants.LOGOUT:
-      _currentUser = {};
-      _currentUserHasBeenFetched = false;
+      _logout();
       SessionStore.__emitChange();
       break;
   }

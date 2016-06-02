@@ -157,6 +157,9 @@ button.loggedOut {
 .logout-btn{
   background: red;
   color: white;
+  padding: 6px;
+  border-radius: 3px;
+  float: right;
 }
 
 .head-title{
@@ -207,4 +210,8 @@ button.loggedOut {
 }
 .question-body:hover{
   text-decoration: underline;
+}
+
+.errors{
+  color: red;
 }
