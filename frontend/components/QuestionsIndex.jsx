@@ -47,6 +47,7 @@ var QuestionsIndex = React.createClass({
       <div>
         <HeaderNav/>
         <div className="questions-index">
+          <h3 className="questions-index-header">Most Recent Questions</h3>
           {questionArr.map(function(question){
             return <QuestionsIndexItem question={question} key={question.id}/>;
           })}
