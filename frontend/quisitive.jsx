@@ -6,16 +6,8 @@ var Router = ReactRouter.Router;
 var Route = ReactRouter.Route;
 var IndexRoute = ReactRouter.IndexRoute;
 var hashHistory = ReactRouter.hashHistory;
-var SessionStore = require("./stores/sessionStore");
-var SessionActions = require("./actions/SessionActions");
-var UserApiUtil  = require("./util/userApiUtil");
-var SessionApiUtil = require('./util/sessionApiUtil');
 
-var QuestionApiUtil = require("./util/questionApiUtil");
-var QuestionStore = require("./stores/questionStore");
-
-window.QuestionStore = QuestionStore;
-window.QuestionApiUtil = QuestionApiUtil;
+var QuestionsIndex = require("./components/QuestionsIndex");
 
 var LoginSignup = require("./components/LoginSignup");
 var Home = require("./components/Home");
@@ -36,6 +28,8 @@ var Router = (
       <IndexRoute component={LoginSignup}/>
       <Route path="/login" component={LoginSignup}/>
       <Route path="/signup" component={LoginSignup}/>
+      <Route path="/questions" component={QuestionsIndex}/>
+
     </Route>
   </Router>
 );

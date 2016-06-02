@@ -2,13 +2,13 @@ class Api::QuestionsController < ApplicationController
 
   def index
     @questions = Question.all
-    render json: @questions
+    render "api/questions/index"
   end
 
   def create
     @question = Question.new(question_params)
     @question.author_id = current_user.id
-    
+
     if @question.save
       render "api/questions/show"
     else

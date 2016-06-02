@@ -178,3 +178,33 @@ button.loggedOut {
   font-weight: 400;
   font-family: Georgia, Times, "Times New Roman", serif;
 }
+
+.questions-index{
+  width:600px;
+  margin: auto;
+}
+
+.question-index-item{
+  padding-top: 22px;
+  padding-bottom: 22px;
+  margin-bottom: 15px;
+  text-align: center;
+  border-top: 1px solid #e2e2e2;
+}
+
+.question-author{
+  text-align: left;
+}
+
+.question-body{
+  text-align: left;
+  margin: auto;
+  font-size: 19px;
+  font-weight: bold;
+  color: #333;
+  display: block;
+  margin-bottom: 5px;
+}
+.question-body:hover{
+  text-decoration: underline;
+}
