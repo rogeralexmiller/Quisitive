@@ -2,19 +2,34 @@ var React = require("react");
 var QuestionStore = require("../stores/questionStore");
 var QuestionApiUtil = require("../util/questionApiUtil");
 var QuestionsIndexItem = require("./QuestionsIndexItem");
+var SessionStore = require("../stores/sessionStore");
 
 var QuestionsIndex = React.createClass({
   getInitialState: function(){
     return {questions: {}};
   },
 
+  contextTypes: {
+    router: React.PropTypes.object.isRequired
+  },
+
   _onChange: function(){
+    debugger;
+    if (!SessionStore.isUserLoggedIn()){
+      this.context.router.push("/login")
+    }
     this.setState({questions: QuestionStore.all()});
   },
 
   componentDidMount: function(){
-    this.listener = QuestionStore.addListener(this._onChange);
+    this.sessionListener = SessionStore.addListener(this._onChange);
+    this.questionListener = QuestionStore.addListener(this._onChange);
     QuestionApiUtil.fetchAllQuestions();
+  },
+
+  componenetWillUnmount: function(){
+    this.sessionListener.remove();
+    this.questionListener.remove();
   },
 
   questionArray: function() {

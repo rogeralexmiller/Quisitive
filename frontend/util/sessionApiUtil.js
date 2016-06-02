@@ -3,13 +3,14 @@ var ErrorActions = require("../actions/errorActions");
 
 var SessionApiUtil = {
 
-  fetchCurrentUser: function(){
+  fetchCurrentUser: function(complete){
     $.ajax({
       url: "api/session",
       type: "GET",
       success: function(user){
         SessionActions.receiveCurrentUser(user);
-      }
+      },
+      complete: complete
     });
   },
 

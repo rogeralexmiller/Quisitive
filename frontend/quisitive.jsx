@@ -13,7 +13,7 @@ var SessionStore = require("./stores/sessionStore");
 var LoginSignup = require("./components/LoginSignup");
 var Home = require("./components/Home");
 var HeaderNav = require("./components/HeaderNav");
-
+var SessionApiUtil = require("./util/sessionApiUtil"); 
 
 var App = React.createClass({
   render: function(){
@@ -27,17 +27,45 @@ var App = React.createClass({
   }
 });
 
-var _ensureLoggedIn = function(){
+var _ensureLoggedIn = function(next_state, replace, asyncDoneCallback){
+  if (SessionStore.currentUserHasBeenFetched()) {
+    redirectIfNotLoggedIn()
+  } else{
+    SessionApiUtil.fetchCurrentUser(redirectIfNotLoggedIn);
+  }
 
+  function redirectIfNotLoggedIn() {
+    if (!SessionStore.isUserLoggedIn()) {
+      replace('/login');
+    }
+
+    asyncDoneCallback();
+  }
+};
+
+var _ensureLoggedOut = function(next_state, replace, asyncDoneCallback){
+  if (SessionStore.currentUserHasBeenFetched()) {
+    redirectIfLoggedIn()
+  } else {
+    SessionApiUtil.fetchCurrentUser(redirectIfLoggedIn);
+  }
+
+  function redirectIfLoggedIn() {
+    if (SessionStore.isUserLoggedIn()) {
+      replace('/questions');
+    }
+
+    asyncDoneCallback();
+  }
 };
 
 var Router = (
   <Router history={hashHistory}>
     <Route path="/" component={App}>
-      <IndexRoute component={LoginSignup}/>
-      <Route path="/login" component={LoginSignup}/>
-      <Route path="/signup" component={LoginSignup}/>
-      <Route path="/questions" onEnter={_ensureLoggedIn}component={QuestionsIndex}/>
+      <IndexRoute onEnter={_ensureLoggedOut} component={LoginSignup}/>
+      <Route path="/login" onEnter={_ensureLoggedOut} component={LoginSignup}/>
+      <Route path="/signup" onEnter={_ensureLoggedOut} component={LoginSignup}/>
+      <Route path="/questions" onEnter={_ensureLoggedIn} component={QuestionsIndex}/>
     </Route>
   </Router>
 );

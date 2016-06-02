@@ -24,7 +24,7 @@ var HeaderNav = React.createClass({
 
   render: function(){
     return (
-      <header className="header-nav">
+      <header className="header-nav group">
         <span> {this.state.currentUser.full_name}</span>
         <LogoutButton/>
       </header>
