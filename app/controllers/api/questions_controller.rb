@@ -1,7 +1,7 @@
 class Api::QuestionsController < ApplicationController
 
   def index
-    @questions = Question.all
+    @questions = Question.all.includes(:author)
     render "api/questions/index"
   end
 
