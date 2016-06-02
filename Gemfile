@@ -45,4 +45,5 @@ end
 
 group :production do
   gem 'rails_12factor'
+  gem 'ruby', '~> 2.2.4'
 end
