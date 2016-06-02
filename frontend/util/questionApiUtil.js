@@ -23,7 +23,7 @@ var QuestionApiUtil = {
 
   createQuestion: function(question){
     $.ajax({
-      url: "api/questions/"+question.id,
+      url: "api/questions/",
       type: "POST",
       data: {question: question},
       success: function(question){

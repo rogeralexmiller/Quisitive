@@ -3,6 +3,7 @@ var QuestionStore = require("../stores/questionStore");
 var QuestionApiUtil = require("../util/questionApiUtil");
 var QuestionsIndexItem = require("./QuestionsIndexItem");
 var SessionStore = require("../stores/sessionStore");
+var HeaderNav = require("./HeaderNav");
 
 var QuestionsIndex = React.createClass({
   getInitialState: function(){
@@ -14,7 +15,6 @@ var QuestionsIndex = React.createClass({
   },
 
   _onChange: function(){
-    debugger;
     if (!SessionStore.isUserLoggedIn()){
       this.context.router.push("/login")
     }
@@ -44,10 +44,13 @@ var QuestionsIndex = React.createClass({
   render: function(){
     var questionArr = this.questionArray();
     return(
-      <div className="questions-index">
-        {questionArr.map(function(question){
-          return <QuestionsIndexItem question={question} key={question.id}/>;
-        })}
+      <div>
+        <HeaderNav/>
+        <div className="questions-index">
+          {questionArr.map(function(question){
+            return <QuestionsIndexItem question={question} key={question.id}/>;
+          })}
+        </div>
       </div>
     );
   }

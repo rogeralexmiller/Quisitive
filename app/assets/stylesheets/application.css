@@ -35,11 +35,11 @@
 
  html{
    font-family: Helvetica,Arial,sans-serif;
+   line-height: 1.4;
  }
 
 body{
   font-family: sans-serif;
-  padding: 20px;
 }
 
  ul {
@@ -63,15 +63,11 @@ body{
  }
 
 button.loggedIn {
-  display: block;
+  display: inline;
 }
 
 button.loggedOut {
   display: none;
-}
-
-.user-nav-item{
-  float: right;
 }
 
 .signup-login{
@@ -154,14 +150,6 @@ button.loggedOut {
   background: #9FBCD6;
 }
 
-.logout-btn{
-  background: red;
-  color: white;
-  padding: 6px;
-  border-radius: 3px;
-  float: right;
-}
-
 .head-title{
   font-size: 60px;
   color: red;
@@ -215,7 +203,94 @@ button.loggedOut {
 .errors{
   color: red;
 }
+.header {
+  background: #fff;
+  border-bottom: 1px solid #ccc;
+  min-height: 53px;
+  z-index: 800;
+  font-size: 14px;
+  box-sizing: border-box;
+  border-top: 2px solid #b92b27;
+  border-bottom: 1px solid #ddd;
+  box-shadow: 0 3px 2px -2px rgba(200,200,200,0.2);
+}
 
-.header-nav{
-  
+.header a {
+  display: block;
+  padding: 8px 20px;
+}
+
+.header-nav {
+  margin: 0 auto;
+  width: 1002px;
+}
+
+.header-logo {
+  float: left;
+  font-size: 30px;
+  color: red;
+  font-weight: bold;
+  font-family: times;
+  margin-left:
+}
+
+
+.header-list {
+  float: right;
+  margin-right: 6px;
+  max-height: 10px;
+  position: relative;
+  top: 20px;
+}
+
+.header-list > li {
+  float: left;
+  margin-left: 20px;
+  font-weight: 500;
+  font-size: 14px;
+  color: #999;
+}
+
+.header-list > li:hover {
+
+}
+
+.question-form{
+  float: left;
+  width: 500px;
+  position: relative;
+  top: 15px;
+}
+
+.question-form > input {
+  float: left;
+}
+
+.question-input{
+  background: #f4f4f4;
+  width: 358px;
+  height: 32px;
+  border: 1px solid #dcdcdc;
+  border-radius: 4px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  padding-right: 8px;
+  padding-left: 8px;
+  overflow: hidden;
+  border-radius:2px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-right: 0;
+}
+
+.question-submit{
+  margin: 0;
+  border: 1px solid #dcdcdc;
+  height: 16;
+  padding-top:5px;
+  padding-bottom:6px;
+  padding-right:8px;
+  padding-left:10px;
+  border-top-right-radius: 2px;
+  border-bottom-right-radius: 2px;
 }

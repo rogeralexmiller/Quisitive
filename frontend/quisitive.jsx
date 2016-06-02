@@ -13,14 +13,13 @@ var SessionStore = require("./stores/sessionStore");
 var LoginSignup = require("./components/LoginSignup");
 var Home = require("./components/Home");
 var HeaderNav = require("./components/HeaderNav");
-var SessionApiUtil = require("./util/sessionApiUtil"); 
+var SessionApiUtil = require("./util/sessionApiUtil");
 
 var App = React.createClass({
   render: function(){
     var user = SessionStore.currentUser()
     return (
       <div>
-        <HeaderNav/>
         {this.props.children}
       </div>
     );

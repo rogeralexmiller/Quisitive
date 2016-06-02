@@ -2,6 +2,8 @@ var React = require("react");
 var LogoutButton = require("./LogoutButton");
 var SessionStore = require("../stores/sessionStore");
 var SessionApiUtil = require("../util/sessionApiUtil");
+var UserNavItem = require("./UserNavItem");
+var QuestionSearchForm = require("./QuestionSearchForm");
 
 var HeaderNav = React.createClass({
 
@@ -24,9 +26,19 @@ var HeaderNav = React.createClass({
 
   render: function(){
     return (
-      <header className="header-nav group">
-        <span> {this.state.currentUser.full_name}</span>
-        <LogoutButton/>
+      <header className="header">
+        <nav className="header-nav group">
+          <h1 className="header-logo">
+            <a href="#/questions">
+              Quisitive
+            </a>
+          </h1>
+          <QuestionSearchForm/>
+          <ul className="header-list group">
+            <li> <UserNavItem/> </li>
+            <li> <LogoutButton/> </li>
+          </ul>
+        </nav>
       </header>
     );
   }
