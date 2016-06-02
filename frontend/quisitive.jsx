@@ -29,7 +29,6 @@ var Router = (
       <Route path="/login" component={LoginSignup}/>
       <Route path="/signup" component={LoginSignup}/>
       <Route path="/questions" component={QuestionsIndex}/>
-
     </Route>
   </Router>
 );
