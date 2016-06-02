@@ -1,4 +1,4 @@
-var React = require("React");
+var React = require("react");
 var QuestionStore = require("../stores/questionStore");
 var QuestionApiUtil = require("../util/questionApiUtil");
 var QuestionsIndexItem = require("./QuestionsIndexItem");
