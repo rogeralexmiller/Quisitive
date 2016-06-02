@@ -33,12 +33,12 @@
    background: transparent;
  }
 
- html{
+ html {
    font-family: Helvetica,Arial,sans-serif;
    line-height: 1.4;
  }
 
-body{
+body {
   font-family: sans-serif;
 }
 
@@ -231,7 +231,6 @@ button.loggedOut {
   color: red;
   font-weight: bold;
   font-family: times;
-  margin-left:
 }
 
 
