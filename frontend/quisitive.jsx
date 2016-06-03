@@ -10,9 +10,15 @@ var hashHistory = ReactRouter.hashHistory;
 var QuestionsIndex = require("./components/QuestionsIndex");
 var SessionStore = require("./stores/sessionStore");
 var LoginSignup = require("./components/LoginSignup");
-var HeaderNav = require("./components/HeaderNav");
+
 var SessionApiUtil = require("./util/sessionApiUtil");
 var QuestionShow = require("./components/QuestionShow");
+
+var AnswerStore = require("./stores/answerStore");
+var AnswerApiUtil = require("./util/answerApiUtil");
+
+window.AnswerStore = AnswerStore;
+window.AnswerApiUtil = AnswerApiUtil;
 
 var App = React.createClass({
   render: function(){

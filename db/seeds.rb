@@ -33,3 +33,21 @@ Question.create!({author_id: users[4].id, body: "Who would win in a fight betwee
 Question.create!({author_id: users[5].id, body: "Who would win in a fight between Cerberus and Chuck Norris?"})
 Question.create!({author_id: users[5].id, body: "Who would win in a fight between a sphinx and a griffin?"})
 Question.create!({author_id: users[5].id, body: "What is the airspeed velocity of an unladen swallow?"})
+
+
+questions = Question.all
+
+authors = User.all
+
+explains = ["Because ", "It alll started with ", "You see, ", " The answer is "]
+
+nouns = ["Snakes", "cows", "dragons", "Obama", "Trump", "Bears"]
+
+authors.each do |author|
+  question1 = questions.sample
+  question2 = questions.sample
+  text1 = explains.sample + nouns.sample
+  text2 = explains.sample + nouns.sample
+  Answer.create!(author_id: author.id, question_id: question1.id, body: text1)
+  Answer.create!(author_id: author.id, question_id: question2.id, body: text2)
+end

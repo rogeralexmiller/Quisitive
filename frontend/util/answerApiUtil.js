@@ -1,4 +1,4 @@
-var AnswerActions = require("../actions/questionActions");
+var AnswerActions = require("../actions/answerActions");
 
 var AnswerApiUtil = {
   fetchAllAnswers: function(question_id){

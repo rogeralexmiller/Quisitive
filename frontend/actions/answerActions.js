@@ -4,7 +4,7 @@ var AnswerConstants = require("../constants/AnswerConstants");
 var AnswerActions = {
   receiveAnswers: function(answers){
     AppDispatcher.dispatch({
-      actionType: AnswerConstants.RECEIVE_ANSWER,
+      actionType: AnswerConstants.RECEIVE_ANSWERS,
       answers: answers
     });
   },
