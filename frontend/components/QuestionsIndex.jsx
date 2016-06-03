@@ -27,7 +27,7 @@ var QuestionsIndex = React.createClass({
     QuestionApiUtil.fetchAllQuestions();
   },
 
-  componenetWillUnmount: function(){
+  componentWillUnmount: function(){
     this.sessionListener.remove();
     this.questionListener.remove();
   },

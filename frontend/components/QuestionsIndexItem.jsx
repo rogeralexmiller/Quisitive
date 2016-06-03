@@ -9,7 +9,7 @@ var QuestionsIndexItem = React.createClass({
         <a href={questionUrl} className="question-body">
           {this.props.question.body}
         </a>
-        <p className="question-author"> Asker: {this.props.question.author} </p>
+        <p className="question-author"> Asker: {this.props.question.author.full_name} </p>
       </div>
     );
   }

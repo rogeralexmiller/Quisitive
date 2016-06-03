@@ -209,6 +209,10 @@ button.loggedOut {
   border-bottom: 1px solid #ccc;
   min-height: 53px;
   z-index: 800;
+  position: fixed;
+  width:100%;
+  top:0;
+  left:0;
   font-size: 14px;
   box-sizing: border-box;
   border-top: 2px solid #b92b27;
@@ -218,7 +222,7 @@ button.loggedOut {
 
 .header a {
   display: block;
-  padding: 8px 20px;
+  padding: 8px 20px 8px 0;
 }
 
 .header-nav {
@@ -303,4 +307,55 @@ button.loggedOut {
   font-size: 15px;
   padding-bottom: 8px;
   letter-spacing: 0;
+}
+
+.question-header{
+  font-size: 24px;
+  font-weight: bold;
+  display: block;
+  letter-spacing: -1;
+  width: 650px;
+}
+
+
+#content{
+  width: 1002px;
+  margin: 0 auto;
+  padding-top: 80px;
+  padding-left: 32px;
+  padding-right: 32px;
+}
+
+.question-edit-form{
+  border: 1px solid #e2e2e2;
+  background: #E2E2E2;
+  width: 650px;
+}
+.question-edit-form > input{
+  background-color: #ffffff;
+  width: 634px;
+  opacity: 1;
+  font-size: 24px;
+  font-weight: bold;
+  padding: 8px;
+}
+
+.question-edit-form > a {
+  float: right;
+  padding: 3px 7px 4px 7px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.question-edit-form > a:hover {
+  text-decoration: underline;
+}
+
+.question-edit-form > button {
+  margin-right: 8px;
+}
+
+.hidden {
+  display: none;
 }

@@ -9,12 +9,12 @@
 Quisitive is a web application inspired by Quora that will be built with Ruby on Rails and React.js. By the
 end of week 9, this app will, at a minimum, satisfy the following criteria:
 
-- [ ] New account creation, login, and guest/demo login
+- [x] New account creation, login, and guest/demo login
 - [ ] Adequate seed data to demonstrate the site's features
 - [ ] The minimally necessary features for a Quora-inspired site: question asking, editing, answering, commenting and searching,
 and topic question feeds
-- [ ] Hosting on Heroku
-- [ ] CSS styling that is elegant and similar to the real Quora.
+- [x] Hosting on Heroku
+- [x] CSS styling that is elegant and similar to the real Quora.
 - [ ] A production README, replacing this README
 
 ## Product Goals and Priorities
@@ -22,7 +22,7 @@ and topic question feeds
 Quisitive will allow users to do the following:
 
 - [x] Create an account (MVP)
-- [ ] Log in / Log out, including as a Guest/Demo User (MVP)
+- [x] Log in / Log out, including as a Guest/Demo User (MVP)
 - [ ] Ask, read, answer, edit and delete questions(MVP)
 - [ ] Comment on answers(MVP)
 - [ ] See feeds of questions filtered by topic (MVP)
@@ -51,7 +51,7 @@ Quisitive will allow users to do the following:
 - [x] create new project
 - [x] create `User` model
 - [x] authentication
-- [ ] user signup/signin pages
+- [x] user signup/signin pages
 - [x] blank landing page after signin
 
 ### Phase 2: Question Model, API, and basic APIUtil (1.5 days)
@@ -59,27 +59,27 @@ Quisitive will allow users to do the following:
 **Objective:** Questions can be created, read, edited and destroyed through
 the API.
 
-- [ ] create `Question` model
-- [ ] seed the database with a small amount of test data
-- [ ] CRUD API for questions (`QuestionsController`)
-- [ ] jBuilder views for questions
-- [ ] setup Webpack & Flux scaffold
-- [ ] setup `APIUtil` to interact with the API
-- [ ] test out API interaction in the console.
+- [x] create `Question` model
+- [x] seed the database with a small amount of test data
+- [x] CRUD API for questions (`QuestionsController`)
+- [x] jBuilder views for questions
+- [x] setup Webpack & Flux scaffold
+- [x] setup `APIUtil` to interact with the API
+- [x] test out API interaction in the console.
 
 ### Phase 3: Flux Architecture and Router (1.5 days)
 
 **Objective:** Questions can be created, read, edited and destroyed with the
 user interface.
 
-- [ ] setup the flux loop with skeleton files
-- [ ] setup React Router
+- [x] setup the flux loop with skeleton files
+- [x] setup React Router
 - implement each question component, building out the flux loop as needed.
-  - [ ] `QuestionsIndex`
-  - [ ] `QuestionIndexItem`
-  - [ ] `NewQuestionForm`
-  - [ ] `EditQuestionForm`
-- [ ] save Questions to the DB when the form loses focus or is left idle
+  - [x] `QuestionsIndex`
+  - [x] `QuestionIndexItem`
+  - [x] `NewQuestionForm`
+  - [x] `EditQuestionForm`
+- [x] save Questions to the DB when the form loses focus or is left idle
   after editing.
 
 ### Phase 4: Answers (1 day)

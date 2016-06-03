@@ -11,13 +11,12 @@ var LogoutButton = require("./components/LogoutButton");
 var QuestionsIndex = require("./components/QuestionsIndex");
 var SessionStore = require("./stores/sessionStore");
 var LoginSignup = require("./components/LoginSignup");
-var Home = require("./components/Home");
 var HeaderNav = require("./components/HeaderNav");
 var SessionApiUtil = require("./util/sessionApiUtil");
+var QuestionShow = require("./components/QuestionShow");
 
 var App = React.createClass({
   render: function(){
-    var user = SessionStore.currentUser()
     return (
       <div>
         {this.props.children}
@@ -62,9 +61,10 @@ var Router = (
   <Router history={hashHistory}>
     <Route path="/" component={App}>
       <IndexRoute onEnter={_ensureLoggedOut} component={LoginSignup}/>
-      <Route path="/login" onEnter={_ensureLoggedOut} component={LoginSignup}/>
-      <Route path="/signup" onEnter={_ensureLoggedOut} component={LoginSignup}/>
-      <Route path="/questions" onEnter={_ensureLoggedIn} component={QuestionsIndex}/>
+      <Route path="login" onEnter={_ensureLoggedOut} component={LoginSignup}/>
+      <Route path="signup" onEnter={_ensureLoggedOut} component={LoginSignup}/>
+      <Route path="questions" onEnter={_ensureLoggedIn} component={QuestionsIndex}/>
+      <Route path="questions/:questionId" onEnter={_ensureLoggedIn} component={QuestionShow}/>
     </Route>
   </Router>
 );
