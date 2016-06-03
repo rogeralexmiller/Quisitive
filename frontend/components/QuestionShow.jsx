@@ -6,7 +6,7 @@ var QuestionEdit = require("./QuestionEdit");
 
 var QuestionShow = React.createClass({
 
-  contextType: {
+  contextTypes: {
     router: React.PropTypes.object.isRequired
   },
 

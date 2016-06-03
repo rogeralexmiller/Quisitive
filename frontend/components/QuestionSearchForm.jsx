@@ -1,9 +1,37 @@
 var React = require("react");
 var QuestionApiUtil = require("../util/questionApiUtil");
+var QuestionStore = require("../stores/questionStore");
+var hashHistory = require('react-router').hashHistory;
+// 1. question form submitted.
+// 2. ajax post request sent. On completion. action is dispatched that adds the question to the store.
+// 3. question search form component should listen to the store and when the store
+//    updates it should grab the last question and go to the question show component for that quesiton's id.
 
 var QuestionSearchForm = React.createClass({
+  contextTypes: {
+    router: React.PropTypes.object.isRequired
+  },
+
   getInitialState: function(){
     return {body: ""};
+  },
+
+  onChange: function(){
+    var question = QuestionStore.getNewestQuestion();
+
+    if (question && question.body === this.state.body) {
+      var route = "/questions/" + question.id;
+      this.context.router.push(route);
+    }
+  },
+
+  componentDidMount: function(){
+    this.listener = QuestionStore.addListener(this.onChange);
+    this.setState({body: ""});
+  },
+
+  componentWillUnMount: function(){
+    this.listener.remove();
   },
 
   _handleChange: function(e){
@@ -11,8 +39,7 @@ var QuestionSearchForm = React.createClass({
   },
 
   handleSubmit: function(){
-    QuestionApiUtil.createQuestion(this.state);
-    this.setState({body:""});
+    QuestionApiUtil.createQuestion({body:this.state.body});
   },
 
   render: function(){
