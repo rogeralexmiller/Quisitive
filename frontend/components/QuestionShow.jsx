@@ -15,6 +15,12 @@ var QuestionShow = React.createClass({
     return {question: question, editing: false};
   },
 
+  componentWillReceiveProps: function(){
+    var potentialQuestion = QuestionStore.find(this.props.params.questionId);
+    var question = potentialQuestion ? potentialQuestion : {};
+    this.setState({question: question, editing: false});
+  },
+
   handleBodyChange: function(e){
     var question = this.state.question;
     question.body = e.target.value;
