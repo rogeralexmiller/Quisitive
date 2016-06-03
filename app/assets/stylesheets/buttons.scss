@@ -16,12 +16,19 @@ button{
   word-spacing: normal;
   text-shadow: none;
   float: right;
+  cursor: pointer;
 }
 
+#guest-button{
+  margin-right:16px;
+  background: green;
+  border: 1px solid green;
+}
 
 .submit-button:disabled{
   background: #9FBCD6;
   border: 1px solid #9FBCD6;
+  cursor: default;
 }
 
 .question-submit{
@@ -34,4 +41,8 @@ button{
   padding-left:10px;
   border-top-right-radius: 2px;
   border-bottom-right-radius: 2px;
+}
+
+.header-nav > .submit-button {
+  margin-top: 0;
 }

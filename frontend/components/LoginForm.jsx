@@ -59,7 +59,6 @@ var LoginForm = React.createClass({
     SessionApiUtil.login(userData);
   },
 
-
   render: function(){
     return(
         <form onSubmit={this.handleSubmit} className="login-form group">
@@ -69,6 +68,7 @@ var LoginForm = React.createClass({
           <input id="password" type="password" className="form-input" onKeyUp={this.checkReadyState} onChange={this.handlePasswordChange} value={this.state.password} placeholder="Password"/>
 
           <input className="submit-button form-button" disabled={this.state.disabled} type="submit" value="Login" />
+
           <span className="errors">{this.state.errors.base}</span>
         </form>
     )

@@ -65,6 +65,16 @@ var SignupForm = React.createClass({
     UserApiUtil.signup(userData);
   },
 
+
+  handleGuest: function(e){
+    e.preventDefault();
+    var userData = {
+      email: "guest@test.com",
+      password: "password"
+    };
+    SessionApiUtil.login(userData);
+  },
+
   render: function(){
     return(
       <form onSubmit={this.handleSubmit} className="signup-form">
@@ -87,7 +97,9 @@ var SignupForm = React.createClass({
         </div>
         <span className="errors">{this.state.errors.password}</span>
 
+
         <input className="submit-button form-button" type="submit" value="Sign Up" disabled={this.state.disabled}/>
+        <button id="guest-button" onClick={this.handleGuest} className="submit-button form-button">Guest Login</button>
       </form>
     )
   }

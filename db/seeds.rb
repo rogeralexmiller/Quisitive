@@ -8,6 +8,8 @@ names = ["Anna Lee", "Bart Simpson", "John Doe", "Jane Doe",  "Marky Mark", "Sus
 
 password = "password"
 
+User.create!(full_name:"Guest", email:"guest@test.com", password:"password")
+
 names.each_with_index do |name, idx|
   User.create!(full_name: name, email: emails[idx], password: password)
 end

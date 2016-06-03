@@ -23,27 +23,27 @@ var HeaderNav = React.createClass({
   },
 
   handleLogout: function(){
-    SessionApiUtil.logout();
+    SessionApiUtil.logout()
   },
 
   render: function(){
     return (
       <header className="header">
         <nav className="header-nav group">
-          <h1 className="header-logo">
-            <a href="#/questions">
+            <a className="header-logo" href="#/questions">
               Quisitive
             </a>
-          </h1>
           <QuestionSearchForm/>
-          <ul className="header-list group">
-            <li> <p className="submit-button" href="#">{this.state.currentUser.full_name}</p> </li>
-            <li>
-              <button onClick={this.handleLogout} className="submit-button">
-                Logout
-              </button>
-            </li>
-          </ul>
+          <div className="header-list group">
+            <a className="header-list-item" href="#">
+              <p>
+                {this.state.currentUser.full_name}
+              </p>
+            </a>
+            <a className="header-list-item" href="#"onClick={this.handleLogout}>
+              Logout
+            </a>
+          </div>
         </nav>
       </header>
     );
