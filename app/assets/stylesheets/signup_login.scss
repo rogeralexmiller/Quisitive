@@ -1,0 +1,89 @@
+.head-title{
+  font-size: 60px;
+  color: red;
+  font-weight: bold;
+  font-family: times;
+  text-align: center;
+  margin-top: 5%;
+  margin-bottom: 15px;
+}
+
+.tagline{
+  text-align: center;
+  margin-bottom: 40px;
+  margin-top: 10px;
+  font-size: 19px;
+  color: #666;
+  font-weight: 400;
+  font-family: Georgia, Times, "Times New Roman", serif;
+}
+
+.form-title{
+  font-size: 11px;
+  font-weight: bold;
+  color: #666;
+}
+
+.signup-login{
+  padding: 22px;
+  border: 1px solid #dcdcdc;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px 0 #dcdcdc;
+  position: relative;
+  background: #fff;
+  margin: auto;
+  margin-top: 20px;
+  width: 669px;
+}
+
+.login-form {
+  float: right;
+  width: 302px;
+  padding-left: 32px;
+}
+
+.signup-form{
+  width: 302px;
+  padding-right: 32px;
+  float: left;
+  font-size: 13px;
+  border-right: 1px solid #e2e2e2;
+}
+
+.form-button{
+  margin: 0;
+}
+
+.signup-form > .form-button {
+  margin-top: 16px;
+}
+
+.form-input{
+  border: 1px solid #e2e2e2;
+  padding: 3px 0 3px 3px;
+  border-radius: 3px;
+  box-shadow: inset 0 1px 1px rgba(200,200,200,0.3);
+  width: 99%;
+  margin-top: 16px;
+  margin-bottom: 16px;
+  background: #EEEEEE;
+}
+
+.signup-input{
+  width: 177px;
+  height: 15px;
+  margin-bottom: 1px;
+  display: inline-block;
+  background: #fff;
+}
+
+.formRow{
+  font-size: 13px;
+}
+
+.formRow label {
+  width: 100px;
+  display: inline-block;
+  text-align: left;
+  margin-right: 20px;
+}

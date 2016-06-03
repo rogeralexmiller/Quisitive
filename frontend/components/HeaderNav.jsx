@@ -1,8 +1,6 @@
 var React = require("react");
-var LogoutButton = require("./LogoutButton");
 var SessionStore = require("../stores/sessionStore");
 var SessionApiUtil = require("../util/sessionApiUtil");
-var UserNavItem = require("./UserNavItem");
 var QuestionSearchForm = require("./QuestionSearchForm");
 
 var HeaderNav = React.createClass({
@@ -24,6 +22,10 @@ var HeaderNav = React.createClass({
     this.listener.remove();
   },
 
+  handleLogout: function(){
+    SessionApiUtil.logout();
+  },
+
   render: function(){
     return (
       <header className="header">
@@ -35,8 +37,12 @@ var HeaderNav = React.createClass({
           </h1>
           <QuestionSearchForm/>
           <ul className="header-list group">
-            <li> <UserNavItem/> </li>
-            <li> <LogoutButton/> </li>
+            <li> <p className="submit-button" href="#">{this.state.currentUser.full_name}</p> </li>
+            <li>
+              <button onClick={this.handleLogout} className="submit-button">
+                Logout
+              </button>
+            </li>
           </ul>
         </nav>
       </header>

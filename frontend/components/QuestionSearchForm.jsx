@@ -1,7 +1,7 @@
 var React = require("react");
 var QuestionApiUtil = require("../util/questionApiUtil");
 var QuestionStore = require("../stores/questionStore");
-var hashHistory = require('react-router').hashHistory;
+
 // 1. question form submitted.
 // 2. ajax post request sent. On completion. action is dispatched that adds the question to the store.
 // 3. question search form component should listen to the store and when the store

@@ -87,7 +87,7 @@ var SignupForm = React.createClass({
         </div>
         <span className="errors">{this.state.errors.password}</span>
 
-        <input className="good-button" type="submit" value="Sign Up" disabled={this.state.disabled}/>
+        <input className="submit-button form-button" type="submit" value="Sign Up" disabled={this.state.disabled}/>
       </form>
     )
   }

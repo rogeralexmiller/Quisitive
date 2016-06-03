@@ -1,0 +1,37 @@
+button{
+  cursor: pointer;
+}
+
+.submit-button{
+  border-radius: 3px;
+  font-weight: 500;
+  font-size: 15px;
+  padding: 3px 7px 4px 7px;
+  color: #fff;
+  background: #3E78AD;
+  margin: 8px;
+  border: 1px solid #3a66ad;
+  box-shadow: 0 1px 1px 0 rgba(200,200,200,0.6);
+  text-align: center;
+  word-spacing: normal;
+  text-shadow: none;
+  float: right;
+}
+
+
+.submit-button:disabled{
+  background: #9FBCD6;
+  border: 1px solid #9FBCD6;
+}
+
+.question-submit{
+  margin: 0;
+  border: 1px solid #dcdcdc;
+  height: 16;
+  padding-top:5px;
+  padding-bottom:6px;
+  padding-right:8px;
+  padding-left:10px;
+  border-top-right-radius: 2px;
+  border-bottom-right-radius: 2px;
+}

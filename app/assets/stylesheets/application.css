@@ -12,162 +12,19 @@
  *
  *= require_tree .
  *= require_self
+ *= require ./reset.scss
+ *= require ./buttons.scss
+ *= require ./signup_login.scss
  */
-
-
- html, body, header, nav, h1, a,
- ul, li, strong, main, button, i,
- section, img, div, h2, p, form,
- fieldset, label, input, textarea,
- span, article, footer, time, small, h3 {
-   margin: 0;
-   padding: 0;
-   border: 0;
-   outline: 0;
-   font: inherit;
-   color: inherit;
-   text-align: inherit;
-   text-decoration: inherit;
-   vertical-align: inherit;
-   box-sizing: inherit;
-   background: transparent;
- }
 
  html {
    font-family: Helvetica,Arial,sans-serif;
    line-height: 1.4;
+   font-weight: 400;
  }
 
 body {
-  font-family: sans-serif;
-}
 
- ul {
-   list-style: none;
- }
-
- img {
-   display: block;
-   width: 100%;
-   height: auto;
- }
-
- .group:after {
-   content: "";
-   display: block;
-   clear: both;
- }
-
- input {
-   display: block;
- }
-
-button.loggedIn {
-  display: inline;
-}
-
-button.loggedOut {
-  display: none;
-}
-
-.signup-login{
-  padding: 22px;
-  border: 1px solid #dcdcdc;
-  border-radius: 4px;
-  box-shadow: 0 2px 4px 0 #dcdcdc;
-  position: relative;
-  background: #fff;
-  margin: auto;
-  margin-top: 20px;
-  width: 650px;
-}
-
-.login-form {
-  float: right;
-  box-sizing: border-box;
-  padding-left: 32px;
-  width: 302px;
-}
-
-.signup-form{
-  padding-right: 32px;
-  float: left;
-  font-size: 13px;
-  border-right: 1px solid #e2e2e2;
-}
-
-.form-input{
-  border: 1px solid #e2e2e2;
-  padding: 3px;
-  border-radius: 3px;
-  box-shadow: inset 0 1px 1px rgba(200,200,200,0.3);
-  width: 100%;
-  margin-top: 16px;
-  margin-bottom: 16px;
-  background: #EEEEEE;
-}
-
-.signup-input{
-  width: 150px;
-  height: 15px;
-  display: inline-block;
-  background: white;
-}
-
-.formRow{
-  font-size: 13px;
-}
-
-.formRow label {
-  width: 100px;
-  display: inline-block;
-  text-align: left;
-  margin-right: 20px;
-}
-
-.form-title{
-  font-size: 11px;
-  font-weight: bold;
-  color: #666;
-}
-
-
-.good-button{
-  border-radius: 3px;
-  font-weight: 500;
-  font-size: 15px;
-  padding: 3px 7px 4px 7px;
-  color: white;
-  background: #3E78AD;
-  width: 54.63;
-  height: 30;
-  margin-top: 8px;
-  float: right;
-  margin-bottom: 8px;
-}
-
-.good-button:disabled{
-  background: #9FBCD6;
-}
-
-.head-title{
-  font-size: 60px;
-  color: red;
-  font-weight: bold;
-  font-family: times;
-  text-align: center;
-  margin-top: 10%;
-  margin-bottom: 15px;
-}
-
-.tagline{
-  text-align: center;
-  margin-bottom: 40px;
-  margin-top: 10px;
-  font-size: 19px;
-  color: #666;
-  font-weight: 400;
-  font-family: Georgia, Times, "Times New Roman", serif;
 }
 
 .questions-index{
@@ -238,13 +95,10 @@ button.loggedOut {
   font-family: times;
 }
 
-
 .header-list {
   float: right;
-  margin-right: 6px;
-  max-height: 10px;
   position: relative;
-  top: 20px;
+  top: 15px;
 }
 
 .header-list > li {
@@ -287,17 +141,7 @@ button.loggedOut {
   border-right: 0;
 }
 
-.question-submit{
-  margin: 0;
-  border: 1px solid #dcdcdc;
-  height: 16;
-  padding-top:5px;
-  padding-bottom:6px;
-  padding-right:8px;
-  padding-left:10px;
-  border-top-right-radius: 2px;
-  border-bottom-right-radius: 2px;
-}
+
 
 .questions-index-header{
   color: #333;
@@ -350,10 +194,6 @@ button.loggedOut {
 
 .question-edit-form > a:hover {
   text-decoration: underline;
-}
-
-.question-edit-form > button {
-  margin-right: 8px;
 }
 
 .hidden {

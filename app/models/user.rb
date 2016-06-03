@@ -11,6 +11,13 @@ class User < ActiveRecord::Base
     primary_key: :id
   )
 
+  has_many(
+    :answers,
+    class_name: "Answer",
+    foreign_key: :author_id,
+    primary_key: :id
+  )
+
   attr_reader :password
 
   after_initialize :ensure_session_token

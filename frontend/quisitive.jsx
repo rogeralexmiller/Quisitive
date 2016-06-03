@@ -7,7 +7,6 @@ var Route = ReactRouter.Route;
 var IndexRoute = ReactRouter.IndexRoute;
 var hashHistory = ReactRouter.hashHistory;
 
-var LogoutButton = require("./components/LogoutButton");
 var QuestionsIndex = require("./components/QuestionsIndex");
 var SessionStore = require("./stores/sessionStore");
 var LoginSignup = require("./components/LoginSignup");

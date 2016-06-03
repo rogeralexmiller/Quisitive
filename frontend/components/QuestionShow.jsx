@@ -2,7 +2,6 @@ var React = require("react");
 var QuestionStore = require("../stores/questionStore");
 var QuestionApiUtil = require("../util/questionApiUtil");
 var HeaderNav = require("./HeaderNav");
-var QuestionEdit = require("./QuestionEdit");
 
 var QuestionShow = React.createClass({
 
@@ -58,6 +57,11 @@ var QuestionShow = React.createClass({
     this.setState({editing:false});
   },
 
+  handleDelete: function(){
+    QuestionApiUtil.deleteQuestion(this.state.question.id)
+    this.context.router.push("/questions");
+  },
+
   render: function(){
     var editClass = this.state.editing ? "question-edit-form group" : "hidden";
     var questionClass = this.state.editing ? "hidden" : "question-header group";
@@ -68,7 +72,7 @@ var QuestionShow = React.createClass({
 
         <form className={editClass}>
           <input type="text" className="question-edit-input" onChange={this.handleBodyChange} value={this.state.question.body}/>
-          <button onClick={this.handleUpdate} className="good-button"> Update </button>
+          <button onClick={this.handleUpdate} className="submit-button good-button"> Update </button>
           <a onClick={this.handleCancel} href="#">Cancel</a>
         </form>
 
@@ -78,7 +82,9 @@ var QuestionShow = React.createClass({
             {this.state.question.body}
           </p>
 
-          <button onClick={this.handleEdit} className="good-button">Edit Question</button>
+          <button onClick={this.handleEdit} className="submit-button good-button">Edit</button>
+          <button onClick={this.handleDelete} className="submit-button bad-button">Delete</button>
+
         </div>
       </div>
     );
