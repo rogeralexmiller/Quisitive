@@ -37,12 +37,12 @@
 
 .header-list-item {
   float: left;
-  margin-left: 20px;
-  font-weight: 500;
+  margin-left: 15px;
+  font-weight: bold;
   font-size: 14px;
   color: #999;
   display: block;
-  padding: 15px 20px;
+  padding: 16px 20px;
 }
 
 .header-list-item:hover {
@@ -75,4 +75,10 @@
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
   border-right: 0;
+  max-height: 130px;
+  max-width: 150;
+  word-wrap: break-word;
+  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: hidden;
 }

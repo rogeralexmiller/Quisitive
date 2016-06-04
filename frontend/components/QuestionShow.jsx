@@ -3,6 +3,8 @@ var QuestionStore = require("../stores/questionStore");
 var QuestionApiUtil = require("../util/questionApiUtil");
 var HeaderNav = require("./HeaderNav");
 var AnswerIndex = require("./AnswerIndex");
+var SessionStore = require("../stores/sessionStore");
+
 
 var QuestionShow = React.createClass({
 
@@ -13,7 +15,7 @@ var QuestionShow = React.createClass({
   getInitialState: function(){
     var potentialQuestion = QuestionStore.find(this.props.params.questionId);
     var question = potentialQuestion ? potentialQuestion : {};
-    return {question: question, editing: false};
+    return {question: question, editing: false, answering: false};
   },
 
   componentWillReceiveProps: function(){
@@ -69,10 +71,21 @@ var QuestionShow = React.createClass({
     this.context.router.push("/questions");
   },
 
+  ownerButtons:  function(){
+    if (SessionStore.currentUserOwns(this.state.question)) {
+      return (
+        <div>
+          <button onClick={this.handleEdit} className="submit-button good-button">Edit</button>
+          <button onClick={this.handleDelete} className="submit-button bad-button">Delete</button>
+        </div>
+      )} else{
+      return(<div> </div>);
+    }
+  },
+
   render: function(){
     var editClass = this.state.editing ? "question-edit-form group" : "hidden";
     var questionClass = this.state.editing ? "hidden" : "question-header group";
-
     return(
       <div>
         <HeaderNav/>
@@ -89,8 +102,7 @@ var QuestionShow = React.createClass({
             {this.state.question.body}
           </p>
 
-          <button onClick={this.handleEdit} className="submit-button good-button">Edit</button>
-          <button onClick={this.handleDelete} className="submit-button bad-button">Delete</button>
+          {this.ownerButtons()}
         </div>
         {this.props.children}
       </div>

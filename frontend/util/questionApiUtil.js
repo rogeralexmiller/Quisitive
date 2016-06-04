@@ -33,10 +33,11 @@ var QuestionApiUtil = {
   },
 
   updateQuestion: function(question){
+    var questionData = {body: question.body};
     $.ajax({
       url: "api/questions/"+question.id,
       type: "PATCH",
-      data: {question: question},
+      data: {question: questionData},
       success: function(question){
         QuestionActions.receiveQuestion(question);
       }

@@ -17,4 +17,14 @@ class ApplicationController < ActionController::Base
     @current_user = nil
   end
 
+  def ensure_logged_in
+    unless current_user
+      render json: ["Request requires logged in user"]
+    end
+  end
+
+  def current_user_owns?(entity)
+    current_user.id == entity.author_id ? true : false
+  end
+
 end

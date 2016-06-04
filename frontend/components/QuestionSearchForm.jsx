@@ -2,18 +2,13 @@ var React = require("react");
 var QuestionApiUtil = require("../util/questionApiUtil");
 var QuestionStore = require("../stores/questionStore");
 
-// 1. question form submitted.
-// 2. ajax post request sent. On completion. action is dispatched that adds the question to the store.
-// 3. question search form component should listen to the store and when the store
-//    updates it should grab the last question and go to the question show component for that quesiton's id.
-
 var QuestionSearchForm = React.createClass({
   contextTypes: {
     router: React.PropTypes.object.isRequired
   },
 
   getInitialState: function(){
-    return {body: ""};
+    return {body: "", charsLeft: 0};
   },
 
   onChange: function(){
@@ -35,7 +30,8 @@ var QuestionSearchForm = React.createClass({
   },
 
   _handleChange: function(e){
-    this.setState({body: e.target.value});
+    var body = e.target.value;
+    this.setState({body: body, charsLeft: remainder});
   },
 
   handleSubmit: function(){
@@ -43,9 +39,11 @@ var QuestionSearchForm = React.createClass({
   },
 
   render: function(){
+
+    var text = this.state.body
     return(
       <form className="question-form group" onSubmit={this.handleSubmit}>
-        <input className="question-input" type="text" onChange={this._handleChange} placeholder="Ask or search for questions" value={this.state.body}/>
+        <input className="question-input" type="textarea" onChange={this._handleChange} placeholder="Ask or search for questions" value={text}/>
         <input className="question-submit" type="submit" value="Submit Question"/>
       </form>
     );

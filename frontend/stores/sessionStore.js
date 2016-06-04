@@ -18,6 +18,14 @@ var _logout = function() {
   _currentUserHasBeenFetched = true;
 };
 
+SessionStore.currentUserOwns = function(entity){
+  if (entity.author_id === _currentUser.id) {
+    return true;
+  } else{
+    return false;
+  }
+};
+
 SessionStore.isUserLoggedIn = function(){
   return !!_currentUser.id;
 };

@@ -1,5 +1,7 @@
 class Api::AnswersController < ApplicationController
 
+  before_action :ensure_logged_in
+
   def index
     @answers = Answer.where(question_id: params[:question_id]).includes(:author)
     render "api/answers/index"
@@ -19,7 +21,7 @@ class Api::AnswersController < ApplicationController
   def update
     @answer = Answer.find(params[:id])
 
-    if @answer.update(answer_params)
+    if current_user_owns?(@answer) && @answer.update(answer_params)
       render "api/answers/show"
     else
       render json: @answer.errors, status: :unprocessable_entity
@@ -28,7 +30,7 @@ class Api::AnswersController < ApplicationController
 
   def destroy
     @answer = Answer.find(params[:id])
-    if @answer.destroy
+    if current_user_owns?(@answer) && @answer.destroy
       render "api/answers/show"
     else
       render json: @answer.errors, status: :unprocessable_entity
@@ -40,8 +42,9 @@ class Api::AnswersController < ApplicationController
     render "api/answers/show"
   end
 
-
+  private
   def answer_params
     params.require(:answer).permit(:body, :question_id)
   end
+
 end

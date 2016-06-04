@@ -17,8 +17,9 @@ var QuestionsIndex = React.createClass({
   _onChange: function(){
     if (!SessionStore.isUserLoggedIn()){
       this.context.router.push("/login")
+    } else{
+      this.setState({questions: QuestionStore.all()});
     }
-    this.setState({questions: QuestionStore.all()});
   },
 
   componentDidMount: function(){

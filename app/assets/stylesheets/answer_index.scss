@@ -1,9 +1,22 @@
 .answer-index{
   width: 650px;
   padding-top: 20px;
+  font-size: 16px;
+  font-weight: bold
 }
 
 .answer-index-item{
   border-top: 1px solid #e2e2e2;
-  padding: 20px 0;
+  font-weight: 400;
+  font-size: 14px;
+  padding-bottom: 16px;
+}
+
+.answer-author{
+  font-weight: bold;
+  padding: 16px 0;
+}
+
+#answer-count{
+  margin-bottom: 16px;
 }

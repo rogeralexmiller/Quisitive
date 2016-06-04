@@ -1,6 +1,7 @@
 var React = require("react");
 var AnswerStore = require("../stores/answerStore");
 var AnswerApiUtil = require("../util/answerApiUtil");
+var AnswerIndexItem = require("./AnswerIndexItem");
 
 var AnswerIndex = React.createClass({
 
@@ -37,18 +38,17 @@ var AnswerIndex = React.createClass({
 
   render: function(){
     var answers = this.answerArray();
+    var answerCount = answers.length + " Answers"
     return(
-      <ul className="answer-index"> {answers.map(function(answer, idx){
-        return (
-          <li className="answer-index-item" key={idx}>
-            <strong> {answer.author} </strong>
-            <p>
-              {answer.body}
-            </p>
-          </li>
-        )
-      })}
-      </ul>
+      <div className="answer-index">
+        <h3 id="answer-count"> {answerCount} </h3>
+        <ul> {answers.map(function(answer, idx){
+          return (
+            <AnswerIndexItem key={idx} answer={answer}/>
+          )
+        })}
+        </ul>
+      </div>
     );
   }
 
