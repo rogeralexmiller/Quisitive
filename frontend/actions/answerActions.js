@@ -2,14 +2,15 @@ var AppDispatcher = require("../dispatcher/dispatcher");
 var AnswerConstants = require("../constants/AnswerConstants");
 
 var AnswerActions = {
-  receiveAnswers: function(answers){
+  receiveAnswers: function(answers, questionId){
     AppDispatcher.dispatch({
       actionType: AnswerConstants.RECEIVE_ANSWERS,
-      answers: answers
+      answers: answers,
+      questionId: questionId
     });
   },
 
-  receiveAnswer: function(question){
+  receiveAnswer: function(answer){
     AppDispatcher.dispatch({
       actionType: AnswerConstants.RECEIVE_ANSWER,
       answer: answer

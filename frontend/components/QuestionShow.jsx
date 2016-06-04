@@ -2,6 +2,7 @@ var React = require("react");
 var QuestionStore = require("../stores/questionStore");
 var QuestionApiUtil = require("../util/questionApiUtil");
 var HeaderNav = require("./HeaderNav");
+var AnswerIndex = require("./AnswerIndex");
 
 var QuestionShow = React.createClass({
 
@@ -90,8 +91,8 @@ var QuestionShow = React.createClass({
 
           <button onClick={this.handleEdit} className="submit-button good-button">Edit</button>
           <button onClick={this.handleDelete} className="submit-button bad-button">Delete</button>
-
         </div>
+        {this.props.children}
       </div>
     );
   }

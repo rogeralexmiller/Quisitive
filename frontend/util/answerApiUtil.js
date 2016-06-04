@@ -1,17 +1,17 @@
 var AnswerActions = require("../actions/answerActions");
 
 var AnswerApiUtil = {
-  fetchAllAnswers: function(question_id){
+  fetchAllAnswers: function(questionId){
     $.ajax({
-      url: "api/questions/"+question_id+"/answers",
+      url: "api/questions/" + questionId + "/answers",
       type: "GET",
       success: function(answers){
-        AnswerActions.receiveAnswers(answers);
+        AnswerActions.receiveAnswers(answers, questionId);
       }
     });
   },
 
-  getAnswer: function(id){
+  getAnswer: function(answerId){
     $.ajax({
       url: "api/answers/"+id,
       type: "GET",

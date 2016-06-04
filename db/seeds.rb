@@ -39,15 +39,14 @@ questions = Question.all
 
 authors = User.all
 
-explains = ["Because ", "It alll started with ", "You see, ", " The answer is "]
+explains = ["Because back in 1975, ", "It all started with ", "You see, ", "The answer is always ", ""]
 
-nouns = ["Snakes", "cows", "dragons", "Obama", "Trump", "Bears"]
+nouns = ["snakes.", "cows.", "dragons.", "Obama.", "Trump.", "bears bears bears bears bears."]
+lorem = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
 
 authors.each do |author|
-  question1 = questions.sample
-  question2 = questions.sample
-  text1 = explains.sample + nouns.sample
-  text2 = explains.sample + nouns.sample
-  Answer.create!(author_id: author.id, question_id: question1.id, body: text1)
-  Answer.create!(author_id: author.id, question_id: question2.id, body: text2)
+  questions.each do |question|
+    text = explains.sample + nouns.sample + lorem
+    Answer.create!(author_id: author.id, question_id: question.id, body: text)
+  end
 end

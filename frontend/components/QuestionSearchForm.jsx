@@ -30,7 +30,7 @@ var QuestionSearchForm = React.createClass({
     this.setState({body: ""});
   },
 
-  componentWillUnMount: function(){
+  componentWillUnmount: function(){
     this.listener.remove();
   },
 

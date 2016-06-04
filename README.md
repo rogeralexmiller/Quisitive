@@ -10,7 +10,7 @@ Quisitive is a web application inspired by Quora that will be built with Ruby on
 end of week 9, this app will, at a minimum, satisfy the following criteria:
 
 - [x] New account creation, login, and guest/demo login
-- [ ] Adequate seed data to demonstrate the site's features
+- [x] Adequate seed data to demonstrate the site's features
 - [ ] The minimally necessary features for a Quora-inspired site: question asking, editing, answering, commenting and searching,
 and topic question feeds
 - [x] Hosting on Heroku
@@ -86,7 +86,7 @@ user interface.
 
 **Objective:** Answers belong to Questions, and can be viewed by QuestionDetail. The top rated answer for each question will be shown in the questionIndex
 
-- [ ] create `Answer` model
+- [x] create `Answer` model
 - build out API, Flux loop, and components for:
   - [ ] Answer CRUD
   - [ ] adding answers requires a question

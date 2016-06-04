@@ -16,6 +16,7 @@
  *= require ./buttons.scss
  *= require ./signup_login.scss
  *= require ./header.scss
+ *= require ./answer_index.scss
  */
 
  html {

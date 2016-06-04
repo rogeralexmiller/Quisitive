@@ -5,28 +5,39 @@ var AnswerConstants = require("../constants/AnswerConstants");
 var AnswerStore = new Store(AppDispatcher);
 var answers = {};
 
-AnswerStore.all = function(){
-  return JSON.parse(JSON.stringify(answers));
+var currentQuestionId = null;
+
+AnswerStore.all = function(questionId){
+  if (questionId === currentQuestionId) {
+    return JSON.parse(JSON.stringify(answers));
+  } else{
+    return {};
+  }
+};
+
+AnswerStore.currentQuestionId = function(){
+  return currentQuestionId;
 };
 
 var addAnswer = function(answer){
-  answer[answer.id] = answer;
+  answers[answer.id] = answer;
 };
 
 AnswerStore.__onDispatch = function(payload){
   switch(payload.actionType){
     case AnswerConstants.RECEIVE_ANSWERS:
       answers = payload.answers;
+      currentQuestionId = payload.questionId;
       AnswerStore.__emitChange();
       break;
-
     case AnswerConstants.RECEIVE_ANSWER:
       addAnswer(payload.answer);
+      currentQuestionId = answer.question_id;
       AnswerStore.__emitChange();
       break;
-
     case AnswerConstants.REMOVE_ANSWER:
       delete answers[payload.answer.id];
+      currentQuestionId = payload.answer.questionId;
       AnswerStore.__emitChange();
       break;
   }

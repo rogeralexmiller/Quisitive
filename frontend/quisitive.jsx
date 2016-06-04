@@ -16,7 +16,7 @@ var QuestionShow = require("./components/QuestionShow");
 
 var AnswerStore = require("./stores/answerStore");
 var AnswerApiUtil = require("./util/answerApiUtil");
-
+var AnswerIndex = require("./components/AnswerIndex");
 window.AnswerStore = AnswerStore;
 window.AnswerApiUtil = AnswerApiUtil;
 
@@ -69,7 +69,9 @@ var Router = (
       <Route path="login" onEnter={_ensureLoggedOut} component={LoginSignup}/>
       <Route path="signup" onEnter={_ensureLoggedOut} component={LoginSignup}/>
       <Route path="questions" onEnter={_ensureLoggedIn} component={QuestionsIndex}/>
-      <Route path="questions/:questionId" onEnter={_ensureLoggedIn} component={QuestionShow}/>
+      <Route path="questions/:questionId" onEnter={_ensureLoggedIn} component={QuestionShow}>
+        <IndexRoute component={AnswerIndex} />
+      </Route>
     </Route>
   </Router>
 );
