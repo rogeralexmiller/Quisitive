@@ -7,7 +7,7 @@ var AnswerIndex = React.createClass({
 
   getInitialState: function(){
     var answers = AnswerStore.all(this.props.params.questionId);
-    return {answers: answers};
+    return {answers: answers, answering: false, answer: ""};
   },
 
   onChange: function(){
@@ -36,13 +36,40 @@ var AnswerIndex = React.createClass({
     return answerArr;
   },
 
+  showAnswer: function(){
+    this.setState({answering: true})
+  },
+
+  submitAnswer: function(e){
+    e.preventDefault();
+    AnswerApiUtil.createAnswer({
+      body: this.state.answer,
+      question_id: this.props.params.questionId
+    });
+
+    this.setState({answer: "", answering: false});
+  },
+
+  textChange: function(e){
+    this.setState({answer: e.target.value})
+  },
+
   render: function(){
     var answers = this.answerArray();
-    var answerCount = answers.length + " Answers"
+    var answerCount = answers.length + " Answers";
+    var answerFormClass = this.state.answering ? "answer-form" : "hidden";
+    var answerButtonClass = this.state.answering ? "hidden" : "submit-button";
+
     return(
-      <div className="answer-index">
-        <h3 id="answer-count"> {answerCount} </h3>
-        <ul> {answers.map(function(answer, idx){
+      <div className="answer-index group">
+        <button onClick={this.showAnswer} className={answerButtonClass}> Answer </button>
+
+        <form className={answerFormClass}>
+          <textarea rows="3" className="answer-input" onChange={this.textChange} value={this.state.answer}></textarea>
+          <input type="submit" className="submit-button" onClick={this.submitAnswer}/>
+        </form>
+        <h3 className="answer-count"> {answerCount} </h3>
+        <ul className="answer-feed"> {answers.map(function(answer, idx){
           return (
             <AnswerIndexItem key={idx} answer={answer}/>
           )

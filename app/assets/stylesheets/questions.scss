@@ -47,3 +47,29 @@
   letter-spacing: -1;
   width: 650px;
 }
+
+.question-edit-form{
+  border: 1px solid #e2e2e2;
+  background: #E2E2E2;
+  width: 650px;
+}
+.question-edit-form > input{
+  background-color: #ffffff;
+  width: 634px;
+  opacity: 1;
+  font-size: 24px;
+  font-weight: bold;
+  padding: 8px;
+}
+
+.question-edit-form > a {
+  float: right;
+  padding: 3px 7px 4px 7px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.question-edit-form > a:hover {
+  text-decoration: underline;
+}

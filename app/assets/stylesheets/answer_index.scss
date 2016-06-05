@@ -1,8 +1,12 @@
 .answer-index{
   width: 650px;
-  padding-top: 20px;
   font-size: 16px;
-  font-weight: bold
+  margin-top: 20px;
+}
+
+.answer-index > button {
+  float: none;
+  margin-left: 0;
 }
 
 .answer-index-item{
@@ -10,6 +14,8 @@
   font-weight: 400;
   font-size: 14px;
   padding-bottom: 16px;
+  margin-top: 20px;
+  max-width: 650px;
 }
 
 .answer-author{
@@ -17,6 +23,33 @@
   padding: 16px 0;
 }
 
-#answer-count{
+.answer-count{
+  margin: 5px 0;
+}
+
+.answer-form{
+  border: 1px solid #e2e2e2;
+  height: 150px;
   margin-bottom: 16px;
+}
+
+.answer-input{
+  height: 100%;
+  width: 100%;
+}
+
+.answer-form > input {
+  display: block;
+  margin-top: 12px;
+  margin-left: 0;
+  margin-bottom: 12px;
+}
+
+.answer-feed{
+  padding-top: 16px;
+}
+
+.answer-content{
+  max-width: 650px;
+  overflow-wrap: break-word;
 }

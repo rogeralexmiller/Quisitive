@@ -31,8 +31,7 @@ AnswerStore.__onDispatch = function(payload){
       AnswerStore.__emitChange();
       break;
     case AnswerConstants.RECEIVE_ANSWER:
-      addAnswer(payload.answer);
-      currentQuestionId = answer.question_id;
+      answers[payload.answer.id] = payload.answer;
       AnswerStore.__emitChange();
       break;
     case AnswerConstants.REMOVE_ANSWER:

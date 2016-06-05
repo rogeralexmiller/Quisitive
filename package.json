@@ -24,19 +24,20 @@
     "webpack": "^1.12.2"
   },
   "dependencies": {
+    "babel-core": "^6.2.0",
+    "babel-loader": "^6.2.0",
+    "babel-preset-react": "^6.1.18",
     "flux": "^2.1.1",
     "react": "^0.14.2",
     "react-addons-linked-state-mixin": "^0.14.8",
     "react-dom": "^0.14.2",
+    "react-quill": "^0.4.1",
     "react-router": "2.0.1",
-    "babel-core": "^6.2.0",
-    "babel-loader": "^6.2.0",
-    "babel-preset-react": "^6.1.18",
     "webpack": "^1.12.2"
   },
   "engines": {
-   "node": "5.5.0",
-   "npm": "3.3.12"
+    "node": "5.5.0",
+    "npm": "3.3.12"
   },
   "scripts": {
     "postinstall": "./node_modules/.bin/webpack"
