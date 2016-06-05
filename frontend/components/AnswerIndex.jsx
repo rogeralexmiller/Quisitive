@@ -54,6 +54,10 @@ var AnswerIndex = React.createClass({
     this.setState({answer: e.target.value})
   },
 
+  cancelAnswer: function(){
+    this.setState({answering: false})
+  },
+
   render: function(){
     var answers = this.answerArray();
     var answerCount = answers.length + " Answers";
@@ -66,9 +70,12 @@ var AnswerIndex = React.createClass({
 
         <form className={answerFormClass}>
           <textarea rows="3" className="answer-input" onChange={this.textChange} value={this.state.answer}></textarea>
+
           <input type="submit" className="submit-button" onClick={this.submitAnswer}/>
+          <p className="cancelAnswer" onClick={this.cancelAnswer}>Cancel</p>
         </form>
-        <h3 className="answer-count"> {answerCount} </h3>
+
+        <h3 className="answer-count">{answerCount}</h3>
         <ul className="answer-feed"> {answers.map(function(answer, idx){
           return (
             <AnswerIndexItem key={idx} answer={answer}/>

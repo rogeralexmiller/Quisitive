@@ -53,3 +53,16 @@
   max-width: 650px;
   overflow-wrap: break-word;
 }
+
+.cancelAnswer{
+  float:right;
+  display: inline;
+  font-size: 14px;
+  color: grey;
+  padding: 18px;
+}
+
+.cancelAnswer:hover{
+  cursor: pointer;
+  text-decoration: underline;;
+}
