@@ -2,7 +2,7 @@
   json.set! answer.id do
     json.extract! answer, :id, :body
 
-    json.author answer.author.full_name
+    json.author answer.author
 
   end
 end
