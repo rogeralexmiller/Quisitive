@@ -1,8 +1,10 @@
 @answers.each do |answer|
   json.set! answer.id do
-    json.extract! answer, :id, :body, :author_id
 
-    json.author answer.author
+    json.id answer.id
+    json.body answer.body
+    json.author answer.author.full_name
+    json.updated_at answer.updated_at
 
   end
 end

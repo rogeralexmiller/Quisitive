@@ -15,4 +15,6 @@ class Question < ActiveRecord::Base
     primary_key: :id
   )
 
+  has_many :comments, as: :commentable
+
 end

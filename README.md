@@ -23,7 +23,7 @@ Quisitive will allow users to do the following:
 
 - [x] Create an account (MVP)
 - [x] Log in / Log out, including as a Guest/Demo User (MVP)
-- [ ] Ask, read, answer, edit and delete questions(MVP)
+- [X] Ask, read, answer, edit and delete questions(MVP)
 - [ ] Comment on answers(MVP)
 - [ ] See feeds of questions filtered by topic (MVP)
 - [ ] Tag their own questions with topics (MVP)
@@ -88,8 +88,8 @@ user interface.
 
 - [x] create `Answer` model
 - build out API, Flux loop, and components for:
-  - [ ] Answer CRUD
-  - [ ] adding answers requires a question
+  - [x] Answer CRUD
+  - [x] adding answers requires a question
 - Use CSS to style updated QuestionDetail page
 
 ### Phase 5: Comments (1 day)
