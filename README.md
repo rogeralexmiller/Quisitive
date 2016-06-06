@@ -96,10 +96,10 @@ user interface.
 
 **Objective:** Comments belong to Answers, and can be viewed in AnswerIndex on a dropdown
 
-- [ ] create `Comments` model
+- [x] create `Comments` model
 - build out API, Flux loop, and components for:
 - [ ] Comments CRUD
-- [ ] adding comments requires an answer
+- [ ] adding comments requires an answer or question
 - Use CSS to style updated QuestionDetail page
 
 

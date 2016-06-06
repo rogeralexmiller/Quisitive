@@ -53,7 +53,7 @@ var AnswerIndexItem = React.createClass({
 
     return (
       <div className = "answer-index-item">
-      <h3 className="answer-author" >{this.props.answer.author.full_name}</h3>
+      <h3 className="answer-author" >{this.props.answer.author}</h3>
       <p className={answerShowClass} >{this.props.answer.body}</p>
 
       <form className={answerFormClass}>

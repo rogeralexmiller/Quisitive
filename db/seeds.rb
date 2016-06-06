@@ -3,6 +3,7 @@
 User.destroy_all
 Question.destroy_all
 Answer.destroy_all
+Comment.destroy_all
 
 emails = ["anna@test.com",
           "bart@test.com",
@@ -83,12 +84,14 @@ authors = User.all
 
 starts = ["It all goes back to ",
           "Obviously, the answer is ",
+          "Let me answer this by telling a story. ",
+          "I know the answer because I got a PhD on the subject. Let me break it down. ",
           "To understand the answer you need to understand ",
           "The answer is always ",
           "I googled it for you and the answer is ",
           "This is a silly question with a serious answer. It's ",
-          "No, ",
-          "Yes, "
+          "No. The answer is ",
+          "Yes. The answer is "
           ]
 
 hows = ["internal combustion.", "positive thinking.", "math.", "regular expressions.", "There's no way."]
@@ -108,6 +111,7 @@ nouns = ["snakes.",
         "Surprise parties.",
         "Nothing."
         ]
+
 numbers = ["Zero.", "3.1415.", "24.", "128361.", "thousands.","2.", "38.", "145.", "-34."]
 places = ["Greece.", "Oregon.", "Russia.", "Mexico.", "Australia.", "England.", "Nowhere."]
 dates = ["1920.", "1513.", "6000 BC.", "2016.", "1995.", "1989.", "Never."]
@@ -148,5 +152,67 @@ authors.each do |author|
       text = starts.sample + random.sample + lorem
     end
     Answer.create!(author_id: author.id, question_id: question.id, body: text)
+  end
+end
+
+question_comments = ["Great question! You are clearly curious like a cat.
+                      Don't get too curious, though. Down that road, madness lies...",
+                      "Interesting question. I wish I knew the answer, but I don't!
+                      I look forward to seeing the answers!",
+                      "Dumb question! The answer is so obvious I'm not even going to
+                      answer it, because I'm an awful person.",
+                      "Fascinating!",
+                      "What kind of twisted mind thinks up such questions!!!???
+                      You must have had a weird childhood!",
+                      "I look forward to observing the intellectual products of
+                      this incisive question.",
+                      "If anyone disagrees with my cursory judgement of this question,
+                      I will lash out with vitriol because that's how I make it
+                      through the day.",
+                      "LOUD NOISES!!! LOUD NOISES!!!",
+                      "Dude, you should have googled this question first....",
+                      "Iiiinterrrrressssting!",
+                      "HMMMMMMMMMMMM",
+                      "Good show, chap. You should be a philosopher!"
+                    ]
+
+answer_comments = ["Great answer! You should write a book about this!",
+                    "This is LITERALLY the best answer I've ever read anywhere",
+                    "Your intellectual prowess is evident by your firm grasp on latin",
+                    "I can tell you have a big brain because you used big words
+                     I don't understand.",
+                     "I bow down to you, master!",
+                     "This answer is pure bologna!",
+                     "My fifth grade son could answer this question better than you!",
+                     "If anyone disagrees with my cursory judgement of this answer,
+                     I will lash out with vitriol because that's how I make it
+                     through the day.",
+                     "LOUD NOISES!!! LOUD NOISES!!!",
+                     "A well researched, thorough answer. Bravo!",
+                     "Not to be contrary, but I disagree with you because I like
+                     to seem different",
+                     "Check your facts, fool. You wrong!",
+                     "Your lack of punctuation and proper grammatical constructs
+                     betrays your feeble mind.",
+                  ]
+
+answers = Answer.all
+
+authors.each do |author|
+  questions.each do |question|
+    Comment.create!(
+                    author_id: author.id,
+                    commentable_id: question.id,
+                    commentable_type: "Question",
+                    body: question_comments.sample
+    )
+  end
+  answers.each do |answer|
+    Comment.create!(
+                    author_id: author.id,
+                    commentable_id: answer.id,
+                    commentable_type: "Answer",
+                    body: answer_comments.sample
+    )
   end
 end

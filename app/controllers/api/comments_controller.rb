@@ -3,7 +3,10 @@ class Api::CommentsController < ApplicationController
   before_action :ensure_logged_in
 
   def index
-    @comments = Comment.where(commentable_id: params[:commentable_id]).includes(:author)
+    id = params[:commentableId]
+    type = params[:commentableType].titlecase
+    
+    @comments = Comment.where(commentable_id: id).where(commentable_type: type).includes(:author)
     render "api/comments/index"
   end
 
@@ -44,7 +47,7 @@ class Api::CommentsController < ApplicationController
 
   private
   def comment_params
-    params.require(:comment).permit(:body, :commentable_id)
+    params.require(:comment).permit(:body, :commentableId, :commentableType)
   end
 
 end

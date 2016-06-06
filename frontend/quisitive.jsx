@@ -17,8 +17,21 @@ var QuestionShow = require("./components/QuestionShow");
 var AnswerStore = require("./stores/answerStore");
 var AnswerApiUtil = require("./util/answerApiUtil");
 var AnswerIndex = require("./components/AnswerIndex");
+
+var CommentStore = require("./stores/commentStore");
+var CommentApiUtil = require("./util/commentApiUtil");
+
+var QuestionStore = require("./stores/questionStore");
+var QuestionApiUtil = require("./util/QuestionApiUtil");
+
+window.CommentStore = CommentStore;
+window.CommentApiUtil = CommentApiUtil;
+
 window.AnswerStore = AnswerStore;
 window.AnswerApiUtil = AnswerApiUtil;
+
+window.QuestionStore = QuestionStore;
+window.QuestionApiUtil = QuestionApiUtil;
 
 var App = React.createClass({
   render: function(){
