@@ -62,7 +62,7 @@ var AnswerIndex = React.createClass({
     var answers = this.answerArray();
     var answerCount = answers.length + " Answers";
     var answerFormClass = this.state.answering ? "answer-form" : "hidden";
-    var answerButtonClass = this.state.answering ? "hidden" : "submit-button";
+    var answerButtonClass = this.state.answering ? "hidden" : "answer-button";
 
     return(
       <div className="answer-index group">
@@ -71,7 +71,7 @@ var AnswerIndex = React.createClass({
         <form className={answerFormClass}>
           <textarea rows="3" className="answer-input" onChange={this.textChange} value={this.state.answer}></textarea>
 
-          <input type="submit" className="submit-button" onClick={this.submitAnswer}/>
+          <input type="submit" className="answer-button" onClick={this.submitAnswer}/>
           <p className="cancelAnswer" onClick={this.cancelAnswer}>Cancel</p>
         </form>
 

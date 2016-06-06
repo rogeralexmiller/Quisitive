@@ -19,6 +19,27 @@ button{
   cursor: pointer;
 }
 
+.answer-button{
+  border-radius: 3px;
+  font-weight: 500;
+  font-size: 13px;
+  padding: 4px 7px;
+  color: #2b6dad;
+  background: #f1f8fb;
+  margin: 8px;
+  border: 1px solid #bbcadc;
+  box-shadow: 0 1px 1px 0 rgba(200,200,200,0.6);
+  text-align: center;
+  word-spacing: normal;
+  text-shadow: none;
+  float: right;
+  cursor: pointer;
+}
+
+.answer-button:hover{
+  border: 1px solid;
+}
+
 #guest-button{
   margin-right:16px;
   background: green;
@@ -45,4 +66,16 @@ button{
 
 .header-nav > .submit-button {
   margin-top: 0;
+}
+
+.delete{
+  background: #f7d9d9;
+  border: 1px solid #dbbaba;
+  color: #db0808;
+  margin: 8px;
+  padding: 4px 7px;
+}
+
+.delete:hover{
+  border: 1px solid #db0808;
 }

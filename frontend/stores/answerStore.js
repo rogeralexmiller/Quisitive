@@ -36,7 +36,6 @@ AnswerStore.__onDispatch = function(payload){
       break;
     case AnswerConstants.REMOVE_ANSWER:
       delete answers[payload.answer.id];
-      currentQuestionId = payload.answer.questionId;
       AnswerStore.__emitChange();
       break;
   }
