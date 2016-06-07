@@ -3,14 +3,10 @@ var AppDispatcher = require("../dispatcher/dispatcher");
 var CommentConstants = require("../constants/CommentConstants");
 
 var CommentStore = new Store(AppDispatcher);
-var comments = {question: {}, answer: {}};
+var comments = {Question: {}, Answer: {}};
 
 var commentableId;
 var commentableType;
-
-CommentStore.comments = function(){
-  return comments;
-};
 
 CommentStore.all = function(type, commentableId){
   var requestedComments = comments[type][commentableId];
@@ -33,7 +29,6 @@ CommentStore.count = function(type, id){
 var addComment = function(comment){
   commentableId = comment.commentable_id;
   commentableType = comment.commentable_type;
-
   comments[commentableType][commentableId][comment.id] = comment;
 };
 
@@ -52,7 +47,7 @@ CommentStore.__onDispatch = function(payload){
     case CommentConstants.REMOVE_COMMENT:
       commentableId = payload.commentableId;
       commentableType = payload.commentableType;
-      delete comments[commentableId][commentableType][payload.commentId];
+      delete comments[commentableType][commentableId][payload.commentId];
       CommentStore.__emitChange();
       break;
   }

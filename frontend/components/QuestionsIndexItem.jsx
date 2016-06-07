@@ -5,22 +5,7 @@ var CommentApiUtil = require("../util/commentApiUtil");
 
 var QuestionsIndexItem = React.createClass({
   getInitialState: function(){
-    var count = CommentStore.count("question", this.props.question.id);
-    return {showComments: false, commentCount: count}
-  },
-
-  onChange: function(){
-    var count = CommentStore.count("question", this.props.question.id);
-    this.setState({commentCount: count});
-  },
-
-  componentDidMount: function(){
-    this.listener = CommentStore.addListener(this.onChange);
-    CommentApiUtil.fetchAllComments("question", this.props.question.id);
-  },
-
-  componentWillUnmount: function(){
-    this.listener.remove();
+    return {showComments: false};
   },
 
   showComments: function(){
@@ -30,7 +15,7 @@ var QuestionsIndexItem = React.createClass({
 
   render: function(){
     var questionUrl="#/questions/"+this.props.question.id;
-    var count = this.state.commentCount;
+    var count = this.props.question.commentCount;
     var commentText = "Comments "+count;
     var commentClass = this.state.showComments ? "comment-index" : "hidden";
 
@@ -42,10 +27,8 @@ var QuestionsIndexItem = React.createClass({
         <p className="question-author">
           {this.props.question.author}
         </p>
-        <p className="cancelAnswer" onClick={this.showComments}>{commentText}</p>
-        <div className={commentClass}>
-          <CommentIndex commentableType="question" commentableId={this.props.question.id}/>
-        </div>
+
+        <CommentIndex commentableType="Question" commentableId={this.props.question.id}/>
       </div>
     );
   }

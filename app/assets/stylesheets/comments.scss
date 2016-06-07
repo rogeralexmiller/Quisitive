@@ -1,10 +1,11 @@
 .comment-index{
-  margin-top: 40px;
-  padding: 0 20px 20px 20px;
+  margin: 10px 0;
+  padding: 0 20px 10px 20px;
   background: #F6F6F6;
   text-align: left;
   font-size: 13px;
   border-radius: 3px;
+  float: right;
 }
 
 .comment-index-item {
@@ -23,11 +24,42 @@
   float: left;
   padding: 4px 7px;
   height:20px;
+  margin-right: 8px;
 }
 
 .comment-form input{
   font-size: 13px;
   padding: 4px 7px;
-  float: right;
+  float: left;
   margin: 0;
+}
+
+.delete-comment{
+  background: #db0808;
+  float:right;
+  border-radius:3px;
+  color:#fff;
+  font-size: 13px;
+  border: 1px solid #db0808;
+}
+
+.edit textarea{
+  width: 400px;
+}
+
+.edit a {
+  float: left;
+  padding: 4px 7px;
+}
+
+.edit a:hover{
+  text-decoration: underline;
+}
+
+.edit-comment{
+  font-size: 13px;
+}
+
+.comment-body{
+  float: left;
 }

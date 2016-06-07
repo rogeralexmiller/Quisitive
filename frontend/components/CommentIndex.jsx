@@ -8,7 +8,7 @@ var CommentIndex = React.createClass({
   getInitialState: function(){
     var potentialComments = CommentStore.all(this.props.commentableType, this.props.commentableId);
     var comments = potentialComments ? potentialComments : {};
-    return {comments: comments, commentForm: ""};
+    return {comments: comments, commentForm: "", showComments: false};
   },
 
   onChange: function(){
@@ -52,20 +52,31 @@ var CommentIndex = React.createClass({
     this.setState({commentForm: ""});
   },
 
+  showComments: function(){
+    var commentState = !this.state.showComments;
+    this.setState({showComments: commentState});
+  },
+
   render: function(){
     var commentArr = this.commentArray();
+    var count = commentArr.length;
+    var countText = "Comments " + count;
+    var commentClass = this.state.showComments ? "comment-index" : "hidden";
+
     return(
       <div>
-        <form className="comment-form group" onSubmit={this.submitComment}>
-          <textarea onChange={this.textChange}
-                    placeholder="Add a comment..."
-                    type="text"
-                    value={this.state.commentForm}></textarea>
-          <input type="submit" className="submit-button" value="Submit"/>
-        </form>
-        {commentArr.map(function(comment, idx){
-          return <CommentIndexItem key={idx} comment={comment}/>;
-        })}
+        <p className="cancelAnswer" onClick={this.showComments}>{countText}</p>
+        <div className={commentClass}>
+          <form className="comment-form group" onSubmit={this.submitComment}>
+            <textarea onChange={this.textChange}
+                      placeholder="Add a comment..."
+                      value={this.state.commentForm}></textarea>
+            <input type="submit" className="submit-button" value="Submit"/>
+          </form>
+          {commentArr.map(function(comment, idx){
+            return <CommentIndexItem key={idx} comment={comment}/>;
+          })}
+        </div>
       </div>
     );
   }

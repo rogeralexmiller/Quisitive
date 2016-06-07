@@ -4,7 +4,7 @@ class Api::CommentsController < ApplicationController
 
   def index
     id = params[:commentableId]
-    type = params[:commentableType].titlecase
+    type = params[:commentableType]
 
     @comments = Comment.where(commentable_id: id).where(commentable_type: type).includes(:author)
     render "api/comments/index"

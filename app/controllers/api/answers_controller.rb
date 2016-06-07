@@ -3,7 +3,7 @@ class Api::AnswersController < ApplicationController
   before_action :ensure_logged_in
 
   def index
-    @answers = Answer.where(question_id: params[:question_id]).includes(:author)
+    @answers = Answer.where(question_id: params[:question_id]).includes(:author, :comments)
     render "api/answers/index"
   end
 
@@ -38,7 +38,7 @@ class Api::AnswersController < ApplicationController
   end
 
   def show
-    @answer = Answer.find(params[:id])
+    @answer = Answer.includes(:author, :comments).find(params[:id])
     render "api/answers/show"
   end
 

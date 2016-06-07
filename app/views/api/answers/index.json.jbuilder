@@ -5,6 +5,7 @@
     json.body answer.body
     json.author answer.author.full_name
     json.updated_at answer.updated_at
+    json.commentCount answer.comments.length
 
   end
 end

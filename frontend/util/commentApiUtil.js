@@ -2,8 +2,9 @@ var CommentActions = require("../actions/commentActions");
 
 var CommentApiUtil = {
   fetchAllComments: function(commentableType, commentableId){
+    var lowerType = commentableType.slice(0,1).toLowerCase()+commentableType.slice(1);
     $.ajax({
-      url: "api/" + commentableType + "s/" + commentableId + "/comments",
+      url: "api/" + lowerType + "s/" + commentableId + "/comments",
       type: "GET",
       data: {commentableType: commentableType, commentableId: commentableId},
       success: function(comments){
@@ -23,13 +24,14 @@ var CommentApiUtil = {
   },
 
   createComment: function(comment){
+    var lowerType = comment.commentableType.slice(0,1).toLowerCase()+comment.commentableType.slice(1);
     var commentData = {
       body: comment.body,
       commentable_type: comment.commentableType,
       commentable_id: comment.commentableId
     };
     $.ajax({
-      url: "api/" + comment.commentableType + "s/" + comment.commentableId + "/comments",
+      url: "api/" + lowerType + "s/" + comment.commentableId + "/comments",
       type: "POST",
       data: {comment: commentData},
       success: function(comment){
@@ -45,7 +47,7 @@ var CommentApiUtil = {
       type: "PATCH",
       data: {comment: commentData},
       success: function(comment){
-        CommentActions.receiveComment(comment, comment.commentable_type, commentable_id);
+        CommentActions.receiveComment(comment, comment.commentable_type, comment.commentable_id);
       }
     });
   },
@@ -55,7 +57,7 @@ var CommentApiUtil = {
       url: "api/comments/"+commentId,
       type: "DELETE",
       success: function(comment){
-        CommentActions.removeComment(comment, comment.commentable_type, comment.commentable_id);
+        CommentActions.removeComment(comment.id, comment.commentable_type, comment.commentable_id);
       }
     });
   }
