@@ -22,7 +22,7 @@ var CommentStore = require("./stores/commentStore");
 var CommentApiUtil = require("./util/commentApiUtil");
 
 var QuestionStore = require("./stores/questionStore");
-var QuestionApiUtil = require("./util/QuestionApiUtil");
+var QuestionApiUtil = require("./util/questionApiUtil");
 
 window.CommentStore = CommentStore;
 window.CommentApiUtil = CommentApiUtil;

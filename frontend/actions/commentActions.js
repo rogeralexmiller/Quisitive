@@ -11,17 +11,21 @@ var commentActions = {
     });
   },
 
-  receiveComment: function(comment){
+  receiveComment: function(comment, commentableType, commentableId){
     AppDispatcher.dispatch({
       actionType: CommentConstants.RECEIVE_COMMENT,
-      comment: comment
+      comment: comment,
+      commentableId: commentableId,
+      commentableType: commentableType
     });
   },
 
-  removeComment: function(comment){
+  removeComment: function(commentId, commentableType, commentableId){
     AppDispatcher.dispatch({
       actionType: CommentConstants.REMOVE_COMMENT,
-      comment: comment
+      commentId: commentId,
+      commentableId: commentableId,
+      commentableType: commentableType
     });
   }
 };

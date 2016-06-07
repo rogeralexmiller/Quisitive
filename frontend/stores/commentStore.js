@@ -3,45 +3,51 @@ var AppDispatcher = require("../dispatcher/dispatcher");
 var CommentConstants = require("../constants/CommentConstants");
 
 var CommentStore = new Store(AppDispatcher);
-var comments = {};
+var comments = {question: {}, answer: {}};
 
-var commentableId = null;
-var commentableType = null;
+var commentableId;
+var commentableType;
 
-CommentStore.all = function(id, type){
-  if (commentableId === id && commentableType === type) {
-    return JSON.parse(JSON.stringify(comments));
-  } else {
+CommentStore.all = function(type, commentableId){
+  var requestedComments = comments[type][commentableId];
+  if (requestedComments) {
+    return JSON.parse(JSON.stringify(requestedComments));
+  } else{
     return {};
   }
 };
 
-CommentStore.commentableId = function(){
-  return commentableId;
+CommentStore.count = function(type, id){
+  var potentialComments = comments[type][id];
+  if (potentialComments) {
+    return Object.keys(potentialComments).length;
+  } else{
+    return 0;
+  }
 };
 
-CommentStore.commentableType = function(){
-  return commentableType;
-};
-
-var addComment = function(comment){
-  comments[comment.id] = comment;
+var addComment = function(comment, commentableType, commentableId){
+  comments[commentableType][commentableId][comment.id] = comment;
 };
 
 CommentStore.__onDispatch = function(payload){
   switch(payload.actionType){
     case CommentConstants.RECEIVE_COMMENTS:
-      comments = payload.comments;
       commentableId = payload.commentableId;
       commentableType = payload.commentableType;
+      comments[commentableType][commentableId] = payload.comments;
       CommentStore.__emitChange();
       break;
     case CommentConstants.RECEIVE_COMMENT:
-      comments[payload.comment.id] = payload.comment;
+      commentableId = payload.commentableId;
+      commentableType = payload.commentableType;
+      addComment(payload.comment, commentableType,commentableId);
       CommentStore.__emitChange();
       break;
     case CommentConstants.REMOVE_COMMENT:
-      delete comments[payload.comment.id];
+      commentableId = payload.commentableId;
+      commentableType = payload.commentableType;
+      delete comments[commentableId][commentableType][payload.commentId];
       CommentStore.__emitChange();
       break;
   }

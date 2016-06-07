@@ -7,18 +7,17 @@ var CommentApiUtil = {
       type: "GET",
       data: {commentableType: commentableType, commentableId: commentableId},
       success: function(comments){
-        debugger;
         CommentActions.receiveComments(comments, commentableType, commentableId);
       }
     });
   },
 
-  getComment: function(commentId){
+  getComment: function(commentId, type, id){
     $.ajax({
       url: "api/comments/"+commentId,
       type: "GET",
       success: function(comment){
-        CommentActions.receiveComment(comment);
+        CommentActions.receiveComment(comment, type, id);
       }
     });
   },
@@ -29,29 +28,29 @@ var CommentApiUtil = {
       type: "POST",
       data: {comment: comment},
       success: function(comment){
-        CommentActions.receiveComment(comment);
+        CommentActions.receiveComment(comment, commentableType, commentableId);
       }
     });
   },
 
-  updateComment: function(comment){
+  updateComment: function(comment, type, id){
     var commentData = {body: comment.body};
     $.ajax({
       url: "api/comments/"+comment.id,
       type: "PATCH",
       data: {comment: commentData},
       success: function(comment){
-        CommentActions.receiveComment(comment);
+        CommentActions.receiveComment(comment, type, id);
       }
     });
   },
 
-  deleteComment: function(id){
+  deleteComment: function(commentId, type, commentableId){
     $.ajax({
-      url: "api/comments/"+id,
+      url: "api/comments/"+commentId,
       type: "DELETE",
       success: function(comment){
-        CommentActions.removeComment(comment);
+        CommentActions.removeComment(comment, type, commentableId);
       }
     });
   }

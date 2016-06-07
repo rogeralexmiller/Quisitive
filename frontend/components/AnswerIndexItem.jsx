@@ -1,11 +1,37 @@
 var React = require("react");
 var AnswerApiUtil = require("../util/answerApiUtil");
 var SessionStore = require("../stores/sessionStore");
+var CommentIndex = require("./CommentIndex");
+var CommentStore = require("../stores/commentStore");
+var CommentApiUtil = require("../util/commentApiUtil");
 
 var AnswerIndexItem = React.createClass({
 
   getInitialState: function(){
-    return {answerEdit: this.props.answer.body, editing: false};
+    var count = CommentStore.count("answer", this.props.answer.id);
+    return {answerEdit: this.props.answer.body,
+            editing: false,
+            commentCount: count,
+            showComments: false};
+  },
+
+  onChange: function(){
+    var count = CommentStore.count("answer", this.props.answer.id);
+    this.setState({commentCount: count});
+  },
+
+  componentDidMount: function(){
+    this.listener = CommentStore.addListener(this.onChange);
+    CommentApiUtil.fetchAllComments("answer", this.props.answer.id);
+  },
+
+  componentWillUnmount: function(){
+    this.listener.remove();
+  },
+
+  showComments: function(){
+    var commentState = !this.state.showComments;
+    this.setState({showComments: commentState});
   },
 
   textChange: function(e){
@@ -48,8 +74,11 @@ var AnswerIndexItem = React.createClass({
 
   render: function(){
     var answerFormClass = this.state.editing ? "answer-form" : "hidden";
-
     var answerShowClass = this.state.editing ? "hidden" : "answer-content";
+
+    var count = this.state.commentCount;
+    var commentText = "Comments "+count;
+    var commentClass = this.state.showComments ? "comment-index" : "hidden";
 
     return (
       <div className = "answer-index-item">
@@ -64,6 +93,11 @@ var AnswerIndexItem = React.createClass({
       </form>
 
       {this.ownerButtons()}
+
+      <p onClick={this.showComments}>{commentText}</p>
+      <div className={commentClass}>
+        <CommentIndex commentableType="answer" commentableId={this.props.answer.id}/>
+      </div>
       </div>
     );
   }
