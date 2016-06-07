@@ -8,6 +8,10 @@ var comments = {question: {}, answer: {}};
 var commentableId;
 var commentableType;
 
+CommentStore.comments = function(){
+  return comments;
+};
+
 CommentStore.all = function(type, commentableId){
   var requestedComments = comments[type][commentableId];
   if (requestedComments) {
@@ -26,7 +30,10 @@ CommentStore.count = function(type, id){
   }
 };
 
-var addComment = function(comment, commentableType, commentableId){
+var addComment = function(comment){
+  commentableId = comment.commentable_id;
+  commentableType = comment.commentable_type;
+
   comments[commentableType][commentableId][comment.id] = comment;
 };
 
@@ -39,9 +46,7 @@ CommentStore.__onDispatch = function(payload){
       CommentStore.__emitChange();
       break;
     case CommentConstants.RECEIVE_COMMENT:
-      commentableId = payload.commentableId;
-      commentableType = payload.commentableType;
-      addComment(payload.comment, commentableType,commentableId);
+      addComment(payload.comment);
       CommentStore.__emitChange();
       break;
     case CommentConstants.REMOVE_COMMENT:

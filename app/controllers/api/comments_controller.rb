@@ -5,12 +5,13 @@ class Api::CommentsController < ApplicationController
   def index
     id = params[:commentableId]
     type = params[:commentableType].titlecase
-    
+
     @comments = Comment.where(commentable_id: id).where(commentable_type: type).includes(:author)
     render "api/comments/index"
   end
 
   def create
+
     @comment = Comment.new(comment_params)
     @comment.author_id = current_user.id
 
@@ -47,7 +48,7 @@ class Api::CommentsController < ApplicationController
 
   private
   def comment_params
-    params.require(:comment).permit(:body, :commentableId, :commentableType)
+    params.require(:comment).permit(:body, :commentable_id, :commentable_type)
   end
 
 end

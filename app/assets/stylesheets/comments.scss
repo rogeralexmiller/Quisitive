@@ -1,0 +1,33 @@
+.comment-index{
+  margin-top: 40px;
+  padding: 0 20px 20px 20px;
+  background: #F6F6F6;
+  text-align: left;
+  font-size: 13px;
+  border-radius: 3px;
+}
+
+.comment-index-item {
+  font-size: 13px;
+  padding-bottom: 10px;
+}
+
+.comment-form{
+  padding-top:10px;
+}
+
+.comment-form textarea{
+  background: #fff;
+  width: 480px;
+  resize: none;
+  float: left;
+  padding: 4px 7px;
+  height:20px;
+}
+
+.comment-form input{
+  font-size: 13px;
+  padding: 4px 7px;
+  float: right;
+  margin: 0;
+}

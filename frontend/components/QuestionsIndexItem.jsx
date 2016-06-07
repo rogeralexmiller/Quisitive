@@ -42,7 +42,7 @@ var QuestionsIndexItem = React.createClass({
         <p className="question-author">
           {this.props.question.author}
         </p>
-        <p onClick={this.showComments}>{commentText}</p>
+        <p className="cancelAnswer" onClick={this.showComments}>{commentText}</p>
         <div className={commentClass}>
           <CommentIndex commentableType="question" commentableId={this.props.question.id}/>
         </div>

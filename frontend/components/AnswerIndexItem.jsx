@@ -94,7 +94,7 @@ var AnswerIndexItem = React.createClass({
 
       {this.ownerButtons()}
 
-      <p onClick={this.showComments}>{commentText}</p>
+      <p className="cancelAnswer" onClick={this.showComments}>{commentText}</p>
       <div className={commentClass}>
         <CommentIndex commentableType="answer" commentableId={this.props.answer.id}/>
       </div>

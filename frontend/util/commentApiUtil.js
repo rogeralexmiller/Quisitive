@@ -12,45 +12,50 @@ var CommentApiUtil = {
     });
   },
 
-  getComment: function(commentId, type, id){
+  getComment: function(commentId){
     $.ajax({
       url: "api/comments/"+commentId,
       type: "GET",
       success: function(comment){
-        CommentActions.receiveComment(comment, type, id);
+        CommentActions.receiveComment(comment, comment.commentable_type, comment.commentable_id);
       }
     });
   },
 
-  createComment: function(comment, commentableType, commentableId){
+  createComment: function(comment){
+    var commentData = {
+      body: comment.body,
+      commentable_type: comment.commentableType,
+      commentable_id: comment.commentableId
+    };
     $.ajax({
-      url: "api/" + commentable_type + "/" + commentableId + "/comments",
+      url: "api/" + comment.commentableType + "s/" + comment.commentableId + "/comments",
       type: "POST",
-      data: {comment: comment},
+      data: {comment: commentData},
       success: function(comment){
-        CommentActions.receiveComment(comment, commentableType, commentableId);
+        CommentActions.receiveComment(comment);
       }
     });
   },
 
-  updateComment: function(comment, type, id){
+  updateComment: function(comment){
     var commentData = {body: comment.body};
     $.ajax({
       url: "api/comments/"+comment.id,
       type: "PATCH",
       data: {comment: commentData},
       success: function(comment){
-        CommentActions.receiveComment(comment, type, id);
+        CommentActions.receiveComment(comment, comment.commentable_type, commentable_id);
       }
     });
   },
 
-  deleteComment: function(commentId, type, commentableId){
+  deleteComment: function(commentId){
     $.ajax({
       url: "api/comments/"+commentId,
       type: "DELETE",
       success: function(comment){
-        CommentActions.removeComment(comment, type, commentableId);
+        CommentActions.removeComment(comment, comment.commentable_type, comment.commentable_id);
       }
     });
   }

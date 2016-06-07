@@ -11,12 +11,10 @@ var commentActions = {
     });
   },
 
-  receiveComment: function(comment, commentableType, commentableId){
+  receiveComment: function(comment){
     AppDispatcher.dispatch({
       actionType: CommentConstants.RECEIVE_COMMENT,
-      comment: comment,
-      commentableId: commentableId,
-      commentableType: commentableType
+      comment: comment
     });
   },
 

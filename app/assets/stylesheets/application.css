@@ -18,6 +18,7 @@
  *= require ./header.scss
  *= require ./questions.scss
  *= require ./answer_index.scss
+ *= require ./comments.scss
  */
 
  html {
@@ -26,6 +27,10 @@
    font-weight: 400;
  }
 
+input, textarea {
+  padding: 3px 8px;
+  border-radius: 3px;
+}
 body {
 
 }

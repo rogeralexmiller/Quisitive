@@ -9,12 +9,14 @@
   margin-left: 0;
 }
 
+
 .answer-index-item{
   border-top: 1px solid #e2e2e2;
   font-weight: 400;
   font-size: 14px;
   padding-bottom: 16px;
   max-width: 650px;
+  margin-bottom: 25px;
 }
 
 .answer-author{
@@ -29,7 +31,7 @@
 .answer-form{
   border: 1px solid #e2e2e2;
   height: 150px;
-  margin-bottom: 16px;
+  margin-bottom: 25px;
 }
 
 .answer-input{
@@ -44,9 +46,6 @@
   margin-bottom: 12px;
 }
 
-.answer-feed{
-  padding-top: 16px;
-}
 
 .answer-content{
   max-width: 650px;
