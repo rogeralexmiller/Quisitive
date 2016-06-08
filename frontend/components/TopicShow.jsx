@@ -4,6 +4,7 @@ var TopicApiUtil = require("../util/topicApiUtil");
 var Link = require('react-router').Link;
 var SessionStore = require("../stores/sessionStore");
 var HeaderNav = require("./HeaderNav");
+var TopicQuestionIndex = require("./TopicQuestionIndex");
 
 var TopicShow = React.createClass({
 
@@ -14,26 +15,22 @@ var TopicShow = React.createClass({
   getInitialState: function(){
     var potentialTopic = TopicStore.find(this.props.params.topicId);
     var topic = potentialTopic ? potentialTopic : {};
-    return {topic: topic, editing: false};
+    return {topic: topic, editing: false, topicForm: topic.name};
   },
 
   componentWillReceiveProps: function(){
-    var potentialTopic = TopicStore.find(this.props.params.topicId);
-    var topic = potentialTopic ? potentialTopic : {};
-    this.setState({topic: topic, editing: false});
+    TopicApiUtil.getTopic(this.props.params.topicId);
   },
 
   handleBodyChange: function(e){
-    var topic = this.state.topic;
-    topic.name = e.target.value;
-    this.setState({topic: topic});
+    this.setState({topicForm: e.value});
   },
 
   _onChange: function(){
     var potentialTopic = TopicStore.find(this.props.params.topicId);
     var topic = potentialTopic ? potentialTopic : {};
 
-    this.setState({topic: topic});
+    this.setState({topic: topic, topicForm: topic.name});
   },
 
   componentDidMount: function(){
@@ -83,13 +80,13 @@ var TopicShow = React.createClass({
   },
 
   render: function(){
-    var editClass = this.state.editing ? "question-edit-form group" : "hidden";
+    var editClass = this.state.editing ? "question-edit-form topic-form group" : "hidden";
     var topicClass = this.state.editing ? "hidden" : "show-header topic-header group";
     return(
       <div>
 
         <form className={editClass}>
-          <input type="text" className="topic-edit-input" onChange={this.handleBodyChange} value={this.state.topic.body}/>
+          <input type="text" className="question-edit-input" onChange={this.handleBodyChange} value={this.state.topicForm}/>
           <button onClick={this.handleUpdate} className="submit-button good-button"> Update </button>
           <a onClick={this.handleCancel} href="#">Cancel</a>
         </form>
@@ -102,6 +99,7 @@ var TopicShow = React.createClass({
 
           {this.ownerButtons()}
         </div>
+        <TopicQuestionIndex questions={this.state.topic.questions}/>
         {this.props.children}
       </div>
     );

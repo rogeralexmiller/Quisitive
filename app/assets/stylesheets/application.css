@@ -43,7 +43,6 @@ body {
   width: 1002px;
   margin-top: 75px;
   padding-left: 131px;
-  padding-right: 420px;
 }
 
 textarea{
@@ -65,7 +64,7 @@ textarea{
   font-weight: bold;
   display: block;
   letter-spacing: -1;
-  width: 650px;
+  width: 720px;
 }
 .hidden {
   display: none;

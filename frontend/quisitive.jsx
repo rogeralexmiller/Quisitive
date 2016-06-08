@@ -94,7 +94,6 @@ var Router = (
       </Route>
       <Route path="topics/:topicId" onEnter={_ensureLoggedIn} component={TopicShow}>
         <IndexRoute component={TopicIndex}/>
-        <Route path="" component = {TopicQuestionIndex}/>
       </Route>
     </Route>
   </Router>
