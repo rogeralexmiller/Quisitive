@@ -4,6 +4,8 @@ User.destroy_all
 Question.destroy_all
 Answer.destroy_all
 Comment.destroy_all
+Topic.destroy_all
+TopicTagging.destroy_all
 
 emails = ["anna@test.com",
           "bart@test.com",
@@ -215,4 +217,17 @@ authors.each do |author|
                     body: answer_comments.sample
     )
   end
+end
+
+subjects = ["Biology", "Astronomy", "History", "Politics", "Religion", "Philosophy",
+        "Art", "Animals", "Humor", "Programming", "Food", "Lifestyle", "Sports"]
+subjects.each{|subject| Topic.create!(name:subject)}
+
+topics = Topic.all
+
+questions.each do |question|
+  TopicTagging.create(question_id: question.id, topic_id: topics.sample.id)
+  TopicTagging.create(question_id: question.id, topic_id: topics.sample.id)
+  TopicTagging.create(question_id: question.id, topic_id: topics.sample.id)
+  TopicTagging.create(question_id: question.id, topic_id: topics.sample.id)
 end

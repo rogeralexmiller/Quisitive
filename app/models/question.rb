@@ -17,4 +17,12 @@ class Question < ActiveRecord::Base
 
   has_many :comments, as: :commentable
 
+  has_many :topic_taggings
+
+  has_many(
+    :topics,
+    through: :topic_taggings,
+    source: :topic
+  )
+
 end
