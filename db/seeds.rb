@@ -221,7 +221,12 @@ end
 
 subjects = ["Biology", "Astronomy", "History", "Politics", "Religion", "Philosophy",
         "Art", "Animals", "Humor", "Programming", "Food", "Lifestyle", "Sports"]
-subjects.each{|subject| Topic.create!(name:subject)}
+
+users.each do |user|
+  Topic.create(name:subjects.pop, author_id: user.id)
+end
+
+subjects.each{|subject| Topic.create(name:subject, author_id: users.sample.id)}
 
 topics = Topic.all
 

@@ -3,7 +3,6 @@ var QuestionStore = require("../stores/questionStore");
 var QuestionApiUtil = require("../util/questionApiUtil");
 var QuestionsIndexItem = require("./QuestionsIndexItem");
 var SessionStore = require("../stores/sessionStore");
-var HeaderNav = require("./HeaderNav");
 
 var QuestionsIndex = React.createClass({
   getInitialState: function(){
@@ -46,13 +45,13 @@ var QuestionsIndex = React.createClass({
     var questionArr = this.questionArray();
     return(
       <div>
-        <HeaderNav/>
         <div className="questions-index">
-          <h3 className="questions-index-header">Most Recent Questions</h3>
+          <h3 className="index-header">Most Recent Questions</h3>
           {questionArr.map(function(question){
             return <QuestionsIndexItem question={question} key={question.id}/>;
           })}
         </div>
+        {this.props.children}
       </div>
     );
   }

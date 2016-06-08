@@ -1,0 +1,20 @@
+.topic-index{
+  position: fixed;
+  width: 130px;
+  padding: 0 10px 10px 0;
+}
+
+.topic-index-item{
+  padding-top: 8px;
+  padding-bottom: 8px;
+  font-size: 13px;
+  color: rgb(102, 102, 102);
+}
+
+.topic-index-item:hover{
+  color: rgb(43, 109, 173);
+}
+
+.topic-header{
+  float: left;
+}

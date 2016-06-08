@@ -1,7 +1,6 @@
 var React = require("react");
 var QuestionStore = require("../stores/questionStore");
 var QuestionApiUtil = require("../util/questionApiUtil");
-var HeaderNav = require("./HeaderNav");
 var AnswerIndex = require("./AnswerIndex");
 var SessionStore = require("../stores/sessionStore");
 
@@ -87,10 +86,9 @@ var QuestionShow = React.createClass({
 
   render: function(){
     var editClass = this.state.editing ? "question-edit-form group" : "hidden";
-    var questionClass = this.state.editing ? "hidden" : "question-header group";
+    var questionClass = this.state.editing ? "hidden" : "show-header group";
     return(
       <div>
-        <HeaderNav/>
 
         <form className={editClass}>
           <input type="text" className="question-edit-input" onChange={this.handleBodyChange} value={this.state.question.body}/>

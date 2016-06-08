@@ -11,6 +11,7 @@ Rails.application.routes.draw do
       resources :comments, only: [:index, :create]
     end
     resources :comments, only: [:show, :update, :destroy]
+    resources :topics, only: [:index, :show, :destroy, :update]
   end
 
   root to: "static_pages#root"

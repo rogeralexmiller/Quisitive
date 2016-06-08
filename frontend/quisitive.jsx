@@ -10,33 +10,38 @@ var hashHistory = ReactRouter.hashHistory;
 var QuestionsIndex = require("./components/QuestionsIndex");
 var SessionStore = require("./stores/sessionStore");
 var LoginSignup = require("./components/LoginSignup");
-
-var SessionApiUtil = require("./util/sessionApiUtil");
 var QuestionShow = require("./components/QuestionShow");
-
-var AnswerStore = require("./stores/answerStore");
-var AnswerApiUtil = require("./util/answerApiUtil");
+var SessionApiUtil = require("./util/sessionApiUtil");
+var TopicIndex = require("./components/TopicIndex");
 var AnswerIndex = require("./components/AnswerIndex");
-
-var CommentStore = require("./stores/commentStore");
-var CommentApiUtil = require("./util/commentApiUtil");
-
-var QuestionStore = require("./stores/questionStore");
-var QuestionApiUtil = require("./util/questionApiUtil");
-
-window.CommentStore = CommentStore;
-window.CommentApiUtil = CommentApiUtil;
-
-window.AnswerStore = AnswerStore;
-window.AnswerApiUtil = AnswerApiUtil;
-
-window.QuestionStore = QuestionStore;
-window.QuestionApiUtil = QuestionApiUtil;
+var TopicShow = require("./components/TopicShow");
+var HeaderNav = require("./components/HeaderNav");
 
 var App = React.createClass({
+  getInitialState: function(){
+    var loginState = SessionStore.isUserLoggedIn();
+    return {loginState: loginState};
+  },
+
+  onChange: function(){
+    var loginState = SessionStore.isUserLoggedIn();
+    this.setState({loginState: loginState});
+  },
+
+  componentDidMount: function(){
+    this.listener = SessionStore.addListener(this.onChange);
+    SessionApiUtil.fetchCurrentUser();
+  },
+
+  componentWillUnmount: function(){
+    this.listener.remove();
+  },
+
   render: function(){
+    var header = this.state.loginState? <HeaderNav/> : <div></div>;
     return (
       <div>
+        {header}
         {this.props.children}
       </div>
     );
@@ -81,9 +86,15 @@ var Router = (
       <IndexRoute onEnter={_ensureLoggedOut} component={LoginSignup}/>
       <Route path="login" onEnter={_ensureLoggedOut} component={LoginSignup}/>
       <Route path="signup" onEnter={_ensureLoggedOut} component={LoginSignup}/>
-      <Route path="questions" onEnter={_ensureLoggedIn} component={QuestionsIndex}/>
+      <Route path="questions" onEnter={_ensureLoggedIn} component={QuestionsIndex}>
+        <IndexRoute component={TopicIndex}/>
+      </Route>
       <Route path="questions/:questionId" onEnter={_ensureLoggedIn} component={QuestionShow}>
         <IndexRoute component={AnswerIndex} />
+      </Route>
+      <Route path="topics/:topicId" onEnter={_ensureLoggedIn} component={TopicShow}>
+        <IndexRoute component={TopicIndex}/>
+        <Route path="" component = {TopicQuestionIndex}/>
       </Route>
     </Route>
   </Router>
