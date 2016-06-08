@@ -75,8 +75,8 @@ var QuestionShow = React.createClass({
     if (SessionStore.currentUserOwns(this.state.question)) {
       return (
         <div>
-          <button onClick={this.handleEdit} className="submit-button good-button">Edit</button>
-          <button onClick={this.handleDelete} className="submit-button bad-button">Delete</button>
+          <button onClick={this.handleEdit} className="answer-button">Edit</button>
+          <button onClick={this.handleDelete} className="submit-button delete">Delete</button>
         </div>
       )} else{
       return(<div> </div>);

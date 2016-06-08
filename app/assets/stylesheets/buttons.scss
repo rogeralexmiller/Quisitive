@@ -68,12 +68,16 @@ button{
   margin-top: 0;
 }
 
+.good-button{
+  font-size: 14px;
+}
 .delete{
   background: #f7d9d9;
   border: 1px solid #dbbaba;
   color: #db0808;
   margin: 8px;
   padding: 4px 7px;
+  font-size: 13px;
 }
 
 .delete:hover{
