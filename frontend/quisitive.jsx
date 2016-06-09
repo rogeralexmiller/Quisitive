@@ -7,6 +7,7 @@ var Route = ReactRouter.Route;
 var IndexRoute = ReactRouter.IndexRoute;
 var hashHistory = ReactRouter.hashHistory;
 
+//Components
 var QuestionsIndex = require("./components/QuestionsIndex");
 var SessionStore = require("./stores/sessionStore");
 var LoginSignup = require("./components/LoginSignup");
@@ -16,6 +17,8 @@ var TopicIndex = require("./components/TopicIndex");
 var AnswerIndex = require("./components/AnswerIndex");
 var TopicShow = require("./components/TopicShow");
 var HeaderNav = require("./components/HeaderNav");
+
+var Modal = require("react-modal");
 
 var App = React.createClass({
   getInitialState: function(){
@@ -101,5 +104,6 @@ var Router = (
 
 document.addEventListener('DOMContentLoaded', function(){
   var root = document.getElementById('content');
+  Modal.setAppElement(root);
   ReactDOM.render(Router, root);
 });

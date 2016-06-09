@@ -39,6 +39,16 @@ class Api::TopicsController < ApplicationController
     end
   end
 
+  def search
+    if params[:query].present?
+      @topics = Topic.where("name ~ ?", params[:query])
+    else
+      @topics = Topic.none
+    end
+
+    render "api/topics/index"
+  end
+
   private
   def topic_params
     params.require(:topic).permit(:name)

@@ -41,6 +41,16 @@ class Api::QuestionsController < ApplicationController
     render "api/questions/show"
   end
 
+  def search
+    if params[:query].present?
+      @questions = Question.where("body ~ ?", params[:query])
+    else
+      @questions = Question.none
+    end
+
+    render "api/questions/index"
+  end
+
   private
   def question_params
     params.require(:question).permit(:body)
