@@ -67,6 +67,20 @@ textarea{
   letter-spacing: -1;
   width: 720px;
 }
+
+.edit-cancel {
+  float: right;
+  padding: 3px 7px 4px 7px;
+  margin-top: 10px;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.edit-cancel:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
 .hidden {
   display: none;
 }

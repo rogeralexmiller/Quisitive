@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     resources :comments, only: [:show, :update, :destroy]
     resources :topics, only: [:index, :show, :destroy, :update] do
       get "search", on: :collection
+      get "question_topics", on: :collection
     end
   end
 

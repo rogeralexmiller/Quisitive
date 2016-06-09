@@ -11,6 +11,17 @@ var TopicApiUtil = {
     });
   },
 
+  fetchQuestionTopics: function(questionId){
+    $.ajax({
+      url: "api/topics/question_topics",
+      type: "GET",
+      data: {question_id: questionId},
+      success: function(topics){
+        TopicActions.receiveTopics(topics);
+      }
+    });
+  },
+
   getTopic: function(topicId){
     $.ajax({
       url: "api/topics/"+topicId,

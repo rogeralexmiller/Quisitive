@@ -1,3 +1,5 @@
+var TopicSearchActions = require("../actions/topicSearchActions");
+
 var TopicSearchApiUtil = {
   searchTopics: function(query){
     $.ajax({

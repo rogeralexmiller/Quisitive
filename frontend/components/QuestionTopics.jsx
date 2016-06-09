@@ -4,31 +4,49 @@ var TopicStore = require("../stores/topicStore");
 var Modal = require("react-modal");
 var TopicSearchApiUtil = require("../util/topicSearchApiUtil");
 var TopicSearchStore = require("../stores/topicSearchStore");
+var TopicApiUtil = require("../util/topicApiUtil");
+QuestionStore = require("../stores/questionStore");
 
 var modalStyle = require("../styles/questionModal");
 
 var QuestionTopics = React.createClass({
     getInitialState: function(){
-      var topics = this.props.question.topics ? this.props.question.topics : [];
+      var potentialTopics = TopicStore.all();
+      var topics = potentialTopics ? potentialTopics : {};
+
       return ({
         topics: topics,
         editing: false,
-        editTopics: topics,
-        topicSearch:"",
-        searchResults:[]
+        editTopics: JSON.parse(JSON.stringify(topics)),
+        topicSearch: "",
+        searchResults:{}
       });
     },
 
-    onChange: function(){
-      this.setState({searchResults:TopicSearchStore.results()})
+    onSearchChange: function(){
+      this.setState({searchResults: TopicSearchStore.results()});
+    },
+
+    onTopicChange: function(){
+      var topics = TopicStore.all();
+      this.setState({
+        topics: topics,
+        editTopics: JSON.parse(JSON.stringify(topics))
+      });
     },
 
     componentDidMount: function(){
-      this.searchListener = TopicSearchStore.addListener(this.onChange);
+      this.searchListener = TopicSearchStore.addListener(this.onSearchChange);
+      this.topicListener = TopicStore.addListener(this.onTopicChange);
+    },
+
+    componentWillReceiveProps: function(e){
+      TopicApiUtil.fetchQuestionTopics(e.questionId);
     },
 
     componentWillUnmount: function(){
       this.searchListener.remove();
+      this.topicListener.remove();
     },
 
     handleChange: function(e){
@@ -40,19 +58,35 @@ var QuestionTopics = React.createClass({
     },
 
     handleCancel: function(){
-      this.setState({editing: false});
+      var topics = this.state.topics;
+      this.setState({
+        editing: false, 
+        editTopics: JSON.parse(JSON.stringify(topics))
+      });
     },
 
     removeEditTopic: function(e){
-
+      var topics = this.state.editTopics;
+      delete topics[e.target.dataset.topicid];
+      this.setState({editTopics: topics});
     },
 
-    handleUpdate: function(){
-
+    addEditTopic: function(e){
+      var topics = this.state.editTopics;
+      var data = e.target.dataset;
+      var newTopic = {
+        id: data.topicid,
+        name: data.topicname
+      };
+      topics[newTopic.id] = newTopic;
+      this.setState({editTopics:topics});
     },
 
-    onModalClose: function(){
-      this.setState({modalOpen:false})
+    updateTopics: function(){
+    },
+
+    onModalClose: function(e){
+      this.setState({editing:false})
     },
 
     openEdit: function(e){
@@ -60,7 +94,23 @@ var QuestionTopics = React.createClass({
       this.setState({editing: true});
     },
 
+    toArray: function(object){
+      var resultsArr = [];
+      var keys = Object.keys(object);
+      var limit = keys.length > 6 ? 6 : keys.length;
+      for (var i = 0; i < limit; i++) {
+        resultsArr.push(object[keys[i]]);
+      }
+      return resultsArr
+    },
+
     render: function(){
+      var results = this.toArray(this.state.searchResults);
+      var topics = this.toArray(this.state.topics);
+      var editTopics = this.toArray(this.state.editTopics);
+
+      var dropdownClass = results.length > 0 ? "topic-search-dropdown" : "hidden";
+      var comp = this;
       return(
         <div>
           <Modal
@@ -70,42 +120,71 @@ var QuestionTopics = React.createClass({
           >
             <div className="edit-topics-modal">
               <h2 className="index-header"> Edit Topics</h2>
+
               <form onSubmit={this.updateTopics}>
+
                 <div className="question-topics">
-                  {this.state.editTopics.map(function(topic,idx){
+                  {editTopics.map(function(topic,idx){
                     return(
                       <div key={idx} className="topic-edit-item">
-                        <span onClick={this.removeEditTopic} topicId={idx}>x</span>
-                        <a href="#">{topic.name}</a>
+                        <span
+                          onClick={comp.removeEditTopic}
+                          data-topicid={topic.id}
+                        >
+                          x
+                        </span>
+
+                        <p className="topic-item">{topic.name}</p>
                       </div>
                     );
                   })}
+                </div>
+
+                <div className="select-topic">
                   <input
                     type="text"
                     placeholder="Select Topic"
                     onKeyUp={this.topicSearch}
                     onChange={this.handleChange}
-                    value={this.state.topicSearch}/>
+                    value={this.state.topicSearch}
+                  />
+
+                  <ul className={dropdownClass}>
+                    {results.map(function(result, idx){
+                      return(
+                       <li
+                          key={idx}
+                          data-topicid={result.id}
+                          data-topicname={result.name}
+                          onClick={comp.addEditTopic}
+                        >
+                        {result.name}
+                      </li>
+                      )
+                    })}
+                  </ul>
                 </div>
-                <div className="button-bar">
+
+                <div className="button-bar group">
                   <button
                     onClick={this.handleUpdate}
                     className="submit-button good-button"
                   >
                     Update
                   </button>
-                  <a onClick={this.onModalClose} href="#">Cancel</a>
+                  <p className="edit-cancel" onClick={this.onModalClose}>Cancel</p>
                 </div>
+
               </form>
 
             </div>
           </Modal>
 
           <div className="question-topics">
-            {this.state.topics.map(function(topic, idx){
-              return <Link key={idx} to={"topics/"+topic.id}>{topic.name}</Link>
+            {topics.map(function(topic, idx){
+              return <Link className="topic-item" key={idx} to={"topics/"+topic.id}>{topic.name}</Link>
             })}
-            <a href="#" onClick={this.openEdit}>Edit Topics</a>
+            <p className="topic-item" onClick={this.openEdit}>Edit Topics</p>
           </div>
 
         </div>

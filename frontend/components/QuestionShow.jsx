@@ -20,9 +20,7 @@ var QuestionShow = React.createClass({
   },
 
   componentWillReceiveProps: function(){
-    var potentialQuestion = QuestionStore.find(this.props.params.questionId);
-    var question = potentialQuestion ? potentialQuestion : {};
-    this.setState({question: question, editing: false});
+    QuestionApiUtil.getQuestion(this.props.params.questionId);
   },
 
   handleBodyChange: function(e){
@@ -89,11 +87,11 @@ var QuestionShow = React.createClass({
     var questionClass = this.state.editing ? "hidden" : "show-header group";
     return(
       <div>
-        <QuestionTopics question={this.state.question}/>
+        <QuestionTopics questionId={this.state.question.id}/>
         <form className={editClass}>
           <input type="text" className="question-edit-input" onChange={this.handleBodyChange} value={this.state.question.body}/>
           <button onClick={this.handleUpdate} className="submit-button good-button"> Update </button>
-          <a onClick={this.handleCancel} href="#">Cancel</a>
+          <a className="edit-cancel" onClick={this.handleCancel} href="#">Cancel</a>
         </form>
 
         <div className={questionClass}>

@@ -39,6 +39,12 @@ class Api::TopicsController < ApplicationController
     end
   end
 
+  def question_topics
+    @question = Question.find(params[:question_id])
+    @topics = @question.topics
+    render "api/topics/index"
+  end
+
   def search
     if params[:query].present?
       @topics = Topic.where("name ~ ?", params[:query])
