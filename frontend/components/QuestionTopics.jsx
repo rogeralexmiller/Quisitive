@@ -57,7 +57,7 @@ var QuestionTopics = React.createClass({
       TopicSearchApiUtil.searchTopics(this.state.topicSearch);
     },
 
-    handleCancel: function(){
+    onModalClose: function(){
       var topics = this.state.topics;
       this.setState({
         editing: false, 
@@ -83,10 +83,6 @@ var QuestionTopics = React.createClass({
     },
 
     updateTopics: function(){
-    },
-
-    onModalClose: function(e){
-      this.setState({editing:false})
     },
 
     openEdit: function(e){
