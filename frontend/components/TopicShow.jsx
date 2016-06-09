@@ -15,7 +15,7 @@ var TopicShow = React.createClass({
   getInitialState: function(){
     var potentialTopic = TopicStore.find(this.props.params.topicId);
     var topic = potentialTopic ? potentialTopic : {};
-    return {topic: topic, editing: false, topicForm: topic.name};
+    return {topic: topic, editing: false, topicForm: topic};
   },
 
   componentWillReceiveProps: function(){
@@ -23,14 +23,15 @@ var TopicShow = React.createClass({
   },
 
   handleBodyChange: function(e){
-    this.setState({topicForm: e.value});
+    topicForm = {name: e.target.value};
+    this.setState({topicForm: topicForm});
   },
 
   _onChange: function(){
     var potentialTopic = TopicStore.find(this.props.params.topicId);
     var topic = potentialTopic ? potentialTopic : {};
 
-    this.setState({topic: topic, topicForm: topic.name});
+    this.setState({topic: topic, topicForm: topic});
   },
 
   componentDidMount: function(){
@@ -46,8 +47,7 @@ var TopicShow = React.createClass({
     e.preventDefault();
     var topicData = {
       id: this.state.topic.id,
-      author_id: this.state.topic.author_id,
-      body: this.state.topic.body
+      name: this.state.topicForm.name
     };
     TopicApiUtil.updateTopic(topicData);
     this.setState({editing:false});
@@ -86,7 +86,7 @@ var TopicShow = React.createClass({
       <div>
 
         <form className={editClass}>
-          <input type="text" className="question-edit-input" onChange={this.handleBodyChange} value={this.state.topicForm}/>
+          <input type="text" className="question-edit-input" onChange={this.handleBodyChange} value={this.state.topicForm.name}/>
           <button onClick={this.handleUpdate} className="submit-button good-button"> Update </button>
           <a onClick={this.handleCancel} href="#">Cancel</a>
         </form>
