@@ -25,7 +25,7 @@ Quisitive will allow users to do the following:
 - [x] Log in / Log out, including as a Guest/Demo User (MVP)
 - [X] Ask, read, answer, edit and delete questions(MVP)
 - [x] Comment on answers and questions(MVP)
-- [ ] See feeds of questions filtered by topic (MVP)
+- [x] See feeds of questions filtered by topic (MVP)
 - [ ] Tag their own questions with topics (MVP)
 - [ ] Search with dropdown of previously asked questions
 
@@ -107,13 +107,13 @@ user interface.
 
 **Objective:** Questions can be tagged with multiple topic tags
 
-- [ ] create `Tag` model and join table
+- [x] create `Topic` model and `TopicTagging` join table
 - build out API, Flux loop, and components for:
-  - [ ] fetching tags for question
+  - [x] fetching topic tags for question
   - [ ] adding tags to question
   - [ ] creating tags while creating questions
-  - [ ] Viewing all questions tagged as a topic.
-- [ ] Style new elements for TopicDetail page (filtered question index)
+  - [x] Viewing all questions tagged as a topic.
+- [x] Style new elements for TopicDetail page (filtered question index)
 
 ### Phase 7: Give question form ability to run searches on previously asked questions (1.5 days)
 

@@ -28,3 +28,19 @@
   float:left;
   margin-bottom: 35px;
 }
+
+.question-topics a {
+  border-radius: 12px;
+  display: inline;
+  color: rgb(128,131,147);
+  font-size: 13px;
+  background-color: rgb(244, 244, 250);
+  cursor: pointer;
+  padding: 4px 7px;
+  margin-right: 8px;
+}
+
+.question-topics a:hover {
+  color: #808393;
+  background: rgb(237, 237, 247);
+}

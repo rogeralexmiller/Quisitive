@@ -5,5 +5,6 @@
     json.updated_at question.updated_at
     json.author question.author.full_name
     json.commentCount question.comments.length
+    json.topics question.topics
   end
 end

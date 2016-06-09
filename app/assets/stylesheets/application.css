@@ -47,6 +47,7 @@ body {
 
 textarea{
   resize:none;
+  overflow: auto;
 }
 
 .index-header{

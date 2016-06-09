@@ -3,6 +3,8 @@ var QuestionStore = require("../stores/questionStore");
 var QuestionApiUtil = require("../util/questionApiUtil");
 var AnswerIndex = require("./AnswerIndex");
 var SessionStore = require("../stores/sessionStore");
+var QuestionTopics = require("./QuestionTopics");
+var Link = require("react-router").Link;
 
 
 var QuestionShow = React.createClass({
@@ -82,14 +84,12 @@ var QuestionShow = React.createClass({
     }
   },
 
-
-
   render: function(){
     var editClass = this.state.editing ? "question-edit-form group" : "hidden";
     var questionClass = this.state.editing ? "hidden" : "show-header group";
     return(
       <div>
-
+        <QuestionTopics question={this.state.question}/>
         <form className={editClass}>
           <input type="text" className="question-edit-input" onChange={this.handleBodyChange} value={this.state.question.body}/>
           <button onClick={this.handleUpdate} className="submit-button good-button"> Update </button>
