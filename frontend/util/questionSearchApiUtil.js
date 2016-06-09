@@ -1,4 +1,4 @@
-var QuestionSearchActions = require("../actions/QuestionSearchActions");
+var QuestionSearchActions = require("../actions/questionSearchActions");
 
 var QuestionSearchApiUtil = {
   searchQuestions: function(query){
