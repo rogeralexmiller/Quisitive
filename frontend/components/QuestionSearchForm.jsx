@@ -1,7 +1,7 @@
 var React = require("react");
 var QuestionApiUtil = require("../util/questionApiUtil");
 var QuestionStore = require("../stores/questionStore");
-var QuestionSearchStore = require("../stores/QuestionSearchStore");
+var QuestionSearchStore = require("../stores/questionSearchStore");
 var QuestionSearchApiUtil = require("../util/questionSearchApiUtil");
 
 var Modal = require("react-modal");
