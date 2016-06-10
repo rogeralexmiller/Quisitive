@@ -33,7 +33,6 @@ class User < ActiveRecord::Base
 
   def self.find_or_create_from_auth_hash(auth_hash)
     user = User.find_by(twitter_uid: auth_hash[:uid])
-    debugger;
     if user.nil?
       email = auth_hash[:info][:email] || ""
       user = User.create!(
