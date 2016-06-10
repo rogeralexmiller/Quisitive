@@ -1,7 +1,6 @@
 class User < ActiveRecord::Base
 
-  validates :session_token, :full_name, :password_digest, :email, presence: true
-  validates :email, uniqueness: true
+  validates :session_token, :full_name, presence: true
   validates :password, length: {minimum: 6}, allow_nil: true
 
   has_many(
@@ -30,6 +29,21 @@ class User < ActiveRecord::Base
     else
       nil
     end
+  end
+
+  def self.find_or_create_from_auth_hash(auth_hash)
+    user = User.find_by(twitter_uid: auth_hash[:uid])
+    debugger;
+    if user.nil?
+      email = auth_hash[:info][:email] || ""
+      user = User.create!(
+        twitter_uid: auth_hash[:uid],
+        full_name: auth_hash[:info][:name],
+        email: email
+      )
+    end
+
+    user
   end
 
   def ensure_session_token

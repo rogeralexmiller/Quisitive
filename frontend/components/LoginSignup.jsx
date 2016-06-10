@@ -11,6 +11,7 @@ var LoginSignup = React.createClass({
         <div className="signup-login group">
           <SignupForm/>
           <LoginForm/>
+          <a href="/auth/twitter">Sign in with Twitter</a>
         </div>
       </div>
     );

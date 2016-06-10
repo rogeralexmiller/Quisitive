@@ -19,5 +19,7 @@ Rails.application.routes.draw do
     end
   end
 
+  get 'auth/:provider/callback', to: 'api/sessions#twitter_create'
+
   root to: "static_pages#root"
 end
