@@ -87,14 +87,15 @@ Topics are maintained on the frontend in the `TopicStore` and are rendered in th
 
 ![question topics screenshot](https://github.com/rogeralexmiller/quisitive/tree/master/docs/QuestionTopics.png)
 
-## Future Directions for the Project
+## Future Goals
 
-In addition to the features already implemented, I plan to continue work on this project.  The next steps for FresherNote are outlined below.
+In addition to the features already implemented, I plan to continue work on this project.  The next steps for Quisitive are outlined below.
 
-### Search
+### Question and Topic follows
 
-Searching notes is a standard feature of Evernote.  I plan to utilize the Fuse.js library to create a fuzzy search of notes and notebooks.  This search will look go through tags, note titles, notebook titles, and note content.  
+This is actually a pretty important feature of Quora, given that it allows users to better curate the content they see. I plan on implementing this
+by adding a table called `follows` that will have a `user_id`, a `followable_id` and `followable_type` to allow users to follow both questions and topics.d
 
-### Direct Messaging
+### Question and Answer upvoting and downvoting
 
-Although this is less essential functionality, I also plan to implement messaging between FresherNote users.  To do this, I will use WebRTC so that notifications of messages happens seamlessly.  
+This is another nice feature that I would like to implement since it adds a metric to rate and sort content. I plan on implementing this by adding another table with a polymorphic association. This table will be called `votable` and will join users to either the question or answer they are upvoting or downvoting. This will also require adding `votes` columns to both the `questions` and `answers` tables
