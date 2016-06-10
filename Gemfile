@@ -46,5 +46,8 @@ group :development do
 end
 
 group :production do
+  gem 'omniauth'
+  gem 'figaro'
+  gem 'omniauth-twitter'
   gem 'rails_12factor'
 end
