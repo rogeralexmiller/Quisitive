@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     resources :topics, only: [:index, :show, :destroy, :update] do
       get "search", on: :collection
       get "question_topics", on: :collection
+      patch "update_question_topics", on: :collection
     end
   end
 

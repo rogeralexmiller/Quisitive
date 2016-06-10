@@ -22,6 +22,20 @@ var TopicApiUtil = {
     });
   },
 
+  updateQuestionTopics: function(questionId, topics){
+    $.ajax({
+      url: "api/topics/update_question_topics",
+      type: "PATCH",
+      data: {
+        question_id: questionId,
+        topics: topics
+      },
+      success: function(topics){
+        TopicActions.receiveTopics(topics);
+      }
+    });
+  },
+
   getTopic: function(topicId){
     $.ajax({
       url: "api/topics/"+topicId,

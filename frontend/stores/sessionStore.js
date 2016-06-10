@@ -19,7 +19,7 @@ var _logout = function() {
 };
 
 SessionStore.currentUserOwns = function(entity){
-  if (entity.author_id === _currentUser.id) {
+  if (entity && entity.author_id === _currentUser.id) {
     return true;
   } else{
     return false;

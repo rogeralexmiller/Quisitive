@@ -45,6 +45,21 @@ class Api::TopicsController < ApplicationController
     render "api/topics/index"
   end
 
+  def update_question_topics
+    @question = Question.find(params[:question_id])
+    if current_user_owns?(@question)
+      @question.topics.destroy_all
+      topics = params[:topics]
+      topics.each do |idx, topic|
+        TopicTagging.create(question_id:@question.id, topic_id:idx)
+      end
+      @topics = @question.topics
+      render "api/topics/index"
+    else
+      render json: ["Can't update topics at this time"]
+    end
+  end
+
   def search
     if params[:query].present?
       @topics = Topic.where("name ~ ?", params[:query])

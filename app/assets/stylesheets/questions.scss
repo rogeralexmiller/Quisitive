@@ -46,3 +46,47 @@
   font-weight: bold;
   padding: 8px;
 }
+
+.question-search-select{
+  position:relative;
+}
+
+.question-search-results{
+  width: 480px;
+  position: absolute;
+  font-size:13px;
+  top:60px;
+  left: 133px;
+  background:#fff;
+  z-index:600;
+  overflow-y: visible;
+  border-radius:3px;
+  margin-top:10px;
+}
+
+.result-item{
+  font-weight: bold;
+  cursor: pointer;
+  padding:8px;
+  font-size:15px;
+}
+
+.result-item:hover{
+  background: #dfeffa;
+  color: rgb(43, 109, 173);
+}
+
+.question-search-results .result-item:last-child {
+  border-bottom-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+
+.question-search-results .result-item:first-child {
+  border-top-right-radius: 3px;
+  border-top-left-radius: 3px;
+}
+
+.modal-input{
+  background:#fff;
+  color:#000;
+}

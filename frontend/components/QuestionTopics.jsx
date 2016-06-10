@@ -5,7 +5,7 @@ var Modal = require("react-modal");
 var TopicSearchApiUtil = require("../util/topicSearchApiUtil");
 var TopicSearchStore = require("../stores/topicSearchStore");
 var TopicApiUtil = require("../util/topicApiUtil");
-QuestionStore = require("../stores/questionStore");
+var SessionStore = require("../stores/sessionStore");
 
 var modalStyle = require("../styles/questionModal");
 
@@ -13,13 +13,14 @@ var QuestionTopics = React.createClass({
     getInitialState: function(){
       var potentialTopics = TopicStore.all();
       var topics = potentialTopics ? potentialTopics : {};
-
+      var questionAuthorId = this.props.questionAuthor;
       return ({
         topics: topics,
+        questionAuthorId: questionAuthorId,
         editing: false,
         editTopics: JSON.parse(JSON.stringify(topics)),
         topicSearch: "",
-        searchResults:{}
+        searchResults: {}
       });
     },
 
@@ -38,10 +39,18 @@ var QuestionTopics = React.createClass({
     componentDidMount: function(){
       this.searchListener = TopicSearchStore.addListener(this.onSearchChange);
       this.topicListener = TopicStore.addListener(this.onTopicChange);
+      if (this.props.questionId) {
+        TopicApiUtil.fetchQuestionTopics(this.props.questionId);
+      }
     },
 
     componentWillReceiveProps: function(e){
-      TopicApiUtil.fetchQuestionTopics(e.questionId);
+      if (e.questionId) {
+        TopicApiUtil.fetchQuestionTopics(e.questionId);
+      }
+      if (e.questionAuthor) {
+        this.setState({questionAuthorId: e.questionAuthor});
+      }
     },
 
     componentWillUnmount: function(){
@@ -60,7 +69,7 @@ var QuestionTopics = React.createClass({
     onModalClose: function(){
       var topics = this.state.topics;
       this.setState({
-        editing: false, 
+        editing: false,
         editTopics: JSON.parse(JSON.stringify(topics))
       });
     },
@@ -72,17 +81,22 @@ var QuestionTopics = React.createClass({
     },
 
     addEditTopic: function(e){
-      var topics = this.state.editTopics;
+      e.preventDefault();
+      var topics = this.state.editTopics ? this.state.editTopics : {};
       var data = e.target.dataset;
       var newTopic = {
         id: data.topicid,
         name: data.topicname
       };
       topics[newTopic.id] = newTopic;
-      this.setState({editTopics:topics});
+
+      this.setState({editTopics: topics});
     },
 
-    updateTopics: function(){
+    updateTopics: function(e){
+      e.preventDefault();
+      TopicApiUtil.updateQuestionTopics(this.props.questionId, this.state.editTopics);
+      this.setState({editing: false});
     },
 
     openEdit: function(e){
@@ -93,11 +107,23 @@ var QuestionTopics = React.createClass({
     toArray: function(object){
       var resultsArr = [];
       var keys = Object.keys(object);
-      var limit = keys.length > 6 ? 6 : keys.length;
+      var limit = keys.length > 10 ? 10 : keys.length;
       for (var i = 0; i < limit; i++) {
         resultsArr.push(object[keys[i]]);
       }
-      return resultsArr
+      return resultsArr;
+    },
+
+    ownerEdit: function(){
+      if (SessionStore.currentUser().id===this.props.questionAuthor){
+        return(
+          <p className="topic-item" onClick={this.openEdit}>Edit Topics</p>
+        );
+      } else{
+        return (
+          <div></div>
+        );
+      }
     },
 
     render: function(){
@@ -107,6 +133,7 @@ var QuestionTopics = React.createClass({
 
       var dropdownClass = results.length > 0 ? "topic-search-dropdown" : "hidden";
       var comp = this;
+      var ownerEdit = this.ownerEdit();
       return(
         <div>
           <Modal
@@ -120,7 +147,7 @@ var QuestionTopics = React.createClass({
               <form onSubmit={this.updateTopics}>
 
                 <div className="question-topics">
-                  {editTopics.map(function(topic,idx){
+                  {editTopics.map(function(topic, idx){
                     return(
                       <div key={idx} className="topic-edit-item">
                         <span
@@ -180,7 +207,7 @@ var QuestionTopics = React.createClass({
             {topics.map(function(topic, idx){
               return <Link className="topic-item" key={idx} to={"topics/"+topic.id}>{topic.name}</Link>
             })}
-            <p className="topic-item" onClick={this.openEdit}>Edit Topics</p>
+            {ownerEdit}
           </div>
 
         </div>

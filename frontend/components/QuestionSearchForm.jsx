@@ -3,6 +3,8 @@ var QuestionApiUtil = require("../util/questionApiUtil");
 var QuestionStore = require("../stores/questionStore");
 var QuestionSearchStore = require("../stores/questionSearchStore");
 var QuestionSearchApiUtil = require("../util/questionSearchApiUtil");
+var questionSearchModal = require("../styles/questionSearchModal");
+var Link = require("react-router").Link;
 
 var Modal = require("react-modal");
 
@@ -41,8 +43,18 @@ var QuestionSearchForm = React.createClass({
     QuestionSearchApiUtil.searchQuestions(this.state.body);
   },
 
-  handleSubmit: function(){
+  handleSubmit: function(e){
+    e.preventDefault();
     QuestionApiUtil.createQuestion({body:this.state.body});
+    this.setState({
+      body:"",
+      modalOpen:false,
+      results: {}
+    })
+  },
+
+  goToQuestion: function(e){
+    this.context.router.push("questions/"+e.target.dataset.questionid);
   },
 
   resultsArray: function() {
@@ -59,8 +71,17 @@ var QuestionSearchForm = React.createClass({
     this.setState({modalOpen:true});
   },
 
+  onModalClose: function(){
+    this.setState({
+      modalOpen:false,
+      body:"",
+      results: {}
+    });
+  },
+
   render: function(){
     var results = this.resultsArray();
+    var comp = this;
     return(
       <div>
         <form className="question-form group" onSubmit={this.handleSubmit}>
@@ -79,26 +100,48 @@ var QuestionSearchForm = React.createClass({
         </form>
         <Modal
           isOpen={this.state.modalOpen}
+          onRequestClose={this.onModalClose}
+          style={questionSearchModal}
         >
-          <form className="question-form group" onSubmit={this.handleSubmit}>
-            <input
-                   className="question-input"
-                   type="textarea"
-                   onKeyUp={this.searchChange}
-                   onChange={this._handleChange}
-                   value={this.state.body}
-            />
-            <input className="question-submit"
-                   type="submit"
-                   value="Submit Question"
-            />
-          </form>
 
-          <ul className="question-search-results">
-            {results.map(function(result, idx){
-              return <li key={idx}> {result.body} </li>
-            })}
-          </ul>
+          <header className="header">
+            <nav className="header-nav group">
+              <a className="header-logo" href="#/questions">
+                Quisitive
+              </a>
+              <div className="question-search-select group">
+                <form className="question-form group" onSubmit={this.handleSubmit}>
+                  <input
+                         className="question-input modal-input"
+                         type="textarea"
+                         placeholder="Ask or search for questions"
+                         onKeyUp={this.searchChange}
+                         onChange={this._handleChange}
+                         value={this.state.body}
+                  />
+                  <input className="question-submit"
+                         type="submit"
+                         value="Submit Question"
+                  />
+                </form>
+
+                <ul className="question-search-results">
+                  {results.map(function(result, idx){
+                    return (
+                     <p
+                        onClick={comp.goToQuestion}
+                        className="result-item"
+                        key={idx}
+                        data-questionid={result.id}
+                      >
+                        {result.body}
+                    </p>
+                   )
+                  })}
+                </ul>
+              </div>
+            </nav>
+          </header>
 
         </Modal>
       </div>
