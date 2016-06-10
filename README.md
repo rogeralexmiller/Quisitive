@@ -1,131 +1,100 @@
 # Quisitive
 
-[Heroku link][heroku]
+[Quisitive live][heroku]
 
-[heroku]: https://quisitive.herokuapp.com/
+[heroku]: http://quisitive.herokuapp.com
 
-##  Minimum Viable Product
+Quisitive is a full-stack web application modeled on Quora.  It relies on Ruby on Rails for the backend with a PostgreSQL database, and React.js with Flux for the frontend.  
 
-Quisitive is a web application inspired by Quora that will be built with Ruby on Rails and React.js. By the
-end of week 9, this app will, at a minimum, satisfy the following criteria:
+## Features & Implementation
 
-- [x] New account creation, login, and guest/demo login
-- [x] Adequate seed data to demonstrate the site's features
-- [ ] The minimally necessary features for a Quora-inspired site: question asking, editing, answering, commenting and searching,
-and topic question feeds
-- [x] Hosting on Heroku
-- [x] CSS styling that is elegant and similar to the real Quora.
-- [ ] A production README, replacing this README
+### One page to rule them all
 
-## Product Goals and Priorities
+Quisitive is a single-page app, meaning that all the content is loaded on one static page. Thanks to React-Router, though, the url changes to reflect which components are currently being rendered.  The root listens to a `SessionStore` and renders content based on a call to the store's `#currentUser()` method. Users' private information is kept safe and sound out of the frontend of the app by making an API call to `SessionsController#show`.
 
-Quisitive will allow users to do the following:
+```ruby
+class Api::SessionsController < ApplicationController
+    def show
+      if current_user
+        @user = current_user
+        render "api/users/show"
+      else
+        render json: errors.full_messages
+      end
+    end
+ end
+  ```
 
-- [x] Create an account (MVP)
-- [x] Log in / Log out, including as a Guest/Demo User (MVP)
-- [X] Ask, read, answer, edit and delete questions(MVP)
-- [x] Comment on answers and questions(MVP)
-- [x] See feeds of questions filtered by topic (MVP)
-- [ ] Tag their own questions with topics (MVP)
-- [ ] Search with dropdown of previously asked questions
+### Question Asking, Showing and Editing
 
-## Design Docs
-* [View Wireframes][views]
-* [React Components][components]
-* [Flux Cycles][flux-cycles]
-* [API endpoints][api-endpoints]
-* [DB schema][schema]
+  In the database, questions are stored in a table containing columns for `id`, `author_id`, `body`, `created_at` and `updated_at`.  Once someone logs in, they are brought to a main questions index feed where every question is loaded by the database and displayed alongside its author.
 
-[views]: ./docs/views.md
-[components]: ./docs/components.md
-[flux-cycles]: ./docs/flux_cycles.md
-[api-endpoints]: ./docs/api-endpoints.md
-[schema]: ./docs/schema.md
+  Questions are rendered in three components throughout the app: `QuestionsIndex`, which renders the aforementioned index view, `QuestionShow`, which renders the individual question `show` pages that display questions' answers and tagged topics, and `TopicShow`, which renders all the questions tagged with a particular topic as a subcomponent. In all three of these components, the full question body is visible, but questions can only be edited in the `QuestionShow` component.
 
-## Implementation Timeline
+  Question asking and searching are handled by the `QuestionSearchForm` component, which is rendered by the `HeaderNav` component. The `QuestionSearchForm` is a real workhorse. While users are typing in a question, textually similar questions are searched for and displayed in a dropdown. If a user sees a question they are interested in or that asks the question they were interested in, they can click it to go see the `show` page for that question.
 
-### Phase 1: Backend setup and User Authentication (.5 days)
+  Quisitive's UI was designed to imitate Quora's to keep things simple and clean:  
 
-**Objective:** Functioning rails project with Authentication
+![image of questions index](https://github.com/rogeralexmiller/quisitive/tree/master/docs/IndexScreenshot.png)
 
-- [x] create new project
-- [x] create `User` model
-- [x] authentication
-- [x] user signup/signin pages
-- [x] blank landing page after signin
+### Answers
 
-### Phase 2: Question Model, API, and basic APIUtil (1.5 days)
+  Answers are stored in the database with a relationship to the question it answers. The `Answers` table is identical to the `Questions` table except for an additional column `question_id` which is used to connect the answer to its question.
 
-**Objective:** Questions can be created, read, edited and destroyed through
-the API.
+  Answers are always rendered in relation to a question so the only component that is responsible for rendering answers is the `QuestionShow` component, which renders all its associated answers as child components. This child component, `AnswerIndex` is responsible for creating new answers and rendering its subcomponents, `AnswerIndexItems`, which in turn are responsible for handling answer editing and deletion, as well as answer comments.
 
-- [x] create `Question` model
-- [x] seed the database with a small amount of test data
-- [x] CRUD API for questions (`QuestionsController`)
-- [x] jBuilder views for questions
-- [x] setup Webpack & Flux scaffold
-- [x] setup `APIUtil` to interact with the API
-- [x] test out API interaction in the console.
+`AnswerIndex` render method:
 
-### Phase 3: Flux Architecture and Router (1.5 days)
+```javascript
+render: function(){
+  var answers = this.answerArray();
+  var answerCount = answers.length + " Answers";
+  var answerFormClass = this.state.answering ? "answer-form" : "hidden";
+  var answerButtonClass = this.state.answering ? "hidden" : "answer-button";
+  return(
+    <div className="answer-index group">
+      <button onClick={this.showAnswer} className={answerButtonClass}> Answer </button>
+      <form className={answerFormClass}>
+        <textarea rows="3" className="answer-input" onChange={this.textChange} value={this.state.answer}></textarea>
+        <input type="submit" className="answer-button" onClick={this.submitAnswer}/>
+        <p className="cancelAnswer" onClick={this.cancelAnswer}>Cancel</p>
+      </form>
+      <h3 className="answer-count">{answerCount}</h3>
+      <ul className="answer-feed"> {answers.map(function(answer, idx){
+        return (
+          <AnswerIndexItem key={idx} answer={answer}/>
+        )
+      })}
+      </ul>
+    </div>
+  );
+}
+```
 
-**Objective:** Questions can be created, read, edited and destroyed with the
-user interface.
+### Comments
 
-- [x] setup the flux loop with skeleton files
-- [x] setup React Router
-- implement each question component, building out the flux loop as needed.
-  - [x] `QuestionsIndex`
-  - [x] `QuestionIndexItem`
-  - [x] `NewQuestionForm`
-  - [x] `EditQuestionForm`
-- [x] save Questions to the DB when the form loses focus or is left idle
-  after editing.
+Comments are represented in the database in a similar fashion to answers, but with a twist: the `comments` table has the standard `id`, `author_id`, and `body` columns, but also has `commentable_id` and `commentable_type` columns that allow comments to be associated with both questions AND answers.
 
-### Phase 4: Answers (1 day)
+comments are maintained on the frontend in the `CommentStore` and are rendered as children three components: `QuestionsIndex`, `QuestionShow`, and `AnswerIndexItem`.
 
-**Objective:** Answers belong to Questions, and can be viewed by QuestionDetail. The top rated answer for each question will be shown in the questionIndex
+![comments screenshot](https://github.com/rogeralexmiller/quisitive/tree/master/docs/Comments.png)
 
-- [x] create `Answer` model
-- build out API, Flux loop, and components for:
-  - [x] Answer CRUD
-  - [x] adding answers requires a question
-- Use CSS to style updated QuestionDetail page
+### Topics
 
-### Phase 5: Comments (1 day)
+Topics are represented in the database through both `topics` table and a join table called `topic_taggings`.  The `topics` table has columns for `id`, the topic's `name` and it's author's `author_id`.  The `topic_taggings` join table contains three columns: `id`, `topic_id`, and `question_id`.  
 
-**Objective:** Comments belong to Answers, and can be viewed in AnswerIndex on a dropdown
+Topics are maintained on the frontend in the `TopicStore` and are rendered in three different components: `TopicIndex`, a sidebar component that is rendered alongside the `QuestionsIndex`, `TopicShow`, which renders an individual topic with all its associated questions as well as the `TopicIndex`, and `QuestionTopics`, which displays all the topics tagged to a given question. This last component is also responsible for adding, editing and removing topic-question associations.
 
-- [x] create `Comments` model
-- build out API, Flux loop, and components for:
-- [x] Comments CRUD
-- [x] adding comments requires an answer or question
-- Use CSS to style updated QuestionDetail page
+![question topics screenshot](https://github.com/rogeralexmiller/quisitive/tree/master/docs/QuestionTopics.png)
 
+## Future Directions for the Project
 
-### Phase 6: TopicTags (1.5 days)
+In addition to the features already implemented, I plan to continue work on this project.  The next steps for FresherNote are outlined below.
 
-**Objective:** Questions can be tagged with multiple topic tags
+### Search
 
-- [x] create `Topic` model and `TopicTagging` join table
-- build out API, Flux loop, and components for:
-  - [x] fetching topic tags for question
-  - [ ] adding tags to question
-  - [ ] creating tags while creating questions
-  - [x] Viewing all questions tagged as a topic.
-- [x] Style new elements for TopicDetail page (filtered question index)
+Searching notes is a standard feature of Evernote.  I plan to utilize the Fuse.js library to create a fuzzy search of notes and notebooks.  This search will look go through tags, note titles, notebook titles, and note content.  
 
-### Phase 7: Give question form ability to run searches on previously asked questions (1.5 days)
+### Direct Messaging
 
-**objective:** Enable question searches
-
-- [ ] Create searchResult dropdown component that responds to question input
-- [ ] Dropdown is limited to top 5 results
-- [ ] User can click a search button to see all results for given search
-- [ ] Style new elements for Search result page (filtered question index)
-
-### Bonus Features (TBD)
-- [ ] Search through notes for blocks of text
-- [ ] Pagination / infinite scroll for Questions Index
-- [ ] Multiple sessions
-- [ ] Upvote/downvote buttons
+Although this is less essential functionality, I also plan to implement messaging between FresherNote users.  To do this, I will use WebRTC so that notifications of messages happens seamlessly.  

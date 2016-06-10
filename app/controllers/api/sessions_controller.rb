@@ -32,7 +32,7 @@ class Api::SessionsController < ApplicationController
       @user = current_user
       render "api/users/show"
     else
-      render json: {}
+      render json: errors.full_messages
     end
   end
 
