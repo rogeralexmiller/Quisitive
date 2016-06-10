@@ -1,14 +1,13 @@
 .answer-index{
   width: 720px;
   font-size: 16px;
-  margin-top: 20px;
+  margin-top:40px
 }
 
 .answer-index > button {
   float: none;
   margin-left: 0;
 }
-
 
 .answer-index-item{
   border-top: 1px solid #e2e2e2;
@@ -25,6 +24,10 @@
 
 .answer-count{
   margin: 5px 0;
+}
+
+.answer-feed{
+  margin-top: 40px;
 }
 
 .answer-form{

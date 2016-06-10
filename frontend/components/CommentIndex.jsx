@@ -8,11 +8,20 @@ var CommentIndex = React.createClass({
   getInitialState: function(){
     var potentialComments = CommentStore.all(this.props.commentableType, this.props.commentableId);
     var comments = potentialComments ? potentialComments : {};
-    return {comments: comments, commentForm: "", showComments: false};
+    var potentialType = this.props.commentableType;
+    var potentialId = this.props.commentableId;
+    var type = potentialType ? potentialType : "";
+    var id = potentialId ? potentialId : "";
+    return {comments: comments, commentForm: "", showComments: false, type: type, id: id};
   },
 
   onChange: function(){
-    var potentialComments = CommentStore.all(this.props.commentableType, this.props.commentableId);
+    var potentialType = this.props.commentableType;
+    var potentialId = this.props.commentableId;
+    var type = potentialType ? potentialType : "";
+    var id = potentialId ? potentialId : "";
+
+    var potentialComments = CommentStore.all(type, id);
     var comments = potentialComments ? potentialComments : {};
     this.setState({comments: comments});
   },
@@ -22,6 +31,14 @@ var CommentIndex = React.createClass({
     var type = this.props.commentableType;
     var id = this.props.commentableId;
     CommentApiUtil.fetchAllComments(type, id);
+  },
+
+  componentWillReceiveProps: function(e){
+    var type = e.commentableType;
+    var id = e.commentableId;
+    if (type && id){
+      CommentApiUtil.fetchAllComments(type, id);
+    }
   },
 
   componentWillUnmount: function(){

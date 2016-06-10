@@ -6,6 +6,7 @@ var SessionStore = require("../stores/sessionStore");
 var QuestionTopics = require("./QuestionTopics");
 var Link = require("react-router").Link;
 
+var CommentIndex = require("./CommentIndex");
 
 var QuestionShow = React.createClass({
 
@@ -17,6 +18,11 @@ var QuestionShow = React.createClass({
     var potentialQuestion = QuestionStore.find(this.props.params.questionId);
     var question = potentialQuestion ? potentialQuestion : {};
     return {question: question, editing: false, answering: false};
+  },
+
+  showComments: function(){
+    var commentState = !this.state.showComments;
+    this.setState({showComments: commentState, answering:false});
   },
 
   componentWillReceiveProps: function(){
@@ -57,7 +63,7 @@ var QuestionShow = React.createClass({
   },
 
   handleEdit: function(){
-    this.setState({editing:true});
+    this.setState({editing:true, answering: false});
   },
 
   handleCancel: function(e){
@@ -86,7 +92,7 @@ var QuestionShow = React.createClass({
     var editClass = this.state.editing ? "question-edit-form group" : "hidden";
     var questionClass = this.state.editing ? "hidden" : "show-header group";
     return(
-      <div>
+      <div className="question-show">
         <QuestionTopics questionId={this.state.question.id} questionAuthor={this.state.question.author_id}/>
         <form className={editClass}>
           <input type="text" className="question-edit-input" onChange={this.handleBodyChange} value={this.state.question.body}/>
@@ -102,6 +108,7 @@ var QuestionShow = React.createClass({
 
           {this.ownerButtons()}
         </div>
+        <CommentIndex commentableType="Question" commentableId={this.state.question.id}/>
         {this.props.children}
       </div>
     );

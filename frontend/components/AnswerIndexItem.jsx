@@ -2,8 +2,6 @@ var React = require("react");
 var AnswerApiUtil = require("../util/answerApiUtil");
 var SessionStore = require("../stores/sessionStore");
 var CommentIndex = require("./CommentIndex");
-var CommentStore = require("../stores/commentStore");
-var CommentApiUtil = require("../util/commentApiUtil");
 
 var AnswerIndexItem = React.createClass({
 

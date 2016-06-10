@@ -100,6 +100,7 @@ var SignupForm = React.createClass({
 
         <input className="submit-button form-button" type="submit" value="Sign Up" disabled={this.state.disabled}/>
         <button id="guest-button" onClick={this.handleGuest} className="submit-button form-button">Guest Login</button>
+        <a className="twitter-auth submit-button form-button" href="/auth/twitter">Twitter Login</a>
       </form>
     )
   }

@@ -1,23 +1,11 @@
 var React = require("react");
 var CommentIndex = require("./CommentIndex");
-var CommentStore = require("../stores/commentStore");
-var CommentApiUtil = require("../util/commentApiUtil");
 
 var QuestionsIndexItem = React.createClass({
-  getInitialState: function(){
-    return {showComments: false};
-  },
-
-  showComments: function(){
-    var commentState = !this.state.showComments;
-    this.setState({showComments: commentState});
-  },
 
   render: function(){
     var questionUrl="#/questions/"+this.props.question.id;
     var count = this.props.question.commentCount;
-    var commentText = "Comments "+count;
-    var commentClass = this.state.showComments ? "comment-index" : "hidden";
 
     return(
       <div className="questions-index-item">

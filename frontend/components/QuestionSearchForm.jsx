@@ -54,6 +54,7 @@ var QuestionSearchForm = React.createClass({
   },
 
   goToQuestion: function(e){
+    this.setState({modalOpen:false, results: {}, body: ""});
     this.context.router.push("questions/"+e.target.dataset.questionid);
   },
 
