@@ -93,65 +93,204 @@ starts = ["It all goes back to ",
           "I googled it for you and the answer is ",
           "This is a silly question with a serious answer. It's ",
           "No. The answer is ",
-          "Yes. The answer is "
+          "Yes. The answer is ",
+          "Let me answer your question ",
+          "Every question is like an onion. When we begin to peal back the layers we start to cry. I'm sorry to inform you, but the answer is ",
+          "I'm going to answer your question but first I have to warn you: this information could make your head explode. It's all about ",
+          "Great question! I've been waiting for someone to ask this question since I was a wee lad. The answer is ",
+          "Normally I wouldn't answer a question like this, but you caught me on a good day. The answer is ",
+          "After searching the internet for 5 minutes, I've found the answer. It's ",
+          "Mark my words. The answer is "
           ]
 
-hows = ["internal combustion.", "positive thinking.", "math.", "regular expressions.", "There's no way."]
+hows = [
+  "internal combustion",
+  "positive thinking",
+  "math",
+  "regular expressions",
+  "quantum mechanics",
+  "time travel",
+  "mustaches",
+  "beards",
+  "Kenny G",
+  "surviving the emergence of mole people",
+  "summoning the cracken",
+  "self realization",
+  "great beer"
+]
 
 nouns = ["snakes.",
         "cows.",
         "dragons.",
+        "llamas.",
+        "pandas.",
+        "dolphins.",
+        "sharks.",
+        "crocodiles.",
+        "mole people.",
+        "giant squid.",
         "bears.",
         "dogs.",
         "iguanas.",
         "happiness.",
         "world domination.",
+        "a great sandwich.",
+        "bespoke flooring",
+        "teenage angst",
+        "puppies",
+        "kittens",
+        "dogs",
+        "strong moral fiber.",
+        "high fives.",
+        "synergy.",
+        "vertical integration.",
+        "dynamic typing.",
+        "science.",
         "cats.",
         "death star.",
-        "Literary fame.",
-        "Unlimited power.",
-        "Surprise parties.",
-        "Nothing."
+        "literary fame.",
+        "unlimited power.",
+        "surprise parties.",
+        "nothing."
         ]
 
-numbers = ["Zero.", "3.1415.", "24.", "128361.", "thousands.","2.", "38.", "145.", "-34."]
-places = ["Greece.", "Oregon.", "Russia.", "Mexico.", "Australia.", "England.", "Nowhere."]
-dates = ["1920.", "1513.", "6000 BC.", "2016.", "1995.", "1989.", "Never."]
+numbers = [
+  "Zero.",
+  "3.1415.",
+  "24.",
+  "128361.",
+  "thousands.",
+  "2.",
+  "38.",
+  "145.",
+  "-34.",
+  "1.",
+  "200.",
+  "300.",
+  "1 million.",
+  "infinity",
+  "-1",
+  "21"
+]
+places = [
+  "Greece.",
+  "Oregon.",
+  "Russia.",
+  "Mexico.",
+  "Australia.",
+  "England.",
+  "Nowhere.",
+  "Anywhere.",
+  "Ireland.",
+  "Kenya.",
+  "Iceland.",
+  "Peru.",
+  "Brazil.",
+  "Chile.",
+  "Washington.",
+  "New York.",
+  "Norway.",
+  "Australia."
+]
+
+dates = [
+  "1920.",
+  "1513.",
+  "6000 BC.",
+  "2016.",
+  "1995.",
+  "1989.",
+  "Never.",
+  "In the distant past.",
+  "In the distant future.",
+  "3000.",
+  "1000 BC.",
+  "1400.",
+  "Last week.",
+  "Seven years ago.",
+  "Oh, around 1955."
+
+]
 people = ["Abraham Lincoln.",
           "George Washington.",
           "Julius Caesar.",
           "Hamlet.",
           "Amelia Earhart.",
           "Theodore Roosevelt.",
-          "Nobody."
+          "Nobody.",
+          "Marc Antony.",
+          "Cleopatra.",
+          "Julie Andrews.",
+          "Marie Curie.",
+          "Virginia Woolf.",
+          "Earnest Hemingway.",
+          "that guy in IT.",
+          "The mayor of New York.",
+          "Old man Steve.",
+          "An old wise woman named Cecilia.",
+          "Kenny G.",
+          "Bob the builder.",
+          "Dora the explorer.",
+          "The Prince of Darkness, my his name live in infamy forever.",
+          "A spritely young fellow named George.",
           ]
 
 winner = "No one. When those two fight, the world will end."
 
 random = people + dates + places + numbers + nouns + hows
-lorem = " Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+fillers = [
+  "Where to begin? I first learned about the subject when I was but a boy of 10,
+   working on a small farm in"+places.sample,
+  "Let me start at the beginning. I was born in Oregon in "+ dates.sample + "All was going
+   well till I took a wrong turn off Main Street and begain pondering the meaning of the number "+numbers.sample,
+  "I got my first taste of adventure at the age of 19 while wrangling "+nouns.sample+" in wilds of "+places.sample,
+  "In times of plenty we take for granted the benefits of "+nouns.sample,
+  "I owe my vast knowledge of this subject to " + people.sample + "In the prime
+  of my youth they taught me "+ hows.sample + " Eventually, however, I knew I had
+   to break free of my sage mentor and venture out on my own.",
+  "I had to completely abandon everything else I knew to become the foremost expert on "+ (hows+nouns).sample
+]
 
+enders = [
+  "And that's all there is to it. If you want to learn more, buy my book.",
+  "And that's why you should always leave a note.",
+  "And that's why I always bring a first aid kit.",
+  "And that concludes the answer to your ridiculous question.",
+  "My cat is meowing, so I'm just gonna stop here. I shall return once Jingles is fed.",
+  "And so it goes that we are all doomed to a life of constant torment by "+nouns.sample,
+  "The end. Answering this question has spent my mental reserves so I'm going to need a nap.",
+  "End. I hope you are satisfied with that question. If not, then go ask my friend, "+ people.sample,
+  "And that's why you should never pick a fight with "+people.sample,
+  "This concludes side 1 of, 'answering your dumb question'.Please switch to side 2 to hear the rest.",
+  "I'm afraid that answering this question has opened a portal to another
+  dimension and you all have 10 minutes to live. My sincerest apologies.",
+  "The end. Many thanks to " + people.sample + "Their advice and support was invaluable to answering this question.",
+  "I can't think of a better way to end this answer, so I'm just going to trail off.................",
+  "And boom. There you have it. The answer of the century. The answer to end all answers.",
+  "The end. I hope this answer was as fun to read as it was to write.",
+  "And then we rocked like we never rocked before. And that my, friend, was how the revolution began.",
+]
 authors.each do |author|
   questions.each do |question|
     body = question.body
     if body.starts_with?("Why")
-      text = starts.sample + nouns.sample + lorem
+      text = starts.sample + nouns.sample + fillers.sample + " "+enders.sample
     elsif body.starts_with?("How many")
-      text = starts.sample + numbers.sample + lorem
+      text = starts.sample + numbers.sample + fillers.sample + " "+enders.sample
     elsif body.starts_with?("How")
-      text = starts.sample + nouns.sample + " and " + hows.sample + lorem
+      text = starts.sample + nouns.sample + " and " + hows.sample + fillers.sample + " "+enders.sample
     elsif body.starts_with?("What")
-      text = starts.sample + nouns.sample + lorem
+      text = starts.sample + nouns.sample + fillers.sample + " "+enders.sample
     elsif body.starts_with?("Who would win")
-      text = winner + lorem
+      text = winner + fillers.sample + " "+enders.sample
     elsif body.starts_with?("Who")
-      text = starts.sample + people.sample + lorem
+      text = starts.sample + people.sample + fillers.sample + " "+enders.sample
     elsif body.starts_with?("When")
       text = starts.sample + dates.sample
     elsif body.starts_with?("Where")
-      text = places.sample + lorem
+      text = places.sample + fillers.sample + " "+enders.sample
     else
-      text = starts.sample + random.sample + lorem
+      text = starts.sample + random.sample + fillers.sample + " "+enders.sample
     end
     Answer.create!(author_id: author.id, question_id: question.id, body: text)
   end
