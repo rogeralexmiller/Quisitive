@@ -20,7 +20,7 @@ var UserApiUtil = {
 
   updateUser: function(user){
     $.ajax({
-      url: "api/users/"+user.id,
+      url: "api/user",
       type: "PATCH",
       data: {user: user},
       success: function(user){

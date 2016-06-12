@@ -1,6 +1,6 @@
 class Api::UsersController < ApplicationController
 
-  before_action :ensure_logged_in, only[:update]
+  before_action :ensure_logged_in, only: [:update]
 
   def create
     @user = User.new(user_params)
@@ -14,7 +14,7 @@ class Api::UsersController < ApplicationController
   end
 
   def update
-    @user = User.find(params[:userId])
+    @user = current_user
 
     if current_user.id == @user.id && @user.update(user_params)
       render "api/users/show"
