@@ -1,0 +1,36 @@
+.user-show span{
+  display: inline;
+  font-size:13px;
+  cursor: pointer;
+}
+
+.user-show span:hover{
+  text-decoration: underline;
+}
+
+.profile-header h2{
+  display: inline;
+}
+
+.name-header h2{
+  font-size:24px;
+}
+
+.user-show input, h2{
+  display: inline;
+}
+
+.user-show input {
+  width: auto;
+  float: none;
+}
+
+.user-show .cancelAnswer{
+  float:none;
+}
+
+.change-password{
+  display: inline;
+  float: none;
+  margin-left: 0;
+}

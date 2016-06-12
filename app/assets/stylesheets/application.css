@@ -19,6 +19,7 @@
  *= require ./questions.scss
  *= require ./answer_index.scss
  *= require ./comments.scss
+ *= require ./profile.scss
  */
 
  html {
