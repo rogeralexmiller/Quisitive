@@ -18,6 +18,8 @@ var AnswerIndex = require("./components/AnswerIndex");
 var TopicShow = require("./components/TopicShow");
 var HeaderNav = require("./components/HeaderNav");
 
+var UserShow = require("./components/UserShow");
+
 var Modal = require("react-modal");
 
 var App = React.createClass({
@@ -98,6 +100,7 @@ var Router = (
       <Route path="topics/:topicId" onEnter={_ensureLoggedIn} component={TopicShow}>
         <IndexRoute component={TopicIndex}/>
       </Route>
+      <Route path="users/:userId" onEnter={_ensureLoggedIn} component={UserShow}/>
     </Route>
   </Router>
 );

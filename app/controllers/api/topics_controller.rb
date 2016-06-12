@@ -53,7 +53,8 @@ class Api::TopicsController < ApplicationController
       topics.each do |idx, topic|
         TopicTagging.create(question_id:@question.id, topic_id:idx)
       end
-      @topics = @question.topics
+      updated_question = Question.find(params[:question_id])
+      @topics = updated_question.topics
       render "api/topics/index"
     else
       render json: ["Can't update topics at this time"]

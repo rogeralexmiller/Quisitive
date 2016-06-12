@@ -1,13 +1,12 @@
-var React = require("react");
-var Link = require("react-router").Link;
-var TopicStore = require("../stores/topicStore");
-var Modal = require("react-modal");
-var TopicSearchApiUtil = require("../util/topicSearchApiUtil");
-var TopicSearchStore = require("../stores/topicSearchStore");
-var TopicApiUtil = require("../util/topicApiUtil");
-var SessionStore = require("../stores/sessionStore");
-
-var modalStyle = require("../styles/questionModal");
+var React = require("react"),
+  Link = require("react-router").Link,
+  TopicStore = require("../stores/topicStore"),
+  Modal = require("react-modal"),
+  TopicSearchApiUtil = require("../util/topicSearchApiUtil"),
+  TopicSearchStore = require("../stores/topicSearchStore"),
+  TopicApiUtil = require("../util/topicApiUtil"),
+  SessionStore = require("../stores/sessionStore"),
+  modalStyle = require("../styles/questionModal");
 
 var QuestionTopics = React.createClass({
     getInitialState: function(){
@@ -70,7 +69,8 @@ var QuestionTopics = React.createClass({
       var topics = this.state.topics;
       this.setState({
         editing: false,
-        editTopics: JSON.parse(JSON.stringify(topics))
+        editTopics: JSON.parse(JSON.stringify(topics)),
+        topics: topics
       });
     },
 
@@ -96,7 +96,8 @@ var QuestionTopics = React.createClass({
     updateTopics: function(e){
       e.preventDefault();
       TopicApiUtil.updateQuestionTopics(this.props.questionId, this.state.editTopics);
-      this.setState({editing: false});
+      var newTopics = JSON.parse(JSON.stringify(this.state.editTopics));
+      this.setState({editing: false, topics: newTopics});
     },
 
     openEdit: function(e){

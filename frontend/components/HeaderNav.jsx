@@ -35,7 +35,7 @@ var HeaderNav = React.createClass({
             </a>
           <QuestionSearchForm/>
           <div className="header-list group">
-            <a className="header-list-item" href="#">
+            <a className="header-list-item" href={"#/users/"+this.state.currentUser.id}>
               <p>
                 {this.state.currentUser.full_name}
               </p>
