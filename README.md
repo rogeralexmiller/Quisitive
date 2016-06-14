@@ -36,7 +36,7 @@ class Api::SessionsController < ApplicationController
   Quisitive's UI was designed to imitate Quora's to keep things simple and clean:  
 
 ![questions-index]
-[questions-index]: https://github.com/rogeralexmiller/quisitive/tree/master/docs/IndexScreenshot.png
+[questions-index]: ./docs/IndexScreenshot.png
 
 ### Answers
 
@@ -79,7 +79,7 @@ Comments are represented in the database in a similar fashion to answers, but wi
 comments are maintained on the frontend in the `CommentStore` and are rendered as children three components: `QuestionsIndex`, `QuestionShow`, and `AnswerIndexItem`.
 
 ![comments-screenshot]
-[comments-screenshot]: https://github.com/rogeralexmiller/quisitive/tree/master/docs/Comments.png
+[comments-screenshot]: ./docs/Comments.png
 
 ### Topics
 
@@ -88,7 +88,7 @@ Topics are represented in the database through both `topics` table and a join ta
 Topics are maintained on the frontend in the `TopicStore` and are rendered in three different components: `TopicIndex`, a sidebar component that is rendered alongside the `QuestionsIndex`, `TopicShow`, which renders an individual topic with all its associated questions as well as the `TopicIndex`, and `QuestionTopics`, which displays all the topics tagged to a given question. This last component is also responsible for adding, editing and removing topic-question associations.
 
 ![question-topics-screenshot]
-[question-topics-screenshot]: https://github.com/rogeralexmiller/quisitive/tree/master/docs/QuestionTopics.png
+[question-topics-screenshot]: ./docs/QuestionTopics.png
 
 ## Future Goals
 
