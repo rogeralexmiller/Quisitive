@@ -44,38 +44,31 @@ class Api::SessionsController < ApplicationController
 
   Answers are always rendered in relation to a question so the only component that is responsible for rendering answers is the `QuestionShow` component, which renders all its associated answers as child components. This child component, `AnswerIndex` is responsible for creating new answers and rendering its subcomponents, `AnswerIndexItems`, which in turn are responsible for handling answer editing and deletion, as well as answer comments.
 
-`AnswerIndex` render method:
-
-```javascript
-render: function(){
-  var answers = this.answerArray();
-  var answerCount = answers.length + " Answers";
-  var answerFormClass = this.state.answering ? "answer-form" : "hidden";
-  var answerButtonClass = this.state.answering ? "hidden" : "answer-button";
-  return(
-    <div className="answer-index group">
-      <button onClick={this.showAnswer} className={answerButtonClass}> Answer </button>
-      <form className={answerFormClass}>
-        <textarea rows="3" className="answer-input" onChange={this.textChange} value={this.state.answer}></textarea>
-        <input type="submit" className="answer-button" onClick={this.submitAnswer}/>
-        <p className="cancelAnswer" onClick={this.cancelAnswer}>Cancel</p>
-      </form>
-      <h3 className="answer-count">{answerCount}</h3>
-      <ul className="answer-feed"> {answers.map(function(answer, idx){
-        return (
-          <AnswerIndexItem key={idx} answer={answer}/>
-        )
-      })}
-      </ul>
-    </div>
-  );
-}
-```
-
 ### Comments
 
-Comments are represented in the database in a similar fashion to answers, but with a twist: the `comments` table has the standard `id`, `author_id`, and `body` columns, but also has `commentable_id` and `commentable_type` columns that allow comments to be associated with both questions AND answers.
+Comments are represented in the database in a similar fashion to answers, but with a twist: the `comments` table has the standard `id`, `author_id`, and `body` columns, but also has `commentable_id` and `commentable_type` columns that allow comments to be associated with both questions AND answers. This then enables the app to create a comment for a question or answer using the same API POST Request:
 
+Comment POST Request in `frontend/util/commentApiUtil`:
+```JavaScript
+...
+createComment: function(comment){
+  var lowerType = comment.commentableType.slice(0,1).toLowerCase()+comment.commentableType.slice(1);
+  var commentData = {
+    body: comment.body,
+    commentable_type: comment.commentableType,
+    commentable_id: comment.commentableId
+  };
+  $.ajax({
+    url: "api/" + lowerType + "s/" + comment.commentableId + "/comments",
+    type: "POST",
+    data: {comment: commentData},
+    success: function(comment){
+      CommentActions.receiveComment(comment);
+    }
+  });
+}
+...
+```
 comments are maintained on the frontend in the `CommentStore` and are rendered as children three components: `QuestionsIndex`, `QuestionShow`, and `AnswerIndexItem`.
 
 ![comments-screenshot]
