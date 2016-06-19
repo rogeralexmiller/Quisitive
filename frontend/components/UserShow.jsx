@@ -60,7 +60,8 @@ var UserShow = React.createClass({
   editEmail: function(){
     this.setState({updateEmail:true})
   },
-  editPassword: function(){
+  editPassword: function(e){
+    e.preventDefault();
     this.setState({updatePassword:true})
   },
 
@@ -94,7 +95,7 @@ var UserShow = React.createClass({
     var updateName = this.state.updateName ? "edit-name" : "hidden";
     var updateEmail = this.state.updateEmail ? "edit-email" : "hidden";
     var updatePassword = this.state.updatePassword ? "form-password" : "hidden";
-
+    debugger;
     return(
         <div className="user-show">
 
