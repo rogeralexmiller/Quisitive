@@ -48,7 +48,7 @@ var CommentIndexItem = React.createClass({
     var commentClass = this.state.editing ? "hidden" : "comment group";
 
     return(
-      <div className="comment-index-item">
+      <div className="comment-index-item group">
         <p className="answer-author"> {this.props.comment.author} </p>
 
         <form className={editClass} onSubmit={this.updateComment}>

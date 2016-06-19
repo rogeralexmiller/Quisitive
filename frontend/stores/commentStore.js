@@ -3,24 +3,24 @@ var AppDispatcher = require("../dispatcher/dispatcher");
 var CommentConstants = require("../constants/CommentConstants");
 
 var CommentStore = new Store(AppDispatcher);
-var comments = {Question: {}, Answer: {}};
+var _comments = {Question: {}, Answer: {}};
 
 var commentableId;
 var commentableType;
 
 CommentStore.all = function(type, commentableId){
-  var requestedComments = comments[type][commentableId];
+  var requestedComments = _comments[type][commentableId];
   if (requestedComments) {
     return JSON.parse(JSON.stringify(requestedComments));
   } else{
-    return {};
+    return [];
   }
 };
 
 CommentStore.count = function(type, id){
-  var potentialComments = comments[type][id];
+  var potentialComments = _comments[type][id];
   if (potentialComments) {
-    return Object.keys(potentialComments).length;
+    return potentialComments.length;
   } else{
     return 0;
   }
@@ -29,7 +29,19 @@ CommentStore.count = function(type, id){
 var addComment = function(comment){
   commentableId = comment.commentable_id;
   commentableType = comment.commentable_type;
-  comments[commentableType][commentableId][comment.id] = comment;
+  _comments[commentableType][commentableId].unshift(comment);
+};
+
+var deleteComment = function(type, commentableId, commentId){
+  var comments = [];
+  var oldComments = _comments[commentableType][commentableId];
+  for (var i = 0; i < oldComments.length; i++) {
+    var comment = oldComments[i];
+    if (comment.id !== commentId) {
+      comments.push(comment);
+    }
+  }
+  _comments[commentableType][commentableId] = comments;
 };
 
 CommentStore.__onDispatch = function(payload){
@@ -37,7 +49,7 @@ CommentStore.__onDispatch = function(payload){
     case CommentConstants.RECEIVE_COMMENTS:
       commentableId = payload.commentableId;
       commentableType = payload.commentableType;
-      comments[commentableType][commentableId] = payload.comments;
+      _comments[commentableType][commentableId] = payload.comments;
       CommentStore.__emitChange();
       break;
     case CommentConstants.RECEIVE_COMMENT:
@@ -47,7 +59,7 @@ CommentStore.__onDispatch = function(payload){
     case CommentConstants.REMOVE_COMMENT:
       commentableId = payload.commentableId;
       commentableType = payload.commentableType;
-      delete comments[commentableType][commentableId][payload.commentId];
+      deleteComment(commentableType, commentableId, payload.commentId);
       CommentStore.__emitChange();
       break;
   }

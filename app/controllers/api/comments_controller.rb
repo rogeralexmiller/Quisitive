@@ -6,7 +6,7 @@ class Api::CommentsController < ApplicationController
     id = params[:commentableId]
     type = params[:commentableType]
 
-    @comments = Comment.where(commentable_id: id).where(commentable_type: type).includes(:author)
+    @comments = Comment.order('updated_at DESC').where(commentable_id: id).where(commentable_type: type).includes(:author)
     render "api/comments/index"
   end
 

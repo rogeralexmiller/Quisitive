@@ -48,7 +48,7 @@ var AnswerIndexItem = React.createClass({
 
 
   render: function(){
-    var answerFormClass = this.state.editing ? "answer-form" : "hidden";
+    var answerFormClass = this.state.editing ? "answer-form group" : "hidden";
     var answerShowClass = this.state.editing ? "hidden" : "answer-content";
 
     return (
@@ -64,7 +64,7 @@ var AnswerIndexItem = React.createClass({
       </form>
 
       {this.ownerButtons()}
-      <CommentIndex commentableType="Answer" commentableId={this.props.answer.id}/>
+      <CommentIndex commentCount={this.props.answer.commentCount} commentableType="Answer" commentableId={this.props.answer.id}/>
       </div>
     );
   }

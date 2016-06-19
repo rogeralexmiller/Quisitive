@@ -26,7 +26,6 @@ var QuestionShow = React.createClass({
   },
 
   componentWillReceiveProps: function(e){
-    debugger;
     QuestionApiUtil.getQuestion(this.props.params.questionId);
   },
 
@@ -109,7 +108,7 @@ var QuestionShow = React.createClass({
 
           {this.ownerButtons()}
         </div>
-        <CommentIndex commentableType="Question" commentableId={this.state.question.id}/>
+        <CommentIndex commentCount={this.state.question.commentCount} commentableType="Question" commentableId={this.state.question.id}/>
         {this.props.children}
       </div>
     );

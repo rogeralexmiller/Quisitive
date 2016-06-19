@@ -5,10 +5,8 @@ var QuestionsIndexItem = React.createClass({
 
   render: function(){
     var questionUrl="#/questions/"+this.props.question.id;
-    var count = this.props.question.commentCount;
-
     return(
-      <div className="questions-index-item">
+      <div className="questions-index-item group">
         <a href={questionUrl} className="question-body">
           {this.props.question.body}
         </a>
@@ -16,7 +14,7 @@ var QuestionsIndexItem = React.createClass({
           {this.props.question.author}
         </p>
 
-        <CommentIndex commentableType="Question" commentableId={this.props.question.id}/>
+        <CommentIndex commentCount={this.props.question.commentCount}commentableType="Question" commentableId={this.props.question.id}/>
       </div>
     );
   }

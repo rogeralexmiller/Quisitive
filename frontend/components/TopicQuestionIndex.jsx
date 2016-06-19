@@ -11,7 +11,11 @@ var TopicQuestionIndex = React.createClass({
         <ul>
           {questionArr.map(function(question, idx){
             return (
-              <QuestionsIndexItem key={idx} question={question}/>
+              <QuestionsIndexItem
+                key={idx}
+                question={question}
+                commentCount={question.comments.length}
+              />
             );
           })}
         </ul>
