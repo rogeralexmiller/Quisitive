@@ -3,7 +3,7 @@ class Api::AnswersController < ApplicationController
   before_action :ensure_logged_in
 
   def index
-    @answers = Answer.where(question_id: params[:question_id]).includes(:author, :comments)
+    @answers = Answer.order('updated_at DESC').where(question_id: params[:question_id]).includes(:author, :comments)
     render "api/answers/index"
   end
 

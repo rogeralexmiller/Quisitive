@@ -2,12 +2,12 @@ var Store = require("flux/utils").Store;
 var AppDispatcher = require("../dispatcher/dispatcher");
 var QuestionConstants = require("../constants/QuestionConstants");
 
-var _questions = {};
+var _questions = [];
 var QuestionStore = new Store(AppDispatcher);
 var newestQuestion = null;
 
 var addQuestion = function(question){
-  _questions[question.id] = question;
+  _questions.unshift(question);
 };
 
 QuestionStore.all = function(){
@@ -15,7 +15,25 @@ QuestionStore.all = function(){
 };
 
 QuestionStore.find = function(id){
-  return _questions[id];
+  var intId = parseInt(id);
+  for (var i = 0; i < _questions.length; i++) {
+    var question = _questions[i];
+    if (question.id === intId){
+      return question;
+    }
+  }
+  return null;
+};
+
+var deleteQuestion = function(questionId){
+  var questions = [];
+  for (var i = 0; i < _questions.length; i++) {
+    var question = _questions[i];
+    if (question.id !== questionId) {
+      questions.push(question);
+    }
+  }
+  _questions = questions;
 };
 
 QuestionStore.getNewestQuestion = function(){
@@ -37,7 +55,7 @@ QuestionStore.__onDispatch = function(payload){
       break;
 
     case QuestionConstants.REMOVE_QUESTION:
-      delete _questions[payload.question.id];
+      deleteQuestion(payload.question.id);
       newestQuestion = null;
       QuestionStore.__emitChange();
       break;

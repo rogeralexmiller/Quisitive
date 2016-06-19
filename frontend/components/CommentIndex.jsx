@@ -81,14 +81,14 @@ var CommentIndex = React.createClass({
     var commentClass = this.state.showComments ? "comment-index" : "hidden";
 
     return(
-      <div>
-        <p className="cancelAnswer" onClick={this.showComments}>{countText}</p>
+      <div  className="group comment-index-group">
+        <p className="cancelAnswer comment-count" onClick={this.showComments}>{countText}</p>
         <div className={commentClass}>
           <form className="comment-form group" onSubmit={this.submitComment}>
+          <input type="submit" className="submit-button comment-submit" value="Submit"/>
             <textarea onChange={this.textChange}
                       placeholder="Add a comment..."
                       value={this.state.commentForm}></textarea>
-            <input type="submit" className="submit-button" value="Submit"/>
           </form>
           {commentArr.map(function(comment, idx){
             return <CommentIndexItem key={idx} comment={comment}/>;

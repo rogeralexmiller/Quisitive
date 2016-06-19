@@ -6,7 +6,7 @@ var SessionStore = require("../stores/sessionStore");
 
 var QuestionsIndex = React.createClass({
   getInitialState: function(){
-    return {questions: {}};
+    return {questions: []};
   },
 
   contextTypes: {
@@ -32,22 +32,12 @@ var QuestionsIndex = React.createClass({
     this.questionListener.remove();
   },
 
-  questionArray: function() {
-    var questionArr = [];
-    var keys = Object.keys(this.state.questions);
-    for (var i = 0; i < keys.length; i++) {
-      questionArr.push(this.state.questions[keys[i]]);
-    }
-    return questionArr;
-  },
-
   render: function(){
-    var questionArr = this.questionArray();
     return(
       <div>
         <div className="questions-index">
           <h3 className="index-header">Most Recent Questions</h3>
-          {questionArr.map(function(question){
+          {this.state.questions.map(function(question){
             return <QuestionsIndexItem question={question} key={question.id}/>;
           })}
         </div>

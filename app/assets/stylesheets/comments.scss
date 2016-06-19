@@ -1,12 +1,12 @@
 .comment-index{
   margin: 10px 0;
-  padding: 0 0 10px 20px;
+  padding: 0 0 8px 8px;
   background: #F6F6F6;
   text-align: left;
   font-size: 13px;
   border-radius: 3px;
-  float: left;
-  width:700px;
+  width:722px;
+  float:right;
 }
 
 .comment-index-item {
@@ -16,13 +16,14 @@
 
 .comment-form{
   padding-top:10px;
+  padding-right:8px;
 }
 
 .comment-form textarea{
   background: #fff;
-  width: 600px;
+  width: 624px;
   resize: none;
-  float: left;
+  float: right;
   padding: 4px 7px;
   height:20px;
   margin-right: 8px;
@@ -31,8 +32,9 @@
 .comment-form input{
   font-size: 13px;
   padding: 4px 7px;
-  float: left;
+  float: right;
   margin: 0;
+  margin-right:8px
 }
 
 .delete-comment{
@@ -64,4 +66,17 @@
 
 .comment-body{
   float: left;
+}
+
+.comment-count{
+  padding-top:24px;
+}
+
+.comment-index-group{
+  float: right;
+}
+
+.comment-submit{
+  float:right;
+  margin-right:8px;
 }

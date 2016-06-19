@@ -28,12 +28,15 @@
 
 .answer-feed{
   margin-top: 40px;
+  width:100%;
+  float:right;
 }
 
 .answer-form{
   border: 1px solid #e2e2e2;
   height: 150px;
   margin-bottom: 25px;
+  float: right;
 }
 
 .answer-input{
@@ -62,6 +65,10 @@
   color: grey;
   padding: 4px 7px;
   margin: 12px;
+}
+
+.answer-button{
+  float: right;
 }
 
 .cancelAnswer:hover{

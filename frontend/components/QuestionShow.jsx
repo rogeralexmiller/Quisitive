@@ -25,7 +25,8 @@ var QuestionShow = React.createClass({
     this.setState({showComments: commentState, answering:false});
   },
 
-  componentWillReceiveProps: function(){
+  componentWillReceiveProps: function(e){
+    debugger;
     QuestionApiUtil.getQuestion(this.props.params.questionId);
   },
 

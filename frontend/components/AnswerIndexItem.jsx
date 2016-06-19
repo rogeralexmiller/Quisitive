@@ -52,7 +52,7 @@ var AnswerIndexItem = React.createClass({
     var answerShowClass = this.state.editing ? "hidden" : "answer-content";
 
     return (
-      <div className = "answer-index-item">
+      <div className = "answer-index-item group">
       <h3 className="answer-author" >{this.props.answer.author}</h3>
       <p className={answerShowClass} >{this.props.answer.body}</p>
 

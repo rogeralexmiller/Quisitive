@@ -3,15 +3,15 @@ var AppDispatcher = require("../dispatcher/dispatcher");
 var AnswerConstants = require("../constants/AnswerConstants");
 
 var AnswerStore = new Store(AppDispatcher);
-var answers = {};
+var _answers = [];
 
 var currentQuestionId = null;
 
 AnswerStore.all = function(questionId){
   if (questionId === currentQuestionId) {
-    return JSON.parse(JSON.stringify(answers));
+    return JSON.parse(JSON.stringify(_answers));
   } else {
-    return {};
+    return [];
   }
 };
 
@@ -20,22 +20,33 @@ AnswerStore.currentQuestionId = function(){
 };
 
 var addAnswer = function(answer){
-  answers[answer.id] = answer;
+  _answers.unshift(answer);
+};
+
+var deleteAnswer = function(answerId){
+  var answers = [];
+  for (var i = 0; i < _answers.length; i++) {
+    var answer = _answers[i];
+    if (answer.id !== answerId) {
+      answers.push(answer);
+    }
+  }
+  _answers = answers;
 };
 
 AnswerStore.__onDispatch = function(payload){
   switch(payload.actionType){
     case AnswerConstants.RECEIVE_ANSWERS:
-      answers = payload.answers;
+      _answers = payload.answers;
       currentQuestionId = payload.questionId;
       AnswerStore.__emitChange();
       break;
     case AnswerConstants.RECEIVE_ANSWER:
-      answers[payload.answer.id] = payload.answer;
+      addAnswer(payload.answer);
       AnswerStore.__emitChange();
       break;
     case AnswerConstants.REMOVE_ANSWER:
-      delete answers[payload.answer.id];
+      deleteAnswer(payload.answer.id);
       AnswerStore.__emitChange();
       break;
   }

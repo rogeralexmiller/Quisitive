@@ -3,7 +3,7 @@ class Api::QuestionsController < ApplicationController
   before_action :ensure_logged_in
 
   def index
-    @questions = Question.all.includes(:author, :comments, :topics)
+    @questions = Question.order('updated_at DESC').all.includes(:author, :comments, :topics)
     render "api/questions/index"
   end
 
