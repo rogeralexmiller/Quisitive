@@ -8,6 +8,12 @@ var CommentIndexItem = React.createClass({
     return {editing: false, editForm: this.props.comment.body};
   },
 
+  componentWillReceiveProps: function(e){
+    var comment = e.comment;
+    this.setState({editForm: comment.body});
+  },
+
+
   ownerButtons: function(){
     if (SessionStore.currentUserOwns(this.props.comment)) {
       return (
@@ -56,7 +62,7 @@ var CommentIndexItem = React.createClass({
                     placeholder="Add a comment..."
                     value={this.state.editForm}></textarea>
           <input type="submit" value="Update" className="submit-button"/>
-          <a onClick={this.handleCancel} href="#">Cancel</a>
+          <a className="cancel-answer" onClick={this.handleCancel} href="#">Cancel</a>
         </form>
         <div className={commentClass}>
           <p className="comment-body"> {this.props.comment.body} </p>

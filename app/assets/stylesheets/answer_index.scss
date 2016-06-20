@@ -32,9 +32,7 @@
 }
 
 .answer-form{
-  border: 1px solid #e2e2e2;
-  height: 150px;
-  margin-bottom: 25px;
+  height: auto;
   float: right;
 }
 
@@ -46,9 +44,13 @@
 
 .answer-form > input {
   display: block;
-  margin-top: 12px;
+  margin-top: 8px;
   margin-left: 0;
   margin-bottom: 12px;
+}
+
+.answer-form textarea {
+  border: 1px solid #e2e2e2;
 }
 
 
@@ -63,11 +65,15 @@
   font-size: 14px;
   color: grey;
   padding: 4px 7px;
-  margin: 12px;
+  margin: 8px;
 }
 
 .answer-button{
   float: right;
+}
+
+.answer-form .answer-button {
+  margin-right:0;
 }
 
 .cancelAnswer:hover{

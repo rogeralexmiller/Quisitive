@@ -88,7 +88,7 @@ var TopicShow = React.createClass({
         <form className={editClass}>
           <input type="text" className="question-edit-input" onChange={this.handleBodyChange} value={this.state.topicForm.name}/>
           <button onClick={this.handleUpdate} className="submit-button good-button"> Update </button>
-          <a onClick={this.handleCancel} href="#">Cancel</a>
+          <a className="edit-cancel" onClick={this.handleCancel} href="#">Cancel</a>
         </form>
 
         <div className={topicClass}>

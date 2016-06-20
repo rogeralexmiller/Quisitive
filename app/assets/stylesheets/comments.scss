@@ -23,7 +23,7 @@
   background: #fff;
   width: 624px;
   resize: none;
-  float: right;
+  float: left;
   padding: 4px 7px;
   height:20px;
   margin-right: 8px;
@@ -54,6 +54,7 @@
 .edit a {
   float: left;
   padding: 4px 7px;
+  margin-top:8px;
 }
 
 .edit a:hover{
@@ -80,4 +81,12 @@
 .comment-submit{
   float:right;
   margin-right:8px;
+}
+
+.comment-form .submit-button{
+  margin-top: 8px;
+}
+
+.comment-form .comment-submit {
+  margin-top: 0px;
 }

@@ -57,10 +57,12 @@ var AnswerIndexItem = React.createClass({
       <p className={answerShowClass} >{this.props.answer.body}</p>
 
       <form className={answerFormClass}>
+        <div className="group">
         <textarea rows="3" className="answer-input" onChange={this.textChange} value={this.state.answerEdit}></textarea>
 
         <input type="submit" className="answer-button" value="Update" onClick={this.updateAnswer}/>
         <p className="cancelAnswer" onClick={this.cancelEdit}>Cancel</p>
+        </div>
       </form>
 
       {this.ownerButtons()}

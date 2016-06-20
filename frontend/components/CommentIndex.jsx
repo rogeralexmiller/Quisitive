@@ -10,7 +10,7 @@ var CommentIndex = React.createClass({
     var potentialId = this.props.commentableId;
     var type = potentialType ? potentialType : "";
     var id = potentialId ? potentialId : "";
-    return {comments: [], commentForm: "", count:this.props.commentCount, showComments: false, type: type, id: id};
+    return {comments: [], commentForm: "", count: this.props.commentCount, showComments: false, type: type, id: id};
   },
 
   onChange: function(){
@@ -20,8 +20,8 @@ var CommentIndex = React.createClass({
     var id = potentialId ? potentialId : "";
 
     var potentialComments = CommentStore.all(type, id);
-    var comments = potentialComments ? potentialComments : {};
-    this.setState({comments: comments});
+    var comments = potentialComments ? potentialComments : [];
+    this.setState({comments: comments, count: comments.length});
   },
 
   componentDidMount: function(){
@@ -31,6 +31,9 @@ var CommentIndex = React.createClass({
   componentWillReceiveProps: function(e){
     var type = e.commentableType;
     var id = e.commentableId;
+    var potentialComments = CommentStore.all(type, id);
+    var comments = potentialComments ? potentialComments : [];
+    this.setState({type: type, id: id, comments: comments, count: comments.length});
   },
 
   componentWillUnmount: function(){
@@ -59,7 +62,7 @@ var CommentIndex = React.createClass({
   },
 
   render: function(){
-    var count = this.props.commentCount;
+    var count = this.state.count;
     var countText = "Comments " + count;
     var commentClass = this.state.showComments ? "comment-index" : "hidden";
 
