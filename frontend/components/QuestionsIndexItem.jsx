@@ -14,7 +14,7 @@ var QuestionsIndexItem = React.createClass({
           {this.props.question.author}
         </p>
 
-        <CommentIndex commentCount={this.props.question.commentCount}commentableType="Question" commentableId={this.props.question.id}/>
+        <CommentIndex commentCount={this.props.question.commentCount} commentableType="Question" commentableId={this.props.question.id}/>
       </div>
     );
   }

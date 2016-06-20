@@ -33,7 +33,8 @@ var CommentIndex = React.createClass({
     var id = e.commentableId;
     var potentialComments = CommentStore.all(type, id);
     var comments = potentialComments ? potentialComments : [];
-    this.setState({type: type, id: id, comments: comments, count: comments.length});
+    var count = this.props.commentCount;
+    this.setState({type: type, id: id, comments: comments, count: count});
   },
 
   componentWillUnmount: function(){

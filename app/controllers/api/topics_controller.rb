@@ -2,12 +2,13 @@ class Api::TopicsController < ApplicationController
   before_action :ensure_logged_in
 
   def index
-    @topics = Topic.all.includes(:questions, :author)
+    @topics = Topic.includes(:questions, :author).all
     render "api/topics/index"
   end
 
   def show
     @topic = Topic.includes(:questions, :author).find(params[:id])
+    
     render "api/topics/show"
   end
 
@@ -40,20 +41,20 @@ class Api::TopicsController < ApplicationController
   end
 
   def question_topics
-    @question = Question.find(params[:question_id])
+    @question = Question.includes(:topics).find(params[:question_id])
     @topics = @question.topics
     render "api/topics/index"
   end
 
   def update_question_topics
-    @question = Question.find(params[:question_id])
+    @question = Question.find(params[:question_id]).includes(:topics)
     if current_user_owns?(@question)
       @question.topics.destroy_all
       topics = params[:topics]
       topics.each do |idx, topic|
         TopicTagging.create(question_id:@question.id, topic_id:idx)
       end
-      updated_question = Question.find(params[:question_id])
+      updated_question = Question.find(params[:question_id]).includes(:topics)
       @topics = updated_question.topics
       render "api/topics/index"
     else

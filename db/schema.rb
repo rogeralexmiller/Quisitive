@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160610135551) do
+ActiveRecord::Schema.define(version: 20160620012901) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 20160610135551) do
 
   add_index "answers", ["author_id"], name: "index_answers_on_author_id", using: :btree
   add_index "answers", ["question_id"], name: "index_answers_on_question_id", using: :btree
+  add_index "answers", ["updated_at"], name: "index_answers_on_updated_at", using: :btree
 
   create_table "comments", force: :cascade do |t|
     t.datetime "created_at"
@@ -38,6 +39,7 @@ ActiveRecord::Schema.define(version: 20160610135551) do
 
   add_index "comments", ["author_id"], name: "index_comments_on_author_id", using: :btree
   add_index "comments", ["commentable_id"], name: "index_comments_on_commentable_id", using: :btree
+  add_index "comments", ["updated_at"], name: "index_comments_on_updated_at", using: :btree
 
   create_table "questions", force: :cascade do |t|
     t.string   "body",       null: false
@@ -47,6 +49,7 @@ ActiveRecord::Schema.define(version: 20160610135551) do
   end
 
   add_index "questions", ["author_id"], name: "index_questions_on_author_id", using: :btree
+  add_index "questions", ["updated_at"], name: "index_questions_on_updated_at", using: :btree
 
   create_table "topic_taggings", force: :cascade do |t|
     t.datetime "created_at"
