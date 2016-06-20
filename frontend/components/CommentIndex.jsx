@@ -18,10 +18,10 @@ var CommentIndex = React.createClass({
     var potentialId = this.props.commentableId;
     var type = potentialType ? potentialType : "";
     var id = potentialId ? potentialId : "";
-
     var potentialComments = CommentStore.all(type, id);
     var comments = potentialComments ? potentialComments : [];
-    this.setState({comments: comments, count: comments.length});
+    var count = potentialComments ? comments.length : this.props.commentCount;
+    this.setState({comments: comments, count: count});
   },
 
   componentDidMount: function(){
@@ -63,7 +63,7 @@ var CommentIndex = React.createClass({
   },
 
   render: function(){
-    var count = this.state.count;
+    var count = this.state.count ? this.state.count : this.props.commentCount;
     var countText = "Comments " + count;
     var commentClass = this.state.showComments ? "comment-index" : "hidden";
 
