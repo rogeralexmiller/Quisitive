@@ -5,6 +5,8 @@ var QuestionSearchStore = require("../stores/questionSearchStore");
 var QuestionSearchApiUtil = require("../util/questionSearchApiUtil");
 var questionSearchModal = require("../styles/questionSearchModal");
 var Link = require("react-router").Link;
+var ReactRouter = require('react-router');
+var hashHistory = ReactRouter.hashHistory;
 
 var Modal = require("react-modal");
 
@@ -45,7 +47,9 @@ var QuestionSearchForm = React.createClass({
 
   handleSubmit: function(e){
     e.preventDefault();
-    QuestionApiUtil.createQuestion({body:this.state.body});
+    QuestionApiUtil.createQuestion({body:this.state.body}, function(id){
+      hashHistory.push("questions/"+id);
+    });
     this.setState({
       body:"",
       modalOpen:false,

@@ -21,13 +21,14 @@ var QuestionApiUtil = {
     });
   },
 
-  createQuestion: function(question){
+  createQuestion: function(question, callback){
     $.ajax({
       url: "api/questions/",
       type: "POST",
       data: {question: question},
       success: function(question){
         QuestionActions.receiveQuestion(question);
+        callback(question.id);
       }
     });
   },
