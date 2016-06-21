@@ -9,7 +9,7 @@ var currentQuestionId = null;
 
 AnswerStore.all = function(questionId){
   if (questionId === currentQuestionId) {
-    return JSON.parse(JSON.stringify(_answers));
+    return _answers.slice(0);
   } else {
     return [];
   }

@@ -23,7 +23,7 @@ var AnswerIndex = React.createClass({
     this.listener.remove();
   },
 
-  componentWillReceiveProps: function(){
+  componentWillReceiveProps: function(e){
     AnswerApiUtil.fetchAllAnswers(this.props.params.questionId);
   },
 

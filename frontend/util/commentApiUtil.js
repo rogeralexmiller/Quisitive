@@ -18,7 +18,7 @@ var CommentApiUtil = {
       url: "api/comments/"+commentId,
       type: "GET",
       success: function(comment){
-        CommentActions.receiveComment(comment, comment.commentable_type, comment.commentable_id);
+        CommentActions.receiveComment(comment);
       }
     });
   },
@@ -47,7 +47,7 @@ var CommentApiUtil = {
       type: "PATCH",
       data: {comment: commentData},
       success: function(comment){
-        CommentActions.receiveComment(comment, comment.commentable_type, comment.commentable_id);
+        CommentActions.updateComment(comment);
       }
     });
   },
@@ -57,7 +57,7 @@ var CommentApiUtil = {
       url: "api/comments/"+commentId,
       type: "DELETE",
       success: function(comment){
-        CommentActions.removeComment(comment.id, comment.commentable_type, comment.commentable_id);
+        CommentActions.removeComment(comment);
       }
     });
   }

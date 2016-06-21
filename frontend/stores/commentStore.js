@@ -11,7 +11,7 @@ var commentableType;
 CommentStore.all = function(type, commentableId){
   var requestedComments = _comments[type][commentableId];
   if (requestedComments) {
-    return JSON.parse(JSON.stringify(requestedComments));
+    return requestedComments.slice(0);
   } else{
     return [];
   }
@@ -21,27 +21,38 @@ CommentStore.count = function(type, id){
   var potentialComments = _comments[type][id];
   if (potentialComments) {
     return potentialComments.length;
-  } else{
+  } else {
     return 0;
   }
 };
 
 var addComment = function(comment){
-  commentableId = comment.commentable_id;
-  commentableType = comment.commentable_type;
+  var commentableId = comment.commentable_id;
+  var commentableType = comment.commentable_type;
   _comments[commentableType][commentableId].unshift(comment);
 };
 
-var deleteComment = function(type, commentableId, commentId){
+var updateComment = function(comment){
+  var commentableId = comment.commentable_id;
+  var commentableType = comment.commentable_type;
+  deleteComment(comment);
+  _comments[commentableType][commentableId].unshift(comment);
+};
+
+var deleteComment = function(comment){
   var comments = [];
-  var oldComments = _comments[commentableType][commentableId];
+  var type = comment.commentable_type;
+  var id = comment.commentable_id;
+
+  var oldComments = _comments[type][id];
+
   for (var i = 0; i < oldComments.length; i++) {
-    var comment = oldComments[i];
-    if (comment.id !== commentId) {
-      comments.push(comment);
+    var oldComment = oldComments[i];
+    if (oldComment.id !== comment.id) {
+      comments.push(oldComment);
     }
   }
-  _comments[commentableType][commentableId] = comments;
+  _comments[type][id] = comments;
 };
 
 CommentStore.__onDispatch = function(payload){
@@ -53,13 +64,21 @@ CommentStore.__onDispatch = function(payload){
       CommentStore.__emitChange();
       break;
     case CommentConstants.RECEIVE_COMMENT:
-      addComment(payload.comment);
+      var comment = payload.comment;
+      commentableId = comment.commentableId;
+      commentableType = comment.commentableType;
+      addComment(comment);
+      CommentStore.__emitChange();
+      break;
+    case CommentConstants.UPDATE_COMMENT:
+      var comment = payload.comment;
+      commentableId = comment.commentableId;
+      commentableType = comment.commentableType;
+      updateComment(comment);
       CommentStore.__emitChange();
       break;
     case CommentConstants.REMOVE_COMMENT:
-      commentableId = payload.commentableId;
-      commentableType = payload.commentableType;
-      deleteComment(commentableType, commentableId, payload.commentId);
+      deleteComment(payload.comment);
       CommentStore.__emitChange();
       break;
   }

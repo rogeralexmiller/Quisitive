@@ -18,12 +18,17 @@ var commentActions = {
     });
   },
 
-  removeComment: function(commentId, commentableType, commentableId){
+  updateComment: function(comment){
+    AppDispatcher.dispatch({
+      actionType: CommentConstants.UPDATE_COMMENT,
+      comment: comment
+    });
+  },
+
+  removeComment: function(comment){
     AppDispatcher.dispatch({
       actionType: CommentConstants.REMOVE_COMMENT,
-      commentId: commentId,
-      commentableId: commentableId,
-      commentableType: commentableType
+      comment: comment
     });
   }
 };

@@ -6,7 +6,18 @@ var CommentIndex = require("./CommentIndex");
 var AnswerIndexItem = React.createClass({
 
   getInitialState: function(){
-    return {answerEdit: this.props.answer.body, editing: false};
+    return {
+      answerEdit: this.props.answer.body,
+      commentCount: this.props.answer.commentCount,
+      editing: false
+    };
+  },
+
+  componentWillReceiveProps: function(e){
+    this.setState({
+      answerEdit: e.answer.body,
+      commentCount: e.answer.commentCount
+    });
   },
 
   textChange: function(e){
@@ -58,15 +69,15 @@ var AnswerIndexItem = React.createClass({
 
       <form className={answerFormClass}>
         <div className="group">
-        <textarea rows="3" className="answer-input" onChange={this.textChange} value={this.state.answerEdit}></textarea>
+          <textarea rows="3" className="answer-input" onChange={this.textChange} value={this.state.answerEdit}></textarea>
 
-        <input type="submit" className="answer-button" value="Update" onClick={this.updateAnswer}/>
-        <p className="cancelAnswer" onClick={this.cancelEdit}>Cancel</p>
+          <input type="submit" className="answer-button" value="Update" onClick={this.updateAnswer}/>
+          <p className="cancelAnswer" onClick={this.cancelEdit}>Cancel</p>
         </div>
       </form>
 
       {this.ownerButtons()}
-      <CommentIndex commentCount={this.props.answer.commentCount} commentableType="Answer" commentableId={this.props.answer.id}/>
+      <CommentIndex commentCount={this.state.commentCount} commentableType="Answer" commentableId={this.props.answer.id}/>
       </div>
     );
   }
