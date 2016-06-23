@@ -4,12 +4,15 @@
   float: right;
   margin-right:100px;
 }
+
 .question-author{
   text-align: left;
 }
+
 .question-show{
   width:730px;
 }
+
 .questions-index-item{
   padding-top: 0px;
   padding-bottom: 8px;
@@ -27,6 +30,7 @@
   display: block;
   margin-bottom: 5px;
 }
+
 .question-body:hover{
   text-decoration: underline;
 }
@@ -41,6 +45,7 @@
   width: 720px;
   margin-top:8px;
 }
+
 .question-edit-form > input{
   background-color: #ffffff;
   width: 704px;
