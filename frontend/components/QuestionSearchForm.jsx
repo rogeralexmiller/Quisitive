@@ -76,8 +76,8 @@ var QuestionSearchForm = React.createClass({
   openModal: function(){
     this.setState({modalOpen:true});
     setTimeout(function(){
-      if (this.questionInput) {
-        this.questionInput.focus();
+      if (this.refs.questionInput) {
+        ReactDOM.findDOMNode(this.refs.questionInput).focus();
       }
     }.bind(this),0)
   },
@@ -103,7 +103,6 @@ var QuestionSearchForm = React.createClass({
                  onChange={this._handleChange}
                  placeholder="Ask or search for questions"
                  value={this.state.body}
-                 selected
           />
           <input className="question-submit"
                  type="submit"
@@ -131,7 +130,7 @@ var QuestionSearchForm = React.createClass({
                          onKeyUp={this.searchChange}
                          onChange={this._handleChange}
                          value={this.state.body}
-                         
+                         ref="questionInput"
                   />
                   <input className="question-submit"
                          type="submit"
