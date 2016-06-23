@@ -7,6 +7,7 @@ var questionSearchModal = require("../styles/questionSearchModal");
 var Link = require("react-router").Link;
 var ReactRouter = require('react-router');
 var hashHistory = ReactRouter.hashHistory;
+var ReactDOM = require("react-dom");
 
 var Modal = require("react-modal");
 
@@ -74,6 +75,11 @@ var QuestionSearchForm = React.createClass({
 
   openModal: function(){
     this.setState({modalOpen:true});
+    setTimeout(function(){
+      if (this.questionInput) {
+        this.questionInput.focus();
+      }
+    }.bind(this),0)
   },
 
   onModalClose: function(){
@@ -97,10 +103,12 @@ var QuestionSearchForm = React.createClass({
                  onChange={this._handleChange}
                  placeholder="Ask or search for questions"
                  value={this.state.body}
+                 selected
           />
           <input className="question-submit"
                  type="submit"
                  value="Submit Question"
+
           />
         </form>
         <Modal
@@ -123,6 +131,7 @@ var QuestionSearchForm = React.createClass({
                          onKeyUp={this.searchChange}
                          onChange={this._handleChange}
                          value={this.state.body}
+                         ref={(ref) => this.questionInput = ref}
                   />
                   <input className="question-submit"
                          type="submit"

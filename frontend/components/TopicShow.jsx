@@ -83,8 +83,8 @@ var TopicShow = React.createClass({
     var editClass = this.state.editing ? "question-edit-form topic-form group" : "hidden";
     var topicClass = this.state.editing ? "hidden" : "show-header topic-header group";
     return(
-      <div>
-
+      <div className="group">
+        {this.props.children}
         <form className={editClass}>
           <input type="text" className="question-edit-input" onChange={this.handleBodyChange} value={this.state.topicForm.name}/>
           <button onClick={this.handleUpdate} className="submit-button good-button"> Update </button>
@@ -100,7 +100,6 @@ var TopicShow = React.createClass({
           {this.ownerButtons()}
         </div>
         <TopicQuestionIndex questions={this.state.topic.questions}/>
-        {this.props.children}
       </div>
     );
   }
