@@ -131,7 +131,7 @@ var QuestionSearchForm = React.createClass({
                          onKeyUp={this.searchChange}
                          onChange={this._handleChange}
                          value={this.state.body}
-                         ref={(ref) => this.questionInput = ref}
+                         
                   />
                   <input className="question-submit"
                          type="submit"
