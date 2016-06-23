@@ -131,7 +131,6 @@ var QuestionTopics = React.createClass({
       var results = this.toArray(this.state.searchResults);
       var topics = this.toArray(this.state.topics);
       var editTopics = this.toArray(this.state.editTopics);
-
       var dropdownClass = results.length > 0 ? "topic-search-dropdown" : "hidden";
       var comp = this;
       var ownerEdit = this.ownerEdit();
@@ -142,7 +141,7 @@ var QuestionTopics = React.createClass({
             onRequestClose={this.onModalClose}
             style={modalStyle}
           >
-            <div className="edit-topics-modal">
+            <div className="edit-topics-modal" onClick={this.modalClick}>
               <h2 className="index-header"> Edit Topics</h2>
 
               <form onSubmit={this.updateTopics}>
@@ -171,6 +170,7 @@ var QuestionTopics = React.createClass({
                     onKeyUp={this.topicSearch}
                     onChange={this.handleChange}
                     value={this.state.topicSearch}
+                    onClick={this.inputClick}
                   />
 
                   <ul className={dropdownClass}>

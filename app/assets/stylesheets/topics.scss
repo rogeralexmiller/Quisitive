@@ -51,7 +51,6 @@
   border-radius: 3px;
 }
 
-
 .question-topics span{
   display:inline;
   font-size: 13px;
@@ -76,18 +75,17 @@
 }
 
 .topic-search-dropdown{
-  width: 140px;
+  width: 148px;
   position: absolute;
   font-size:13px;
   background:#fff;
-  padding-left:8px;
   z-index:600;
   overflow-y: scroll;
   border-bottom-right-radius: 3px;
   border-bottom-left-radius: 3px;
   margin-top:1px;
-
 }
+
 .select-topic{
   margin: 8px;
   width:147px;
@@ -95,7 +93,7 @@
 }
 
 .topic-search-dropdown li{
-  padding:8px 0;
+  padding:8px;
 }
 
 .topic-search-dropdown li:hover{

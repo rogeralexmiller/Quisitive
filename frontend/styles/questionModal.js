@@ -5,7 +5,8 @@ module.exports = {
     left              : 0,
     right             : 0,
     bottom            : 0,
-    backgroundColor   : 'rgba(0, 0, 0, 0.5)'
+    backgroundColor   : 'rgba(0, 0, 0, 0.5)',
+    zIndex            : 6
   },
   content : {
     position                   : 'relative',
@@ -21,6 +22,7 @@ module.exports = {
     outline                    : 'none',
     padding                    : '20px 0 0 0',
     margin                     : '0 auto',
-    display                    : 'inline-block'
+    display                    : 'inline-block',
+    zIndex                     : 6
   }
 };
