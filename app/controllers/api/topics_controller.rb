@@ -51,7 +51,7 @@ class Api::TopicsController < ApplicationController
     topic_errors = []
     if current_user_owns?(@question)
       @question.topics.destroy_all
-      topics = params[:topics]
+      topics = params[:topics] ? params[:topics] : []
       topics.each do |idx, topic|
         if idx == "newTopics"
           topic_errors = handle_new_topics(topic, @question)

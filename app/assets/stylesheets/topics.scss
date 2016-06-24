@@ -66,7 +66,12 @@
 .button-bar{
   background:#f4f4f4;
   width: 600px;
-  padding: 8px 8px;
+  padding: 0 0 0 8px;
+}
+
+.button-bar button:first-child {
+  float:left;
+  margin-left:0;
 }
 
 .topic-item:hover {

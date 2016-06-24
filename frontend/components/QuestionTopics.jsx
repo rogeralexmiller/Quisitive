@@ -77,7 +77,12 @@ var QuestionTopics = React.createClass({
 
     removeEditTopic: function(e){
       var topics = this.state.editTopics;
-      delete topics[e.target.dataset.topicid];
+      var data = e.target.dataset;
+      if (data["new"] === "true"){
+        topics["newTopics"].splice(data.topicid, 1);
+      } else{
+        delete topics[data.topicid];
+      }
       this.setState({editTopics: topics});
     },
 
@@ -91,14 +96,14 @@ var QuestionTopics = React.createClass({
       };
       topics[newTopic.id] = newTopic;
 
-      this.setState({editTopics: topics});
+      this.setState({editTopics: topics, topicSearch: "", searchResults: {}});
     },
 
     updateTopics: function(e){
       e.preventDefault();
       TopicApiUtil.updateQuestionTopics(this.props.questionId, this.state.editTopics);
       var newTopics = JSON.parse(JSON.stringify(this.state.editTopics));
-      this.setState({editing: false, topics: newTopics});
+      this.setState({editing: false, topics: newTopics, topicSearch: ""});
     },
 
     openEdit: function(e){
@@ -113,12 +118,14 @@ var QuestionTopics = React.createClass({
       for (var i = 0; i < limit; i++) {
         if (keys[i] === "newTopics"){
           var newTopics = object[keys[i]]
-          for (var i = 0; i < newTopics.length; i++) {
-            var name = newTopics[i];
-            resultsArr.push({name: name, id: i});
+          for (var j = 0; j < newTopics.length; j++) {
+            var name = newTopics[j];
+            resultsArr.push({name: name, id: j, new: "true"});
           }
         } else{
-          resultsArr.push(object[keys[i]]);
+          var topic = object[keys[i]];
+          topic["new"] = "false";
+          resultsArr.push(topic);
         }
       }
       return resultsArr;
@@ -140,7 +147,7 @@ var QuestionTopics = React.createClass({
       e.preventDefault();
       var newTopic = this.state.topicSearch;
       var topics = this.state.editTopics ? this.state.editTopics : {newTopics: []};
-      topics["newTopics"] = [];
+      topics["newTopics"] = topics["newTopics"] ? topics["newTopics"] : [];
       topics["newTopics"].push(newTopic);
       this.setState({editTopics: topics, topicSearch: ""});
     },
@@ -152,7 +159,7 @@ var QuestionTopics = React.createClass({
       var dropdownClass = results.length > 0 ? "topic-search-dropdown" : "hidden";
       var comp = this;
       var ownerEdit = this.ownerEdit();
-      var createTopicButton = (results.length === 0 && this.state.topicSearch.length > 0) ? "submit-button good-button" : "hidden"
+      var createTopicButton = (results.length === 0 && this.state.topicSearch.length > 0) ? "submit-button good-button" : "hidden";
       return(
         <div>
           <Modal
@@ -172,6 +179,7 @@ var QuestionTopics = React.createClass({
                         <span
                           onClick={comp.removeEditTopic}
                           data-topicid={topic.id}
+                          data-new={topic.new}
                         >
                           x
                         </span>
@@ -192,6 +200,8 @@ var QuestionTopics = React.createClass({
                     onClick={this.inputClick}
                   />
 
+
+
                   <ul className={dropdownClass}>
                     {results.map(function(result, idx){
                       return(
@@ -208,9 +218,8 @@ var QuestionTopics = React.createClass({
                   </ul>
                 </div>
 
-                <button onClick={this.createTopic} className={createTopicButton}>Create Topic</button>
-
                 <div className="button-bar group">
+                <button onClick={this.createTopic} className={createTopicButton}>Create Topic</button>
                   <button
                     onClick={this.handleUpdate}
                     className="submit-button good-button"
