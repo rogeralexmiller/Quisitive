@@ -8,7 +8,7 @@ class Api::TopicsController < ApplicationController
 
   def show
     @topic = Topic.includes(:questions, :author).find(params[:id])
-    
+
     render "api/topics/show"
   end
 
@@ -47,18 +47,23 @@ class Api::TopicsController < ApplicationController
   end
 
   def update_question_topics
-    @question = Question.find(params[:question_id]).includes(:topics)
+    @question = Question.includes(:topics).find(params[:question_id])
+    topic_errors = []
     if current_user_owns?(@question)
       @question.topics.destroy_all
       topics = params[:topics]
       topics.each do |idx, topic|
-        TopicTagging.create(question_id:@question.id, topic_id:idx)
+        if idx == "newTopics"
+          topic_errors = handle_new_topics(topic, @question)
+        else
+          TopicTagging.create(question_id: @question.id, topic_id:idx)
+        end
       end
-      updated_question = Question.find(params[:question_id]).includes(:topics)
+      updated_question = Question.includes(:topics).find(params[:question_id])
       @topics = updated_question.topics
       render "api/topics/index"
     else
-      render json: ["Can't update topics at this time"]
+      render json: ["Can't update topics at this time", topic_errors]
     end
   end
 
@@ -76,4 +81,19 @@ class Api::TopicsController < ApplicationController
   def topic_params
     params.require(:topic).permit(:name)
   end
+
+  def handle_new_topics(topics, question)
+    topic_errors = []
+    topics.each do |new_topic|
+
+      t = Topic.new(name: new_topic, author_id: current_user.id)
+      if t.save
+        TopicTagging.create(question_id: question.id, topic_id: t.id)
+      else
+        topic_errors = [t.errors.full_messages, status: :unprocessable_entity]
+      end
+    end
+    topic_errors
+  end
+
 end

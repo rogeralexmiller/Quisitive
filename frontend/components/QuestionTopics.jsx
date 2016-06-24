@@ -12,6 +12,7 @@ var QuestionTopics = React.createClass({
     getInitialState: function(){
       var potentialTopics = TopicStore.all();
       var topics = potentialTopics ? potentialTopics : {};
+      topics["newTopics"] = [];
       var questionAuthorId = this.props.questionAuthor;
       return ({
         topics: topics,
@@ -110,7 +111,15 @@ var QuestionTopics = React.createClass({
       var keys = Object.keys(object);
       var limit = keys.length > 10 ? 10 : keys.length;
       for (var i = 0; i < limit; i++) {
-        resultsArr.push(object[keys[i]]);
+        if (keys[i] === "newTopics"){
+          var newTopics = object[keys[i]]
+          for (var i = 0; i < newTopics.length; i++) {
+            var name = newTopics[i];
+            resultsArr.push({name: name, id: i});
+          }
+        } else{
+          resultsArr.push(object[keys[i]]);
+        }
       }
       return resultsArr;
     },
@@ -127,6 +136,15 @@ var QuestionTopics = React.createClass({
       }
     },
 
+    createTopic: function(e){
+      e.preventDefault();
+      var newTopic = this.state.topicSearch;
+      var topics = this.state.editTopics ? this.state.editTopics : {newTopics: []};
+      topics["newTopics"] = [];
+      topics["newTopics"].push(newTopic);
+      this.setState({editTopics: topics, topicSearch: ""});
+    },
+
     render: function(){
       var results = this.toArray(this.state.searchResults);
       var topics = this.toArray(this.state.topics);
@@ -134,6 +152,7 @@ var QuestionTopics = React.createClass({
       var dropdownClass = results.length > 0 ? "topic-search-dropdown" : "hidden";
       var comp = this;
       var ownerEdit = this.ownerEdit();
+      var createTopicButton = (results.length === 0 && this.state.topicSearch.length > 0) ? "submit-button good-button" : "hidden"
       return(
         <div>
           <Modal
@@ -188,6 +207,8 @@ var QuestionTopics = React.createClass({
                     })}
                   </ul>
                 </div>
+
+                <button onClick={this.createTopic} className={createTopicButton}>Create Topic</button>
 
                 <div className="button-bar group">
                   <button

@@ -46,11 +46,11 @@ var TopicApiUtil = {
     });
   },
 
-  createTopic: function(topic){
+  createQuestionTopic: function(topic){
     $.ajax({
       url: "api/topics",
       type: "POST",
-      data: {topic: topic},
+      data: {topic: topic, question_id: questionId},
       success: function(topic){
         TopicActions.receiveTopic(topic);
       }
