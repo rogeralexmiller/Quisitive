@@ -2,13 +2,13 @@ class Api::TopicsController < ApplicationController
   before_action :ensure_logged_in
 
   def index
-    @topics = Topic.includes(:questions, :author).all
+    followed_topic_ids = current_user.followings.where(followable_type: "Topic").pluck(:followable_id)
+    @topics = Topic.includes(:questions, :author).where(id: followed_topic_ids)
     render "api/topics/index"
   end
 
   def show
-    @topic = Topic.includes(:questions, :author).find(params[:id])
-
+    @topic = Topic.includes(:questions, :author, :followers).find(params[:id])
     render "api/topics/show"
   end
 

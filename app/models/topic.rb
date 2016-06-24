@@ -17,4 +17,12 @@ class Topic < ActiveRecord::Base
     foreign_key: :author_id,
     primary_key: :id
   )
+
+  has_many(:follows, as: :followable)
+
+  has_many(:followers,
+  through: :follows,
+  source: :follower
+  )
+
 end

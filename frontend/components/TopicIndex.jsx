@@ -39,7 +39,7 @@ var TopicIndex = React.createClass({
     var topicArray = this.topicArray();
     return(
       <div className="topic-index">
-        <h3 className="index-header">Topics</h3>
+        <h3 className="index-header">Followed topics</h3>
         <ul>
           {topicArray.map(function(topic, idx){
             return (

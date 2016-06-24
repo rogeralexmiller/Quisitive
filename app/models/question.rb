@@ -25,4 +25,13 @@ class Question < ActiveRecord::Base
     source: :topic
   )
 
+  has_many(:follows, as: :followable)
+
+  has_many(:followers,
+  through: :follows,
+  source: :follower
+  )
+
+
+
 end

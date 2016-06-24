@@ -6,6 +6,7 @@ Answer.destroy_all
 Comment.destroy_all
 Topic.destroy_all
 TopicTagging.destroy_all
+Follow.destroy_all
 
 emails = ["anna@test.com",
           "bart@test.com",
@@ -374,4 +375,11 @@ questions.each do |question|
   TopicTagging.create(question_id: question.id, topic_id: topics.sample.id)
   TopicTagging.create(question_id: question.id, topic_id: topics.sample.id)
   TopicTagging.create(question_id: question.id, topic_id: topics.sample.id)
+end
+
+users.each do |user|
+  rand_topics = [topics.sample, topics.sample, topics.sample, topics.sample, topics.sample]
+  rand_topics.each do |topic|
+    Follow.create({follower_id: user.id, followable_type: "Topic", followable_id: topic.id})
+  end
 end
