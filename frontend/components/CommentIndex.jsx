@@ -72,7 +72,7 @@ var CommentIndex = React.createClass({
         <p className="cancelAnswer comment-count" onClick={this.showComments}>{countText}</p>
         <div className={commentClass}>
           <form className="comment-form group" onSubmit={this.submitComment}>
-          <input type="submit" className="submit-button comment-submit" value="Submit"/>
+          <input type="submit" className="submit-button comment-submit" value="Comment"/>
             <textarea onChange={this.textChange}
                       placeholder="Add a comment..."
                       value={this.state.commentForm}></textarea>

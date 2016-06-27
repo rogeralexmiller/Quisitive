@@ -68,7 +68,7 @@ var AnswerIndex = React.createClass({
         <button onClick={this.showAnswer} className={answerButtonClass}> Answer </button>
         <form className={answerFormClass}>
           <textarea rows="3" className="answer-input" onChange={this.textChange} value={this.state.answer}></textarea>
-          <input type="submit" className="answer-button" onClick={this.submitAnswer}/>
+          <input type="submit" value="Answer" className="answer-button" onClick={this.submitAnswer}/>
           <p className="cancelAnswer" onClick={this.cancelAnswer}>Cancel</p>
         </form>
         <h3 className="answer-count">{answerCount}</h3>
