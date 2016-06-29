@@ -5,6 +5,7 @@ var Link = require('react-router').Link;
 var SessionStore = require("../stores/sessionStore");
 var HeaderNav = require("./HeaderNav");
 var TopicQuestionIndex = require("./TopicQuestionIndex");
+var FollowToggle = require("./FollowToggle");
 
 var TopicShow = React.createClass({
 
@@ -98,6 +99,7 @@ var TopicShow = React.createClass({
           </p>
 
           {this.ownerButtons()}
+          <FollowToggle followableType={"Topic"} followableId={this.state.topic.id}/>
         </div>
         <TopicQuestionIndex questions={this.state.topic.questions}/>
       </div>
