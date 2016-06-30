@@ -44,6 +44,9 @@ var TopicIndex = React.createClass({
               </li>
             );
           })}
+          <li>
+            <Link className="topic-index-item browse-topics" to={"topics"}>Browse Topics</Link>
+          </li>
         </ul>
       </div>
     );

@@ -73,7 +73,8 @@ var QuestionSearchForm = React.createClass({
     return resultsArr.slice(0,6);
   },
 
-  openModal: function(){
+  openModal: function(e){
+    e.preventDefault();
     this.setState({modalOpen:true});
     setTimeout(function(){
       if (this.refs.questionInput) {
@@ -93,6 +94,7 @@ var QuestionSearchForm = React.createClass({
   render: function(){
     var results = this.resultsArray();
     var comp = this;
+    var submitClass = this.state.body.length > 0 ? "question-submit" : "question-submit disabled";
     return(
       <div>
         <form className="question-form group" onSubmit={this.handleSubmit}>
@@ -106,7 +108,8 @@ var QuestionSearchForm = React.createClass({
           />
           <input className="question-submit"
                  type="submit"
-                 value="Submit Question"
+                 onClick={this.openModal}
+                 value="Ask a Question"
 
           />
         </form>
@@ -132,9 +135,10 @@ var QuestionSearchForm = React.createClass({
                          value={this.state.body}
                          ref="questionInput"
                   />
-                  <input className="question-submit"
+                  <input className= {submitClass}
                          type="submit"
                          value="Submit Question"
+                         disabled={!this.state.body}
                   />
                 </form>
 

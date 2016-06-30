@@ -27,7 +27,7 @@ var TopicApiUtil = {
       type: "GET",
       data: {question_id: questionId},
       success: function(topics){
-        TopicActions.receiveTopics(topics);
+        TopicActions.receiveQuestionTopics(topics);
       }
     });
   },
@@ -41,7 +41,7 @@ var TopicApiUtil = {
         topics: topics
       },
       success: function(topics){
-        TopicActions.receiveTopics(topics);
+        TopicActions.receiveQuestionTopics(topics);
       }
     });
   },
@@ -62,7 +62,7 @@ var TopicApiUtil = {
       type: "POST",
       data: {topic: topic, question_id: questionId},
       success: function(topic){
-        TopicActions.receiveTopic(topic);
+        TopicActions.receiveQuestionTopic(topic);
       }
     });
   },

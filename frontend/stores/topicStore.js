@@ -5,6 +5,13 @@ var FollowStore = require("./followStore");
 
 var TopicStore = new Store(AppDispatcher);
 var _topics = [];
+var _topicHash = {};
+
+var _questionTopics = [];
+
+TopicStore.getQuestionTopics = function(){
+  return _questionTopics.slice();
+};
 
 TopicStore.all = function(){
   return _topics.slice();
@@ -25,25 +32,41 @@ TopicStore.find = function(id){
 };
 
 var addTopic = function(newTopic){
-  for (var i = 0; i < _topics.length; i++) {
-    var topic = _topics[i];
-    if (topic.id === newTopic.id){
-      return;
-    }
+  if (!_topicHash[newTopic.id]) {
+    _topics.push(newTopic);
+    _topicHash[newTopic.id] = true;
   }
-  _topics.push(newTopic);
 };
 
 var removeTopic = function(badTopic){
   _topics = _topics.filter(function(topic){
+    _topicHash[topic.id] = false;
     return (topic.id !== badTopic.id);
   });
+};
+
+var receiveTopics = function(topics){
+  for (var i = 0; i < topics.length; i++) {
+    var topic = topics[i];
+    if (!_topicHash[topic.id]) {
+      _topics.push(topic);
+      _topicHash[topic.id] = true;
+    }
+  }
 };
 
 TopicStore.__onDispatch = function(payload){
   switch(payload.actionType){
     case TopicConstants.RECEIVE_TOPICS:
-      _topics = payload.topics;
+      receiveTopics(payload.topics);
+      TopicStore.__emitChange();
+      break;
+    case TopicConstants.RECEIVE_QUESTION_TOPICS:
+      _questionTopics = payload.topics;
+      TopicStore.__emitChange();
+      break;
+    case TopicConstants.RECEIVE_QUESTION_TOPIC:
+      _questionTopics.push(payload.topic);
       TopicStore.__emitChange();
       break;
     case TopicConstants.RECEIVE_TOPIC:

@@ -99,3 +99,9 @@ button{
 .follow-button:hover{
   border: 1px solid #919191;
 }
+
+.disabled{
+  cursor: default;
+  background: rgb(246, 246, 246);
+  color: rgb(153, 153, 153);
+}

@@ -16,6 +16,7 @@ var SessionApiUtil = require("./util/sessionApiUtil");
 var FollowedTopicsIndex = require("./components/FollowedTopicsIndex");
 var AnswerIndex = require("./components/AnswerIndex");
 var TopicShow = require("./components/TopicShow");
+var TopicsIndex = require("./components/TopicsIndex");
 var HeaderNav = require("./components/HeaderNav");
 
 var UserShow = require("./components/UserShow");
@@ -91,6 +92,9 @@ var Router = (
       <IndexRoute onEnter={_ensureLoggedOut} component={LoginSignup}/>
       <Route path="login" onEnter={_ensureLoggedOut} component={LoginSignup}/>
       <Route path="signup" onEnter={_ensureLoggedOut} component={LoginSignup}/>
+      <Route path="topics" onEnter={_ensureLoggedIn} component={TopicsIndex}>
+        <IndexRoute component={FollowedTopicsIndex}/>
+      </Route>
       <Route path="questions" onEnter={_ensureLoggedIn} component={QuestionsIndex}>
         <IndexRoute component={FollowedTopicsIndex}/>
       </Route>

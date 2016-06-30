@@ -93,7 +93,7 @@ var QuestionShow = React.createClass({
     var questionClass = this.state.editing ? "hidden" : "show-header group";
     return(
       <div className="question-show">
-        <QuestionTopics questionId={this.state.question.id} questionAuthor={this.state.question.author_id}/>
+        <QuestionTopics topics={this.state.question.topics} questionId={this.state.question.id} questionAuthor={this.state.question.author_id}/>
         <form className={editClass}>
           <input type="text" className="question-edit-input" onChange={this.handleBodyChange} value={this.state.question.body}/>
           <button onClick={this.handleUpdate} className="submit-button good-button"> Update </button>

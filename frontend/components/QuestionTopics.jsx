@@ -10,9 +10,8 @@ var React = require("react"),
 
 var QuestionTopics = React.createClass({
     getInitialState: function(){
-      var potentialTopics = TopicStore.all();
-      var topics = potentialTopics ? potentialTopics : {};
-      topics["newTopics"] = [];
+      var potentialTopics = this.props.topics;
+      var topics = potentialTopics ? potentialTopics : [];
       var questionAuthorId = this.props.questionAuthor;
       return ({
         topics: topics,
@@ -29,7 +28,7 @@ var QuestionTopics = React.createClass({
     },
 
     onTopicChange: function(){
-      var topics = TopicStore.all();
+      var topics = TopicStore.getQuestionTopics();
       this.setState({
         topics: topics,
         editTopics: topics.slice()

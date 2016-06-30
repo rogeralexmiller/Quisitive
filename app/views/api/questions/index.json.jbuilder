@@ -5,4 +5,5 @@ json.array! @questions do |question|
   json.author question.author.full_name
   json.commentCount question.comments.length
   json.comments question.comments
+  json.topics question.topics
 end
