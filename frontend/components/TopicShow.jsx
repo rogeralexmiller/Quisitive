@@ -82,7 +82,7 @@ var TopicShow = React.createClass({
   render: function(){
     var editClass = this.state.editing ? "question-edit-form topic-form group" : "hidden";
     var topicClass = this.state.editing ? "hidden" : "show-header topic-header group";
-
+    var questionCount = this.state.topic.questionCount + " Questions";
     return(
       <div className="group">
         {this.props.children}
@@ -97,7 +97,7 @@ var TopicShow = React.createClass({
           <p>
             {this.state.topic.name}
           </p>
-
+          <p className="count">{questionCount}</p>
           {this.ownerButtons()}
           <FollowToggle followableType={"Topic"} followableId={this.state.topic.id}/>
         </div>

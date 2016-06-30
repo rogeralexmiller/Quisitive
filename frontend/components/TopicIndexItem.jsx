@@ -3,6 +3,7 @@ var TopicStore = require("../stores/topicStore");
 var FollowToggle = require("./FollowToggle");
 var TopicApiUtil = require("../util/topicApiUtil");
 var SessionStore = require("../stores/sessionStore");
+var Link = require('react-router').Link;
 
 var TopicIndexItem = React.createClass({
   contextTypes: {
@@ -71,6 +72,7 @@ var TopicIndexItem = React.createClass({
   render: function(){
     var editClass = this.state.editing ? "question-edit-form topic-form group" : "hidden";
     var topicClass = this.state.editing ? "hidden" : "show-header topic-header group";
+    var questionCount = this.state.topic.questionCount + " Questions";
     return(
       <div className="group">
         <form className={editClass}>
@@ -81,9 +83,12 @@ var TopicIndexItem = React.createClass({
 
         <div className={topicClass}>
 
-        <p>
-        {this.state.topic.name}
+        <p className="topic-item-title">
+          <Link to={"topics/"+this.state.topic.id}>
+            {this.state.topic.name}
+          </Link>
         </p>
+        <Link to={"topics/"+this.state.topic.id} className="count">{questionCount}</Link>
 
         {this.ownerButtons()}
         <FollowToggle followableType={"Topic"} followableId={this.state.topic.id}/>
