@@ -2,8 +2,13 @@ class Api::TopicsController < ApplicationController
   before_action :ensure_logged_in
 
   def index
+    @topics = Topic.includes(:questions, :author).order("name DESC").all
+    render "api/topics/index"
+  end
+
+  def followed_topics
     followed_topic_ids = current_user.followings.where(followable_type: "Topic").pluck(:followable_id)
-    @topics = Topic.includes(:questions, :author).where(id: followed_topic_ids)
+    @topics = Topic.includes(:questions, :author).order("name DESC").where(id: followed_topic_ids)
     render "api/topics/index"
   end
 
@@ -53,10 +58,10 @@ class Api::TopicsController < ApplicationController
       @question.topics.destroy_all
       topics = params[:topics] ? params[:topics] : []
       topics.each do |idx, topic|
-        if idx == "newTopics"
-          topic_errors = handle_new_topics(topic, @question)
+        if topic["id"] == topic["name"]
+          topic_errors = handle_new_topic(topic, @question)
         else
-          TopicTagging.create(question_id: @question.id, topic_id:idx)
+          TopicTagging.create(question_id: @question.id, topic_id: topic["id"])
         end
       end
       updated_question = Question.includes(:topics).find(params[:question_id])
@@ -82,16 +87,13 @@ class Api::TopicsController < ApplicationController
     params.require(:topic).permit(:name)
   end
 
-  def handle_new_topics(topics, question)
+  def handle_new_topic(topic, question)
     topic_errors = []
-    topics.each do |new_topic|
-
-      t = Topic.new(name: new_topic, author_id: current_user.id)
-      if t.save
-        TopicTagging.create(question_id: question.id, topic_id: t.id)
-      else
-        topic_errors = [t.errors.full_messages, status: :unprocessable_entity]
-      end
+    t = Topic.new(name: topic["name"], author_id: current_user.id)
+    if t.save
+      TopicTagging.create(question_id: question.id, topic_id: t.id)
+    else
+      topic_errors = [t.errors.full_messages, status: :unprocessable_entity]
     end
     topic_errors
   end

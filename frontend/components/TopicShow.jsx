@@ -31,7 +31,6 @@ var TopicShow = React.createClass({
   _onChange: function(){
     var potentialTopic = TopicStore.find(this.props.params.topicId);
     var topic = potentialTopic ? potentialTopic : {};
-
     this.setState({topic: topic, topicForm: topic});
   },
 
@@ -83,6 +82,7 @@ var TopicShow = React.createClass({
   render: function(){
     var editClass = this.state.editing ? "question-edit-form topic-form group" : "hidden";
     var topicClass = this.state.editing ? "hidden" : "show-header topic-header group";
+
     return(
       <div className="group">
         {this.props.children}

@@ -4,12 +4,20 @@ var FollowApiUtil = require("../util/followApiUtil");
 
 var FollowToggle = React.createClass({
   getInitialState: function(){
-    return {followed: false};
+    var type = this.props.followableType;
+    var id = this.props.followableId;
+    return {followed: FollowStore.isFollowing(type, id)};
   },
 
   componentDidMount: function(){
     this.followListener = FollowStore.addListener(this._onChange);
     FollowApiUtil.getUserFollows();
+  },
+
+  componentWillReceiveProps: function(props){
+    var type = props.followableType;
+    var id = props.followableId;
+    this.setState({followed: FollowStore.isFollowing(type, id)});
   },
 
   _onChange: function(){
@@ -36,9 +44,10 @@ var FollowToggle = React.createClass({
   },
 
   render: function(){
-    var followState = this.state.followed ? "Unfollow" : "Follow";
+    followState = this.state.followed ? "Unfollow" : "Follow" ;
+    followClass = this.state.followed ? "answer-button unfollow follow-button" : "answer-button follow-button";
     return(
-      <div className="follow-toggle">
+      <div className={followClass}>
         <button onClick={this.followToggle}>{followState}</button>
       </div>
     )

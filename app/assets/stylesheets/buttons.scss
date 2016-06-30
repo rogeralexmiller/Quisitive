@@ -84,3 +84,18 @@ button{
 .delete:hover{
   border: 1px solid #db0808;
 }
+
+.unfollow{
+  background: rgb(246, 246, 246);
+  color: rgb(153, 153, 153);
+  border: 1px solid #ddd;
+}
+
+.follow-button{
+  float: left;
+  margin-left: 0;
+}
+
+.follow-button:hover{
+  border: 1px solid #919191;
+}

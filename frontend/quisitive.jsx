@@ -13,7 +13,7 @@ var SessionStore = require("./stores/sessionStore");
 var LoginSignup = require("./components/LoginSignup");
 var QuestionShow = require("./components/QuestionShow");
 var SessionApiUtil = require("./util/sessionApiUtil");
-var TopicIndex = require("./components/TopicIndex");
+var FollowedTopicsIndex = require("./components/FollowedTopicsIndex");
 var AnswerIndex = require("./components/AnswerIndex");
 var TopicShow = require("./components/TopicShow");
 var HeaderNav = require("./components/HeaderNav");
@@ -92,13 +92,13 @@ var Router = (
       <Route path="login" onEnter={_ensureLoggedOut} component={LoginSignup}/>
       <Route path="signup" onEnter={_ensureLoggedOut} component={LoginSignup}/>
       <Route path="questions" onEnter={_ensureLoggedIn} component={QuestionsIndex}>
-        <IndexRoute component={TopicIndex}/>
+        <IndexRoute component={FollowedTopicsIndex}/>
       </Route>
       <Route path="questions/:questionId" onEnter={_ensureLoggedIn} component={QuestionShow}>
         <IndexRoute component={AnswerIndex} />
       </Route>
       <Route path="topics/:topicId" onEnter={_ensureLoggedIn} component={TopicShow}>
-        <IndexRoute component={TopicIndex}/>
+        <IndexRoute component={FollowedTopicsIndex}/>
       </Route>
       <Route path="users/:userId" onEnter={_ensureLoggedIn} component={UserShow}/>
     </Route>

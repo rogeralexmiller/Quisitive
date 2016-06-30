@@ -1,49 +1,45 @@
 var React = require("react");
 var TopicStore = require("../stores/topicStore");
 var TopicApiUtil = require("../util/topicApiUtil");
+var FollowStore = require("../stores/followStore");
+var FollowApiUtil = require("../util/followApiUtil");
+
 var Link = require('react-router').Link;
+
 
 var TopicIndex = React.createClass({
   getInitialState: function(){
-    var potentialTopics = TopicStore.all();
-    var topics = potentialTopics ? potentialTopics : {};
+    var potentialTopics = TopicStore.followedTopics();
+    var topics = potentialTopics ? potentialTopics : [];
     return {topics: topics};
   },
 
   onChange: function(){
-    var potentialTopics = TopicStore.all();
-    var topics = potentialTopics ? potentialTopics : {};
-
+    var potentialTopics = TopicStore.followedTopics();
+    var topics = potentialTopics ? potentialTopics : [];
     this.setState({topics: topics});
   },
 
   componentDidMount: function(){
-    this.listener = TopicStore.addListener(this.onChange);
-    TopicApiUtil.fetchAllTopics();
+    this.topicListener = TopicStore.addListener(this.onChange);
+    this.followListener = FollowStore.addListener(this.onChange);
+    FollowApiUtil.getUserFollows();
+    TopicApiUtil.fetchFollowedTopics();
   },
 
   componentWillUnmount: function(){
-    this.listener.remove();
-  },
-
-  topicArray: function() {
-    var topicArr = [];
-    var keys = Object.keys(this.state.topics);
-    for (var i = 0; i < keys.length; i++) {
-      topicArr.push(this.state.topics[keys[i]]);
-    }
-    return topicArr;
+    this.topicListener.remove();
+    this.followListener.remove();
   },
 
   render: function(){
-    var topicArray = this.topicArray();
     return(
       <div className="topic-index">
         <h3 className="index-header">Followed topics</h3>
         <ul>
-          {topicArray.map(function(topic, idx){
+          {this.state.topics.map(function(topic){
             return (
-              <li key={idx}>
+              <li key={topic.id}>
                 <Link className="topic-index-item" to={"topics/"+topic.id}>{topic.name}</Link>
               </li>
             );

@@ -4,35 +4,55 @@ var FollowConstants = require("../constants/FollowConstants");
 
 var FollowStore = new Store(AppDispatcher);
 
-var _follows = {Topic: {}, User: {}, Question: {}};
+var _follows = {Topic: [], User: [], Question: []};
 
 var removeFollow = function(follow){
   var type = follow.followableType;
   var id = follow.followableId;
-  delete _follows[type][id];
+  var follows = _follows[type];
+  _follows[type] = follows.filter(function(follow){
+    return follow.followableId !== id;
+  });
 };
 
 FollowStore.find = function(followableType, followableId){
-  return _follows[followableType][followableId];
+  var follows = _follows[followableType];
+  for (var i = 0; i < follows.length; i++) {
+    if (follows[i].followableId === followableId) {
+      return follows[i];
+    }
+  }
+  return null;
 };
 
 FollowStore.isFollowing = function(followableType, followableId){
-  var follow = _follows[followableType][followableId];
-  return follow ? true : false;
+  var follows = _follows[followableType];
+  for (var i = 0; i < follows.length; i++) {
+    if (follows[i].followableId === followableId) {
+      return true;
+    }
+  }
+  return false;
 };
 
 var addFollow = function(follow){
   var type = follow.followableType;
   var id = follow.followableId;
-  _follows[type][id] = follow;
+  var follows = _follows[type];
+  for (var i = 0; i < follows.length; i++) {
+    if (follows[i].followableId === id) {
+      return;
+    }
+  }
+  _follows[type].push(follow);
 };
 
 var addAllFollows = function(follows){
+  _follows.Topic = [];
   for (var i = 0; i < follows.length; i++) {
     var follow = follows[i];
-    var type = follow.followable_type;
-    var followable_id = follow.followable_id;
-    _follows[type][followable_id] = follow;
+    var type = follow.followableType;
+    _follows[type].push(follow);
   }
 };
 
