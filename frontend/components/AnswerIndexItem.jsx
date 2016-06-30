@@ -2,6 +2,7 @@ var React = require("react");
 var AnswerApiUtil = require("../util/answerApiUtil");
 var SessionStore = require("../stores/sessionStore");
 var CommentIndex = require("./CommentIndex");
+var TimeStamp = require("./TimeStamp");
 
 var AnswerIndexItem = React.createClass({
 
@@ -64,6 +65,7 @@ var AnswerIndexItem = React.createClass({
 
     return (
       <div className = "answer-index-item group">
+      <TimeStamp time={this.props.answer.created_at}/>
       <h3 className="answer-author" >{this.props.answer.author}</h3>
       <p className={answerShowClass} >{this.props.answer.body}</p>
 

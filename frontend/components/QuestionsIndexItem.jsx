@@ -1,5 +1,6 @@
 var React = require("react");
 var CommentIndex = require("./CommentIndex");
+var TimeStamp = require("./TimeStamp");
 
 var QuestionsIndexItem = React.createClass({
 
@@ -7,6 +8,8 @@ var QuestionsIndexItem = React.createClass({
     var questionUrl="#/questions/"+this.props.question.id;
     return(
       <div className="questions-index-item group">
+      <TimeStamp time={this.props.question.created_at}/>
+
         <a href={questionUrl} className="question-body">
           {this.props.question.body}
         </a>

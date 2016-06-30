@@ -1,7 +1,7 @@
 json.array! @comments do |comment|
   json.id comment.id
   json.body comment.body
-  json.updated_at comment.updated_at
+  json.created_at time_ago_in_words(comment.created_at)
   json.author comment.author.full_name
   json.author_id comment.author_id
   json.commentable_id comment.commentable_id
