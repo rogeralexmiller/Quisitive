@@ -44,9 +44,7 @@ var QuestionSearchForm = React.createClass({
   },
 
   searchChange: function(e){
-    if (this.state.body.length) {
-      QuestionSearchApiUtil.searchQuestions(this.state.body);
-    }
+    QuestionSearchApiUtil.searchQuestions(this.state.body);
   },
 
   handleSubmit: function(e){
@@ -137,7 +135,7 @@ var QuestionSearchForm = React.createClass({
                 </form>
 
                 <ul className="question-search-results">
-                  {this.state.results.map(function(result){
+                  {this.state.results.slice(0,10).map(function(result){
                     return (
                      <p
                         onClick={comp.goToQuestion}
