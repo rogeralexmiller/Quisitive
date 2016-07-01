@@ -42,8 +42,7 @@ body {
 
 #content{
   width: 1002px;
-  margin-top: 75px;
-  padding-left: 131px;
+  margin: 75px auto;
 }
 
 textarea{
