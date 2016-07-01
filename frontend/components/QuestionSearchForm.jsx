@@ -85,8 +85,6 @@ var QuestionSearchForm = React.createClass({
   render: function(){
     var comp = this;
     var submitClass = this.state.body.length > 0 ? "question-submit" : "question-submit disabled";
-    console.log(this.state.results);
-    console.log(this.state.body);
     return(
       <div>
         <form className="question-form group" onSubmit={this.handleSubmit}>
