@@ -17,7 +17,7 @@ var QuestionSearchForm = React.createClass({
   },
 
   getInitialState: function(){
-    return {body: "", results:{}, modalOpen:false};
+    return {body: "", results:[], modalOpen:false};
   },
 
   _onChange: function(){
@@ -36,6 +36,7 @@ var QuestionSearchForm = React.createClass({
 
   componentWillUnmount: function(){
     this.formListener.remove();
+    this.searchListener.remove();
   },
 
   _handleChange: function(e){
@@ -43,7 +44,9 @@ var QuestionSearchForm = React.createClass({
   },
 
   searchChange: function(e){
-    QuestionSearchApiUtil.searchQuestions(this.state.body);
+    if (this.state.body.length) {
+      QuestionSearchApiUtil.searchQuestions(this.state.body);
+    }
   },
 
   handleSubmit: function(e){
@@ -52,30 +55,20 @@ var QuestionSearchForm = React.createClass({
       hashHistory.push("questions/"+id);
     });
     this.setState({
-      body:"",
+      body: "",
       modalOpen:false,
-      results: {}
+      results: []
     })
   },
 
   goToQuestion: function(e){
-    this.setState({modalOpen:false, results: {}, body: ""});
+    this.setState({modalOpen:false, results: [], body: ""});
     this.context.router.push("questions/"+e.target.dataset.questionid);
-  },
-
-  resultsArray: function() {
-    var resultsArr = [];
-    var keys = Object.keys(this.state.results);
-    var limit = keys.length > 6 ? 6 : keys.length;
-    for (var i = 0; i < limit; i++) {
-      resultsArr.push(this.state.results[keys[i]]);
-    }
-    return resultsArr.slice(0,6);
   },
 
   openModal: function(e){
     e.preventDefault();
-    this.setState({modalOpen:true});
+    this.setState({modalOpen:true, results: [], body: ""});
     setTimeout(function(){
       if (this.refs.questionInput) {
         ReactDOM.findDOMNode(this.refs.questionInput).focus();
@@ -87,14 +80,15 @@ var QuestionSearchForm = React.createClass({
     this.setState({
       modalOpen:false,
       body:"",
-      results: {}
+      results: []
     });
   },
 
   render: function(){
-    var results = this.resultsArray();
     var comp = this;
     var submitClass = this.state.body.length > 0 ? "question-submit" : "question-submit disabled";
+    console.log(this.state.results);
+    console.log(this.state.body);
     return(
       <div>
         <form className="question-form group" onSubmit={this.handleSubmit}>
@@ -143,12 +137,12 @@ var QuestionSearchForm = React.createClass({
                 </form>
 
                 <ul className="question-search-results">
-                  {results.map(function(result, idx){
+                  {this.state.results.map(function(result){
                     return (
                      <p
                         onClick={comp.goToQuestion}
                         className="result-item"
-                        key={idx}
+                        key={result.id}
                         data-questionid={result.id}
                       >
                         {result.body}

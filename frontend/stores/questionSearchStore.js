@@ -4,10 +4,10 @@ var QuestionSearchConstants = require("../constants/QuestionSearchConstants");
 
 var QuestionSearchStore = new Store(AppDispatcher);
 
-_results = {};
+_results = [];
 
 QuestionSearchStore.results = function(){
-  return JSON.parse(JSON.stringify(_results));
+  return _results.slice();
 };
 
 QuestionSearchStore.__onDispatch = function(payload){
