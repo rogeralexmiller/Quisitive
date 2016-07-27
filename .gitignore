@@ -14,6 +14,7 @@
 /node_modules/*
 /app/assets/javascripts/bundle*
 .byebug_history
+.DS_Store
 
 # Ignore application configuration
 /config/application.yml

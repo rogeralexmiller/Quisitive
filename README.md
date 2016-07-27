@@ -2,7 +2,7 @@
 
 [Quisitive live][heroku]
 
-[heroku]: http://quisitive.herokuapp.com
+[heroku]: http://quisitive.tech
 
 Quisitive is a full-stack web application modeled on Quora.  It relies on Ruby on Rails for the backend with a PostgreSQL database, and React.js with Flux for the frontend.  
 
@@ -83,14 +83,19 @@ Topics are maintained on the frontend in the `TopicStore` and are rendered in th
 ![question-topics-screenshot]
 [question-topics-screenshot]: ./docs/QuestionTopics.png
 
+### Follows
+
+Follows are essentially a connection between users and topics, and as such are stored in a `follows` table
+that stores the `follower_id`, `followable_id` and `followable_type`. Like comments, follows are polymorphic,
+meaning that the table can support users following both topics and questions.
+In the future I plan on implementing question follows, but for now, users can only follow topics.
+
+On the frontend, follows are stored in the `followStore` and follows are rendered as a follow/unfollow toggle button
+ in the `TopicIndex`, `FollowedTopicsIndex` and `TopicShow` components.
+
 ## Future Goals
 
 In addition to the features already implemented, I plan to continue work on this project.  The next steps for Quisitive are outlined below.
-
-### Question and Topic follows
-
-This is actually a pretty important feature of Quora, given that it allows users to better curate the content they see. I plan on implementing this
-by adding a table called `follows` that will have a `user_id`, a `followable_id` and `followable_type` to allow users to follow both questions and topics.d
 
 ### Question and Answer upvoting and downvoting
 
