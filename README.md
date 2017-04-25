@@ -2,7 +2,7 @@
 
 [Quisitive live][heroku]
 
-[heroku]: http://http://quisitive.herokuapp.com/
+[heroku]: http://quisitive.herokuapp.com/
 
 Quisitive is a full-stack web application modeled on Quora.  It relies on Ruby on Rails for the backend with a PostgreSQL database, and React.js with Flux for the frontend.  
 
